@@ -274,9 +274,6 @@ export default function Services() {
         </div>
       </section>
 
-      {/* AI Stats Carousel */}
-      <AiStatsCarousel />
-
       {/* Operating Diagnostic */}
       <section id="operating-diagnostic" className="section-band" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-4xl">
@@ -314,6 +311,9 @@ export default function Services() {
           </FadeSection>
         </div>
       </section>
+
+      {/* AI Stats Carousel */}
+      <AiStatsCarousel />
 
       {/* Build Engagement */}
       <section id="build-engagement" className="section-band" style={{ background: 'white' }}>
