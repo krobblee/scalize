@@ -1,7 +1,7 @@
 /*
  * SCALIZE SYSTEMS — About Page
  * Design: Refined Editorial | Inter font | brand palette
- * Layout: Photo + name/title inline at top of bio section, no separate header band
+ * Layout: Standard page header, centered name/title, inline right-aligned headshot with bio copy
  */
 
 import { Link } from 'wouter';
@@ -19,42 +19,47 @@ export default function About() {
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
       <Navbar />
 
-      {/* Bio — photo + name/title inline, then body copy */}
-      <section className="section-band" style={{ background: '#EEF2F8' }}>
+      {/* Page header */}
+      <section className="pt-24 pb-10 md:pt-28 md:pb-12" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <FadeSection>
-            {/* Photo + name/title row */}
-            <div className="flex items-center gap-6 mb-8">
-              <img
-                src="/assets/images/katie-robblee-headshot-480.png"
-                alt="Katie Robblee, Founder of Scalize Systems"
-                className="rounded-sm flex-shrink-0 object-cover"
-                style={{ width: '120px', height: '120px' }}
-                width="120"
-                height="120"
-              />
-              <div>
-                <h1
-                  className="text-2xl md:text-3xl font-bold leading-tight"
-                  style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-                >
-                  Katie Robblee
-                </h1>
-                <p
-                  className="text-base mt-1"
-                  style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C' }}
-                >
-                  Founder, Scalize Systems
-                </p>
-              </div>
+            <h1 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>About</h1>
+          </FadeSection>
+        </div>
+      </section>
+
+      {/* Bio — centered name/title, then body copy with inline right-aligned headshot */}
+      <section className="section-band pt-12 md:pt-14" style={{ background: '#EEF2F8' }}>
+        <div className="container max-w-4xl">
+          <FadeSection>
+            <div className="text-center mb-8 md:mb-10">
+              <h2
+                className="text-2xl md:text-3xl font-bold leading-tight"
+                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+              >
+                Katie Robblee
+              </h2>
+              <p
+                className="text-base mt-1"
+                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C' }}
+              >
+                Founder, Scalize Systems
+              </p>
             </div>
 
             {/* Bio paragraphs */}
             <div className="flex flex-col gap-5">
               <p
-                className="text-base leading-relaxed"
+                className="text-base leading-relaxed flow-root"
                 style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
               >
+                <img
+                  src="/assets/images/katie-headshot-charcoal-720.png"
+                  alt="Katie Robblee, Founder of Scalize Systems"
+                  className="block w-40 sm:w-48 md:w-56 lg:w-64 rounded-sm object-cover mb-5 sm:mb-4 sm:ml-8 md:ml-10 sm:float-right"
+                  width="720"
+                  height="832"
+                />
                 I'm Katie Robblee and my background spans product management, product operations, technical program management, and engineering management. I build the operating infrastructure that allows product and engineering teams to work with less friction and greater efficiency. Over the course of my career I have worked across ed tech, legal tech, supply chain, enterprise billing, and SMB, on SaaS and enterprise products at companies ranging from pre-seed to multibillion dollar scale, and have overseen product lines exceeding $3B in gross revenue.
               </p>
               <p
