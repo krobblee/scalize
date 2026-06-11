@@ -59,16 +59,13 @@ export default function HowIWork() {
       <section className="section-band" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-3xl">
           <FadeSection>
-            <div className="flex flex-col md:flex-row gap-10 md:gap-16">
-              <div className="md:w-1/3 flex-shrink-0">
-                <h2
-                  className="text-2xl md:text-3xl font-semibold leading-snug"
-                  style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-                >
-                  Methodology
-                </h2>
-              </div>
-              <div className="md:w-2/3 flex flex-col gap-5">
+            <h2
+              className="text-2xl md:text-3xl font-semibold leading-snug mb-8 text-center"
+              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+            >
+              Methodology
+            </h2>
+            <div className="flex flex-col gap-5">
                 <p
                   className="text-base leading-relaxed"
                   style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
@@ -87,7 +84,6 @@ export default function HowIWork() {
                 >
                   I come in as an outside partner who observes, diagnoses, coaches, and builds. When the engagement ends, the client owns everything: the processes are documented, the frameworks are in place, and the team knows how to run them without me.
                 </p>
-              </div>
             </div>
           </FadeSection>
         </div>
@@ -98,7 +94,7 @@ export default function HowIWork() {
         <div className="container max-w-3xl">
           <FadeSection>
             <h2
-              className="text-2xl md:text-3xl font-semibold mb-12"
+              className="text-2xl md:text-3xl font-semibold leading-snug mb-8 text-center"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
             >
               Engagement Arc
