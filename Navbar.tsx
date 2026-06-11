@@ -1,14 +1,15 @@
 /*
  * SCALIZE SYSTEMS — Navbar
  * Design: White background, real logo image, Inter nav links
- * Logo: logo-no-tag-transp.png in navbar (no tagline), logo-with-tag-white.png in footer
+ * Logo: public/assets/images/scalize-logo-horizontal.png
  * Mobile: hamburger menu with slide-down drawer
  * Brand: #073C81 navy | #046CC5 blue | #078279 teal
  */
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
-import logoNavbar from '@/assets/images/logo-no-tag-transp.png';
+
+const LOGO_NAVBAR = '/assets/images/scalize-logo-horizontal.png';
 
 const NAV_LINKS = [
   { label: 'Services', href: '/services' },
@@ -44,13 +45,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-[4.5rem]">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center no-underline">
-            <span
-              className="text-xl md:text-2xl font-bold tracking-tight"
-              style={{ color: '#073C81', fontFamily: 'Inter, system-ui, sans-serif' }}
-            >
-              Scalize Systems
-            </span>
+          <Link href="/" className="flex items-center no-underline" aria-label="Scalize Systems home">
+            <img
+              src={LOGO_NAVBAR}
+              alt="Scalize Systems"
+              className="block h-9 md:h-11 w-auto"
+              width="186"
+              height="44"
+            />
           </Link>
 
           {/* Desktop nav */}

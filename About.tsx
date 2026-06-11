@@ -25,13 +25,14 @@ export default function About() {
           <FadeSection>
             {/* Photo + name/title row */}
             <div className="flex items-center gap-6 mb-8">
-              <div
-                aria-label="Katie Robblee"
-                className="rounded-sm flex-shrink-0 flex items-center justify-center text-4xl font-bold"
-                style={{ width: '120px', height: '120px', background: '#073C81', color: 'white', fontFamily: 'Inter, system-ui, sans-serif' }}
-              >
-                KR
-              </div>
+              <img
+                src="/assets/images/katie-robblee-headshot-480.png"
+                alt="Katie Robblee, Founder of Scalize Systems"
+                className="rounded-sm flex-shrink-0 object-cover"
+                style={{ width: '120px', height: '120px' }}
+                width="120"
+                height="120"
+              />
               <div>
                 <h1
                   className="text-2xl md:text-3xl font-bold leading-tight"

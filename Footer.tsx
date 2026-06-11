@@ -1,12 +1,13 @@
 /*
  * SCALIZE SYSTEMS — Footer
- * Design: Navy background (#073C81), white logo (no tagline), Inter font
+ * Design: Navy background (#073C81), white public logo asset, Inter font
  * Icons: Lucide Mail + Link for contact links
  */
 
 import { Link } from 'wouter';
 import { Mail, Link as LinkIcon } from 'lucide-react';
-import logoFooter from '@/assets/images/logo-with-tag-white-transp.png';
+
+const LOGO_FOOTER = '/assets/images/scalize-logo-white-tagline.png';
 
 export default function Footer() {
   return (
@@ -14,15 +15,16 @@ export default function Footer() {
       <div className="container section-band-sm">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
 
-          {/* Brand logo only — no tagline, no company name */}
+          {/* Brand logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="inline-block no-underline">
-              <span
-                className="text-xl font-bold tracking-tight"
-                style={{ color: '#FFFFFF', fontFamily: 'Inter, system-ui, sans-serif' }}
-              >
-                Scalize Systems
-              </span>
+            <Link href="/" className="inline-block no-underline" aria-label="Scalize Systems home">
+              <img
+                src={LOGO_FOOTER}
+                alt="Scalize Systems — Build, Scale, Optimize"
+                className="block h-14 w-auto"
+                width="220"
+                height="60"
+              />
             </Link>
           </div>
 
