@@ -7,9 +7,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'wouter';
-import { useFadeIn } from '@/hooks/useFadeIn';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { useFadeIn } from './useFadeIn';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 function FadeSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useFadeIn<HTMLDivElement>(delay);

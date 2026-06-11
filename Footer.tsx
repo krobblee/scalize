@@ -17,12 +17,12 @@ export default function Footer() {
           {/* Brand logo only — no tagline, no company name */}
           <div className="flex-shrink-0">
             <Link href="/" className="inline-block no-underline">
-              <img
-                src={logoFooter}
-                alt="Scalize Systems"
-                className="h-14 w-auto"
-                style={{ objectFit: 'contain' }}
-              />
+              <span
+                className="text-xl font-bold tracking-tight"
+                style={{ color: '#FFFFFF', fontFamily: 'Inter, system-ui, sans-serif' }}
+              >
+                Scalize Systems
+              </span>
             </Link>
           </div>
 

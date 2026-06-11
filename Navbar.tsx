@@ -45,12 +45,12 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center no-underline">
-            <img
-              src={logoNavbar}
-              alt="Scalize Systems"
-              className="h-9 md:h-10 w-auto"
-              style={{ objectFit: 'contain' }}
-            />
+            <span
+              className="text-xl md:text-2xl font-bold tracking-tight"
+              style={{ color: '#073C81', fontFamily: 'Inter, system-ui, sans-serif' }}
+            >
+              Scalize Systems
+            </span>
           </Link>
 
           {/* Desktop nav */}

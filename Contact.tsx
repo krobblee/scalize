@@ -6,9 +6,9 @@
 
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { useFadeIn } from '@/hooks/useFadeIn';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { useFadeIn } from './useFadeIn';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 const EMAILJS_SERVICE_ID = 'service_s365yrl';
 const EMAILJS_TEMPLATE_NOTIFY = 'template_4t4sq5d';  // notification to Katie

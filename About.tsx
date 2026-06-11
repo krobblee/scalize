@@ -5,9 +5,9 @@
  */
 
 import { Link } from 'wouter';
-import { useFadeIn } from '@/hooks/useFadeIn';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { useFadeIn } from './useFadeIn';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 function FadeSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useFadeIn<HTMLDivElement>(delay);
@@ -25,12 +25,13 @@ export default function About() {
           <FadeSection>
             {/* Photo + name/title row */}
             <div className="flex items-center gap-6 mb-8">
-              <img
-                src="/manus-storage/katie_headshot_charcoal_6291dc1b.png"
-                alt="Katie Robblee"
-                className="rounded-sm flex-shrink-0"
-                style={{ width: '120px', height: '120px', objectFit: 'cover', objectPosition: 'center top' }}
-              />
+              <div
+                aria-label="Katie Robblee"
+                className="rounded-sm flex-shrink-0 flex items-center justify-center text-4xl font-bold"
+                style={{ width: '120px', height: '120px', background: '#073C81', color: 'white', fontFamily: 'Inter, system-ui, sans-serif' }}
+              >
+                KR
+              </div>
               <div>
                 <h1
                   className="text-2xl md:text-3xl font-bold leading-tight"

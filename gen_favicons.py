@@ -2,7 +2,7 @@ from PIL import Image
 import os
 
 src = "/home/ubuntu/upload/ScalizeSystem_Logo_transparent.png"
-public_dir = "/home/ubuntu/scalize-systems/client/public"
+public_dir = os.path.dirname(os.path.abspath(__file__))
 
 img = Image.open(src).convert("RGBA")
 

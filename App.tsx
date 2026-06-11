@@ -1,18 +1,18 @@
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
+import { Toaster } from "./sonner";
+import { TooltipProvider } from "./tooltip";
+import NotFound from "./NotFound";
 import { Route, Switch } from "wouter";
-import ErrorBoundary from "./components/ErrorBoundary";
-import ScrollToTop from "./components/ScrollToTop";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
-import Services from "./pages/Services";
-import HowIWork from "./pages/HowIWork";
-import CaseStudies from "./pages/CaseStudies";
-import Writing from "./pages/Writing";
-import Post from "./pages/Post";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import ErrorBoundary from "./ErrorBoundary";
+import ScrollToTop from "./ScrollToTop";
+import { ThemeProvider } from "./ThemeContext";
+import Home from "./Home";
+import Services from "./Services";
+import HowIWork from "./HowIWork";
+import CaseStudies from "./CaseStudies";
+import Writing from "./Writing";
+import Post from "./Post";
+import About from "./About";
+import Contact from "./Contact";
 
 function Router() {
   return (

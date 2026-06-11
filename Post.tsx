@@ -8,9 +8,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'wouter';
 import { marked } from 'marked';
-import { getPostBySlug, type Post } from '@/lib/posts';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { getPostBySlug, type Post } from './posts';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 function formatDate(dateStr: string) {
   if (!dateStr) return '';
