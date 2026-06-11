@@ -1,13 +1,13 @@
 /*
  * SCALIZE SYSTEMS — Individual Article/Post Page
  * Design: Refined Editorial | White bg | Playfair Display headlines | DM Sans body
- * Renders Markdown content from /content/writing/*.md files
+ * Renders Portable Text content from the Sanity "Scalize Writing CMS" project
  * Includes author bio and Calendly CTA at bottom
  */
 
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'wouter';
-import { marked } from 'marked';
+import { PortableText } from '@portabletext/react';
 import { getPostBySlug, type Post } from './posts';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -23,16 +23,11 @@ export default function PostPage() {
   const slug = params.slug;
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
-  const [html, setHtml] = useState('');
 
   useEffect(() => {
     if (!slug) return;
-    getPostBySlug(slug).then(async (p) => {
+    getPostBySlug(slug).then((p) => {
       setPost(p);
-      if (p) {
-        const rendered = await marked(p.content);
-        setHtml(rendered);
-      }
       setLoading(false);
     });
   }, [slug]);
@@ -114,10 +109,9 @@ export default function PostPage() {
       {/* Article body */}
       <section className="pb-16" style={{ background: 'white' }}>
         <div className="container max-w-3xl">
-          <div
-            className="prose-scalize"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          <div className="prose-scalize">
+            <PortableText value={post.body} />
+          </div>
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 /*
  * SCALIZE SYSTEMS — Writing Page
  * Design: Refined Editorial | White bg | Playfair Display headlines | DM Sans body
- * Articles are loaded from /content/writing/*.md files — no hardcoded posts
+ * Articles are loaded from the Sanity "Scalize Writing CMS" project — no hardcoded posts
  */
 
 import { useEffect, useState } from 'react';

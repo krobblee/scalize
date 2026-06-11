@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@emailjs/browser": "latest",
+    "@portabletext/react": "^6.2.0",
+    "@sanity/client": "^7.22.1",
+    "@sanity/image-url": "^2.1.1",
     "@tailwindcss/vite": "latest",
     "lucide-react": "latest",
     "marked": "latest",
