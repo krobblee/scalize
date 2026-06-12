@@ -9,8 +9,8 @@ export default function GraduatedHitlEvalOwnershipModel() {
       <section className="pt-32 pb-16 md:pt-40 md:pb-24" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <h1
-            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5"
-            style={{ fontFamily: 'Playfair Display, Georgia, serif', color: '#073C81' }}
+            className="text-3xl md:text-4xl font-bold mb-5"
+            style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
           >
             Graduated HITL Eval Ownership Model
           </h1>
