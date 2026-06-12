@@ -13,6 +13,7 @@ import Writing from "./Writing";
 import Post from "./Post";
 import About from "./About";
 import Contact from "./Contact";
+import GraduatedHitlEvalOwnershipModel from "./GraduatedHitlEvalOwnershipModel";
 
 function Router() {
   return (
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/writing/:slug" component={Post} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
+      <Route path="/resources/graduated-hitl-eval-ownership-model" component={GraduatedHitlEvalOwnershipModel} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
