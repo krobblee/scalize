@@ -1,8 +1,8 @@
 /*
  * SCALIZE SYSTEMS — Individual Article/Post Page
- * Design: Refined Editorial | White bg | Playfair Display headlines | DM Sans body
+ * Design: Refined Editorial | White bg | Inter headlines and body
  * Renders Portable Text content from the Sanity "Scalize Writing CMS" project
- * Includes author bio and Calendly CTA at bottom
+ * Includes author bio at bottom
  */
 
 import { useEffect, useState } from 'react';
@@ -84,7 +84,7 @@ export default function PostPage() {
           </Link>
           <h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5"
-            style={{ fontFamily: 'Playfair Display, Georgia, serif', color: '#073C81' }}
+            style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
           >
             {post.title}
           </h1>
@@ -141,33 +141,6 @@ export default function PostPage() {
               Founder of Scalize Systems. I work with pre-seed through Series C growth-stage companies to build, optimize, and scale operational systems. My background spans product management, product operations, technical program management, and engineering management.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Calendly CTA */}
-      <section className="section-band" style={{ background: '#073C81' }}>
-        <div className="container max-w-3xl text-center">
-          <h2
-            className="text-2xl md:text-3xl font-semibold mb-4"
-            style={{ fontFamily: 'Playfair Display, Georgia, serif', color: 'white' }}
-          >
-            Does this resonate?
-          </h2>
-          <p
-            className="text-base mb-8"
-            style={{ fontFamily: 'DM Sans, sans-serif', color: '#9BB8E0' }}
-          >
-            A 15-minute call to see if there's a fit.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block px-7 py-3.5 text-sm font-semibold no-underline rounded transition-all duration-160 active:scale-97"
-            style={{ background: '#078279', color: 'white', fontFamily: 'DM Sans, sans-serif' }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = '#056b63')}
-            onMouseLeave={(e) => (e.currentTarget.style.background = '#078279')}
-          >
-            Book a free 15-minute call
-          </Link>
         </div>
       </section>
 
