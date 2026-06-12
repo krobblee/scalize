@@ -83,7 +83,7 @@ export default function PostPage() {
             ← Writing
           </Link>
           <h1
-            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5"
+            className="text-3xl md:text-4xl font-bold leading-tight mb-5 normal-case"
             style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
           >
             {post.title}
