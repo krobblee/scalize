@@ -47,6 +47,11 @@ const AI_STATS = [
     unit: 'of unprotected AI systems',
     description: 'are successfully compromised by prompt‑injection and jailbreak attacks in red‑team tests',
   },
+  {
+    metric: '10% / 20% / 70%',
+    unit: 'AI transformation',
+    description: 'AI transformation is 10% algorithms, 20% data and technology, and 70% people, processes, and cultural change.',
+  },
 ];
 
 function AiStatsCarousel() {
@@ -131,7 +136,7 @@ function AiStatsCarousel() {
                   fontSize: 'clamp(0.88rem, 2vw, 1.2rem)',
                   lineHeight: 1.65,
                   color: 'rgba(255,255,255,0.72)',
-                  maxWidth: '640px',
+                  maxWidth: '100%',
                   fontWeight: 300,
                   margin: 0,
                 }}
