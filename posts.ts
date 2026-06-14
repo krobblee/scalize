@@ -57,3 +57,73 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     body: post.body || [],
   };
 }
+
+export interface TemplateOrTool {
+  _id: string;
+  title: string;
+  description?: string;
+  thumbnail?: any;
+  downloadUrl?: string;
+  fileUrl?: string;
+  date?: string;
+}
+
+export interface PodcastEpisode {
+  _id: string;
+  showName: string;
+  host: string;
+  episodeTitle: string;
+  description?: string;
+  thumbnail?: any;
+  listenUrl: string;
+  date: string;
+}
+
+export interface LinkedInPost {
+  _id: string;
+  title: string;
+  thumbnail?: any;
+  externalUrl: string;
+  date: string;
+}
+
+const TEMPLATES_QUERY = `*[_type == "templateOrTool"] | order(date desc){
+  _id,
+  title,
+  description,
+  thumbnail,
+  downloadUrl,
+  "fileUrl": file.asset->url,
+  date
+}`;
+
+const PODCAST_QUERY = `*[_type == "podcastEpisode"] | order(date desc)[0]{
+  _id,
+  showName,
+  host,
+  episodeTitle,
+  description,
+  thumbnail,
+  listenUrl,
+  date
+}`;
+
+const LINKEDIN_QUERY = `*[_type == "linkedinPost"] | order(date desc){
+  _id,
+  title,
+  thumbnail,
+  externalUrl,
+  date
+}`;
+
+export async function getTemplatesAndTools(): Promise<TemplateOrTool[]> {
+  return sanityClient.fetch(TEMPLATES_QUERY);
+}
+
+export async function getPodcastEpisode(): Promise<PodcastEpisode | null> {
+  return sanityClient.fetch(PODCAST_QUERY);
+}
+
+export async function getLinkedInPosts(): Promise<LinkedInPost[]> {
+  return sanityClient.fetch(LINKEDIN_QUERY);
+}
