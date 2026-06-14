@@ -1,22 +1,23 @@
 # scalize
 Scalize Systems website
 
-## Content (Writing / Blog)
+## Content (Library)
 
-The `/writing` and `/writing/:slug` pages are powered by **Sanity CMS** (project "Scalize Writing CMS").
+The `/writing` (Library) and `/writing/:slug` pages are powered by **Sanity CMS** (project "Scalize Writing CMS").
 
-- **Studio (write/edit posts):** https://www.sanity.io/@oQyJYQm13/studio/g621g2fn9e74v171cunozm5g/default
+- **Studio (write/edit content):** https://scalize.sanity.studio/
 - **Project ID:** `z13orr0o`
 - **Dataset:** `production` (public read access, no API token required)
+- **Studio source:** maintained separately at `scalize-studio` (sibling project, not part of this repo). Schema changes are made there and deployed with `npx sanity deploy`.
 
 ### How it works
 
 - [`sanity.ts`](sanity.ts) configures the Sanity client and image URL builder.
-- [`posts.ts`](posts.ts) fetches posts from Sanity via GROQ (`getAllPosts`, `getPostBySlug`).
-- [`Writing.tsx`](Writing.tsx) lists published posts.
-- [`Post.tsx`](Post.tsx) renders an individual post's `body` (Portable Text) via `@portabletext/react`.
+- [`posts.ts`](posts.ts) fetches content from Sanity via GROQ: `getAllPosts`/`getPostBySlug` (articles), `getTemplatesAndTools`, `getPodcastEpisode`, `getLinkedInPosts`.
+- [`Writing.tsx`](Writing.tsx) renders the Library page's four sections — Articles, Templates & Tools, Podcast, LinkedIn — each capped at 5 items with a "Show more" expansion.
+- [`Post.tsx`](Post.tsx) renders an individual article's `body` (Portable Text) via `@portabletext/react`.
 
-Posts only appear once **published** in Studio (drafts are not shown). The site reads through Sanity's CDN, so changes typically appear within ~1 minute.
+Content only appears once **published** in Studio (drafts are not shown). The site reads through Sanity's CDN, so changes typically appear within ~1 minute.
 
 ### Environment variables
 
