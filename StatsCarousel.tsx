@@ -120,7 +120,7 @@ export default function StatsCarousel() {
         </div>
 
         {/* Dot navigation */}
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', alignItems: 'center' }}>
           {stats.map((_, i) => (
             <button
               key={i}
