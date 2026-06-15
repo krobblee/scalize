@@ -38,13 +38,19 @@ function formatDate(dateStr: string) {
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <p
-      className="text-sm font-semibold uppercase tracking-[0.2em] mb-10 text-center"
+      className="text-sm font-semibold uppercase tracking-[0.2em] mb-4 text-center"
       style={{ color: '#078279', fontFamily: 'Inter, system-ui, sans-serif' }}
     >
       {children}
     </p>
   );
 }
+
+const JUMP_LINKS = [
+  { label: 'Templates & Tools', href: '#templates-tools' },
+  { label: 'Podcast', href: '#podcast' },
+  { label: 'LinkedIn', href: '#linkedin' },
+];
 
 function ShowMoreButton({ onClick }: { onClick: () => void }) {
   return (
@@ -136,16 +142,28 @@ export default function Writing() {
       <Navbar />
 
       {/* Page header */}
-      <section className="pt-24 pb-10 md:pt-28 md:pb-12" style={{ background: 'white' }}>
+      <section className="pt-24 pb-6 md:pt-28" style={{ background: 'white' }}>
         <div className="container max-w-3xl">
           <FadeSection>
             <h1 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>Library</h1>
+            <div className="flex flex-wrap gap-2" style={{ marginTop: '16px' }}>
+              {JUMP_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-xs px-2.5 py-1 rounded-full no-underline"
+                  style={{ background: '#EEF1F6', color: '#3D4A5C', fontFamily: 'Inter, system-ui, sans-serif' }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </FadeSection>
         </div>
       </section>
 
       {/* Articles */}
-      <section className="section-band" style={{ background: '#EEF2F8' }}>
+      <section className="py-6" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-3xl">
           <FadeSection>
             <SectionTitle>Articles</SectionTitle>
@@ -166,7 +184,7 @@ export default function Writing() {
                 {visiblePosts.map((post, i) => (
                   <FadeSection key={post.slug} delay={i * 50}>
                     <Link href={`/writing/${post.slug}`} className="block no-underline group">
-                      <div className="py-8 border-b transition-colors duration-150" style={{ borderColor: '#e5e9f0' }}>
+                      <div className="py-4 border-b transition-colors duration-150" style={{ borderColor: '#e5e9f0' }}>
                         <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
                           <h2
                             className="text-xl font-semibold transition-colors duration-150 group-hover:text-blue-700"
@@ -211,7 +229,7 @@ export default function Writing() {
       </section>
 
       {/* Templates & Tools */}
-      <section className="section-band" style={{ background: 'white' }}>
+      <section id="templates-tools" className="py-6" style={{ background: 'white' }}>
         <div className="container max-w-3xl">
           <FadeSection>
             <SectionTitle>Templates &amp; Tools</SectionTitle>
@@ -231,7 +249,7 @@ export default function Writing() {
               <div className="flex flex-col gap-0">
                 {visibleTemplates.map((item, i) => (
                   <FadeSection key={item._id} delay={i * 50}>
-                    <div className="py-6 border-b flex items-start gap-4" style={{ borderColor: '#e5e9f0' }}>
+                    <div className="py-4 border-b flex items-start gap-4" style={{ borderColor: '#e5e9f0' }}>
                       <Thumbnail image={item.thumbnail} size={72} />
                       <div className="flex-1">
                         <h3 className="text-base font-semibold mb-1" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>
@@ -265,7 +283,7 @@ export default function Writing() {
       </section>
 
       {/* Podcast */}
-      <section className="section-band" style={{ background: '#EEF2F8' }}>
+      <section id="podcast" className="py-6" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-3xl">
           <FadeSection>
             <SectionTitle>Podcast</SectionTitle>
@@ -313,7 +331,7 @@ export default function Writing() {
       </section>
 
       {/* LinkedIn */}
-      <section className="section-band" style={{ background: 'white' }}>
+      <section id="linkedin" className="py-6" style={{ background: 'white' }}>
         <div className="container max-w-3xl">
           <FadeSection>
             <SectionTitle>LinkedIn</SectionTitle>
@@ -333,7 +351,7 @@ export default function Writing() {
               <div className="flex flex-col gap-0">
                 {visibleLinkedIn.map((item, i) => (
                   <FadeSection key={item._id} delay={i * 50}>
-                    <div className="py-6 border-b flex items-start gap-4" style={{ borderColor: '#e5e9f0' }}>
+                    <div className="py-4 border-b flex items-start gap-4" style={{ borderColor: '#e5e9f0' }}>
                       <Thumbnail image={item.thumbnail} size={72} />
                       <div className="flex-1">
                         <h3 className="text-base font-semibold mb-1" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>
