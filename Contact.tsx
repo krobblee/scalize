@@ -236,7 +236,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Calendly — directly below form */}
+      {/* Calendly — directly below form, with tight title spacing and enough height to avoid internal scrolling */}
       <section className="pt-2 pb-0" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <h2
@@ -248,7 +248,7 @@ export default function Contact() {
           <div
             className="calendly-inline-widget"
             data-url="https://calendly.com/katie-scalizesystems/15-mins?hide_event_type_details=1&hide_gdpr_banner=1"
-            style={{ minWidth: '320px', height: '630px' }}
+            style={{ minWidth: '320px', height: '850px' }}
           />
         </div>
       </section>
