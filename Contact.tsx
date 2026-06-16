@@ -4,7 +4,7 @@
  * Structure: Intro → Form → Calendly (tighter spacing) → Email + LinkedIn
  */
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
@@ -23,15 +23,6 @@ function FadeSection({ children, delay = 0, className = '' }: { children: React.
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
 
-  useEffect(() => {
-    const existing = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
-    if (existing) return;
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-    return () => { document.body.removeChild(script); };
-  }, []);
   const [submitting, setSubmitting] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -236,20 +227,29 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Calendly — directly below form, with tight title spacing and enough height to avoid internal scrolling */}
-      <section className="pt-2 pb-0" style={{ background: 'white' }}>
+      {/* Calendly — directly below form, with the embed cropped to remove Calendly's default top/bottom whitespace */}
+      <section className="pt-0 pb-0" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <h2
-            className="text-xl font-semibold mb-2"
+            className="text-xl font-semibold mb-1"
             style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
           >
             Book a free 15-minute consultation
           </h2>
           <div
-            className="calendly-inline-widget"
-            data-url="https://calendly.com/katie-scalizesystems/15-mins?hide_event_type_details=1&hide_gdpr_banner=1"
-            style={{ minWidth: '320px', height: '850px' }}
-          />
+            className="rounded-sm overflow-hidden"
+            style={{ height: '690px', background: 'white' }}
+          >
+            <iframe
+              src="https://calendly.com/katie-scalizesystems/15-mins?hide_event_type_details=1&hide_gdpr_banner=1&embed_domain=scalizesystems.com&embed_type=Inline"
+              width="100%"
+              height="760"
+              frameBorder="0"
+              scrolling="no"
+              title="Book a free 15-minute consultation with Katie Robblee"
+              style={{ display: 'block', transform: 'translateY(-58px)' }}
+            />
+          </div>
         </div>
       </section>
 
