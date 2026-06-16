@@ -252,17 +252,15 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Calendly — directly below form, reduced gap */}
-      <section className="pt-8 pb-0" style={{ background: 'white' }}>
+      {/* Calendly — directly below form */}
+      <section className="pt-4 pb-0" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
-          <FadeSection>
-            <h2
-              className="text-xl font-semibold mb-4"
-              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-            >
-              Book a free 15-minute consultation
-            </h2>
-          </FadeSection>
+          <h2
+            className="text-xl font-semibold mb-2"
+            style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+          >
+            Book a 15-minute consultation
+          </h2>
         </div>
       </section>
       <CalendlyEmbed url="https://calendly.com/katie-scalizesystems/15-mins?hide_event_type_details=1&hide_gdpr_banner=1" />

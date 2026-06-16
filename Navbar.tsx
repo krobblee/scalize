@@ -12,10 +12,11 @@ import { Link, useLocation } from 'wouter';
 const LOGO_NAVBAR = '/assets/images/scalize-logo-horizontal.png';
 
 const NAV_LINKS = [
+  { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
   { label: 'How I Work', href: '/how-i-work' },
   { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Library', href: '/writing' },
+  { label: 'Resources & Writing', href: '/writing' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -58,7 +59,7 @@ export default function Navbar() {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-7">
             {NAV_LINKS.map((link) => {
-              const active = location === link.href || location.startsWith(link.href + '/');
+              const active = link.href === '/' ? location === '/' : location === link.href || location.startsWith(link.href + '/');
               return (
                 <Link
                   key={link.href}
@@ -108,7 +109,7 @@ export default function Navbar() {
       >
         <nav className="container py-4 flex flex-col gap-1">
           {NAV_LINKS.map((link) => {
-            const active = location === link.href || location.startsWith(link.href + '/');
+            const active = link.href === '/' ? location === '/' : location === link.href || location.startsWith(link.href + '/');
             return (
               <Link
                 key={link.href}
