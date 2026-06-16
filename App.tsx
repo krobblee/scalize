@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { Toaster } from "./sonner";
 import { TooltipProvider } from "./tooltip";
 import NotFound from "./NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./ErrorBoundary";
 import ScrollToTop from "./ScrollToTop";
 import { ThemeProvider } from "./ThemeContext";
@@ -15,9 +16,23 @@ import About from "./About";
 import Contact from "./Contact";
 import GraduatedHitlEvalOwnershipModel from "./GraduatedHitlEvalOwnershipModel";
 
+function PageViewTracker() {
+  const [location] = useLocation();
+  useEffect(() => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "page_view", {
+        page_path: location,
+        page_location: window.location.href,
+      });
+    }
+  }, [location]);
+  return null;
+}
+
 function Router() {
   return (
     <>
+    <PageViewTracker />
     <ScrollToTop />
     <Switch>
       <Route path="/" component={Home} />
