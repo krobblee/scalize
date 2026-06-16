@@ -4,7 +4,7 @@
  * Structure: Intro → Form → Calendly (tighter spacing) → Email + LinkedIn
  */
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
@@ -18,6 +18,32 @@ const EMAILJS_PUBLIC_KEY = 'aMVR-OOelKnao_yuc';
 function FadeSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useFadeIn<HTMLDivElement>(delay);
   return <div ref={ref} className={`fade-in-up ${className}`}>{children}</div>;
+}
+
+function CalendlyEmbed({ url }: { url: string }) {
+  useEffect(() => {
+    const existing = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+    if (existing) return;
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => { document.body.removeChild(script); };
+  }, []);
+
+  return (
+    <section className="pt-8 pb-0" style={{ background: 'white' }}>
+      <div className="container max-w-4xl">
+        <FadeSection>
+          <div
+            className="calendly-inline-widget rounded-sm overflow-hidden"
+            data-url={url}
+            style={{ border: '1px solid #D0D9E8', minHeight: '700px', background: 'white' }}
+          />
+        </FadeSection>
+      </div>
+    </section>
+  );
 }
 
 export default function Contact() {
@@ -227,25 +253,7 @@ export default function Contact() {
       </section>
 
       {/* Calendly — directly below form, reduced gap */}
-      <section className="pt-8 pb-0" style={{ background: 'white' }}>
-        <div className="container max-w-4xl">
-          <FadeSection>
-            <div
-              className="rounded-sm overflow-hidden"
-              style={{ border: '1px solid #D0D9E8', minHeight: '650px', background: 'white' }}
-            >
-              <iframe
-                src="https://calendly.com/katie-scalizesystems/15-mins?embed_domain=scalizesystems.com&embed_type=Inline"
-                width="100%"
-                height="650"
-                frameBorder="0"
-                title="Book a 15-minute call with Katie Robblee"
-                style={{ display: 'block' }}
-              />
-            </div>
-          </FadeSection>
-        </div>
-      </section>
+      <CalendlyEmbed url="https://calendly.com/katie-scalizesystems/15-mins" />
 
       <Footer />
     </div>
