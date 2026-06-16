@@ -4,6 +4,7 @@
  * Layout: Standard page header, centered name/title, inline right-aligned headshot with bio copy
  */
 
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
@@ -17,6 +18,13 @@ function FadeSection({ children, delay = 0, className = '' }: { children: React.
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
+      <Helmet>
+        <title>About | Scalize Systems</title>
+        <meta property="og:title" content="About | Scalize Systems" />
+        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:url" content="https://scalizesystems.com/about" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Navbar />
 
       {/* Page header */}

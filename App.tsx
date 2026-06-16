@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "./sonner";
 import { TooltipProvider } from "./tooltip";
 import NotFound from "./NotFound";
@@ -53,6 +54,7 @@ function Router() {
 
 function App() {
   return (
+    <HelmetProvider>
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
@@ -61,6 +63,7 @@ function App() {
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
+    </HelmetProvider>
   );
 }
 

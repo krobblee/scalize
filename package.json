@@ -18,6 +18,7 @@
     "marked": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-helmet-async": "^3.0.0",
     "tailwindcss": "latest",
     "tw-animate-css": "latest",
     "vite": "latest",

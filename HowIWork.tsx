@@ -4,6 +4,7 @@
  * Sections: Methodology, Engagement Arc (4 phases), Knowledge Transfer
  */
 
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
@@ -44,6 +45,13 @@ const PHASES = [
 export default function HowIWork() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
+      <Helmet>
+        <title>How I Work | Scalize Systems</title>
+        <meta property="og:title" content="How I Work | Scalize Systems" />
+        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:url" content="https://scalizesystems.com/how-i-work" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Navbar />
 
       {/* Page header — no label per approved copy */}

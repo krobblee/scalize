@@ -5,6 +5,7 @@
  */
 
 import { useState, useRef, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import emailjs from '@emailjs/browser';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
@@ -65,6 +66,13 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
+      <Helmet>
+        <title>Contact | Scalize Systems</title>
+        <meta property="og:title" content="Contact | Scalize Systems" />
+        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:url" content="https://scalizesystems.com/contact" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Navbar />
 
       {/* Intro paragraph */}

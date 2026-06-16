@@ -6,6 +6,7 @@
  */
 
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
 import {
   getAllPosts,
@@ -139,6 +140,13 @@ export default function Writing() {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
+      <Helmet>
+        <title>Resources & Writing | Scalize Systems</title>
+        <meta property="og:title" content="Resources & Writing | Scalize Systems" />
+        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:url" content="https://scalizesystems.com/writing" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Navbar />
 
       {/* Page header */}

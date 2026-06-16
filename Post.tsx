@@ -6,6 +6,7 @@
  */
 
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'wouter';
 import { PortableText } from '@portabletext/react';
 import { getPostBySlug, type Post } from './posts';
@@ -70,6 +71,12 @@ export default function PostPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
+      <Helmet>
+        <title>{post ? `${post.title} | Scalize Systems` : 'Resources & Writing | Scalize Systems'}</title>
+        <meta property="og:title" content={post ? `${post.title} | Scalize Systems` : 'Resources & Writing | Scalize Systems'} />
+        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:type" content="article" />
+      </Helmet>
       <Navbar />
 
       {/* Article header */}

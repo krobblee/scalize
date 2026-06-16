@@ -4,6 +4,7 @@
  * Both case studies on a single scrollable page with anchor IDs
  */
 
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
@@ -95,6 +96,13 @@ function CaseStudyBlock({
 export default function CaseStudies() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
+      <Helmet>
+        <title>Case Studies | Scalize Systems</title>
+        <meta property="og:title" content="Case Studies | Scalize Systems" />
+        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:url" content="https://scalizesystems.com/case-studies" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Navbar />
 
       {/* Page header */}
