@@ -227,8 +227,8 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Calendly — directly below form, with the embed cropped to remove Calendly's default top/bottom whitespace */}
-      <section className="pt-0 pb-0" style={{ background: 'white' }}>
+      {/* Calendly — below the form with breathing room above the title, while keeping the calendar itself tight */}
+      <section className="pt-6 pb-0" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <h2
             className="text-xl font-semibold mb-1"
