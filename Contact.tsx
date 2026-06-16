@@ -20,7 +20,9 @@ function FadeSection({ children, delay = 0, className = '' }: { children: React.
   return <div ref={ref} className={`fade-in-up ${className}`}>{children}</div>;
 }
 
-function CalendlyEmbed({ url }: { url: string }) {
+export default function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
+
   useEffect(() => {
     const existing = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
     if (existing) return;
@@ -30,24 +32,6 @@ function CalendlyEmbed({ url }: { url: string }) {
     document.body.appendChild(script);
     return () => { document.body.removeChild(script); };
   }, []);
-
-  return (
-    <section className="pt-0 pb-0" style={{ background: 'white' }}>
-      <div className="container max-w-4xl">
-        <FadeSection>
-          <div
-            className="calendly-inline-widget rounded-sm overflow-hidden"
-            data-url={url}
-            style={{ minWidth: '320px', height: '500px' }}
-          />
-        </FadeSection>
-      </div>
-    </section>
-  );
-}
-
-export default function Contact() {
-  const formRef = useRef<HTMLFormElement>(null);
   const [submitting, setSubmitting] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -253,17 +237,21 @@ export default function Contact() {
       </section>
 
       {/* Calendly — directly below form */}
-      <section className="pt-2 pb-1" style={{ background: 'white' }}>
+      <section className="pt-2 pb-0" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <h2
             className="text-xl font-semibold mb-2"
             style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
           >
-            Book a 15-minute consultation
+            Book a free 15-minute consultation
           </h2>
+          <div
+            className="calendly-inline-widget"
+            data-url="https://calendly.com/katie-scalizesystems/15-mins?hide_event_type_details=1&hide_gdpr_banner=1"
+            style={{ minWidth: '320px', height: '630px' }}
+          />
         </div>
       </section>
-      <CalendlyEmbed url="https://calendly.com/katie-scalizesystems/15-mins?hide_event_type_details=1&hide_gdpr_banner=1" />
 
       <Footer />
     </div>
