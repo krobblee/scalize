@@ -12,11 +12,11 @@ const LOGO_FOOTER = '/assets/images/scalize-logo-white-tagline.png';
 export default function Footer() {
   return (
     <footer style={{ background: '#073C81', color: '#E8EDF5' }}>
-      <div className="container section-band-sm">
+      <div className="container py-6">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
 
-          {/* Brand logo */}
-          <div className="flex-shrink-0">
+          {/* Brand logo + copyright */}
+          <div className="flex-shrink-0 flex flex-col gap-2">
             <Link href="/" className="inline-block no-underline" aria-label="Scalize Systems home">
               <img
                 src={LOGO_FOOTER}
@@ -26,6 +26,9 @@ export default function Footer() {
                 height="60"
               />
             </Link>
+            <p className="text-xs" style={{ color: '#6B8AB5', fontFamily: 'Inter, system-ui, sans-serif' }}>
+              © {new Date().getFullYear()} Scalize Systems LLC. All rights reserved.
+            </p>
           </div>
 
           {/* Nav links */}
@@ -73,16 +76,6 @@ export default function Footer() {
           </div>
         </div>
 
-        <div
-          className="mt-8 pt-6 text-xs"
-          style={{
-            borderTop: '1px solid rgba(255,255,255,0.12)',
-            color: '#6B8AB5',
-            fontFamily: 'Inter, system-ui, sans-serif',
-          }}
-        >
-          © {new Date().getFullYear()} Scalize Systems LLC. All rights reserved.
-        </div>
       </div>
     </footer>
   );

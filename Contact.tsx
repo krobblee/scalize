@@ -32,13 +32,13 @@ function CalendlyEmbed({ url }: { url: string }) {
   }, []);
 
   return (
-    <section className="pt-8 pb-0" style={{ background: 'white' }}>
+    <section className="pt-0 pb-0" style={{ background: 'white' }}>
       <div className="container max-w-4xl">
         <FadeSection>
           <div
             className="calendly-inline-widget rounded-sm overflow-hidden"
             data-url={url}
-            style={{ minWidth: '320px', height: '630px' }}
+            style={{ minWidth: '320px', height: '500px' }}
           />
         </FadeSection>
       </div>
@@ -253,7 +253,7 @@ export default function Contact() {
       </section>
 
       {/* Calendly — directly below form */}
-      <section className="pt-4 pb-0" style={{ background: 'white' }}>
+      <section className="pt-2 pb-1" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <h2
             className="text-xl font-semibold mb-2"
