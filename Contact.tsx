@@ -38,7 +38,7 @@ function CalendlyEmbed({ url }: { url: string }) {
           <div
             className="calendly-inline-widget rounded-sm overflow-hidden"
             data-url={url}
-            style={{ border: '1px solid #D0D9E8', minWidth: '320px', height: '1100px', background: 'white' }}
+            style={{ minWidth: '320px', height: '630px' }}
           />
         </FadeSection>
       </div>
