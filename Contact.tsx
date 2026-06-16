@@ -38,7 +38,7 @@ function CalendlyEmbed({ url }: { url: string }) {
           <div
             className="calendly-inline-widget rounded-sm overflow-hidden"
             data-url={url}
-            style={{ minWidth: '320px', height: '830px' }}
+            style={{ minWidth: '320px', height: '630px' }}
           />
         </FadeSection>
       </div>
@@ -91,7 +91,7 @@ export default function Contact() {
               className="text-base mb-6"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
             >
-              I'm Katie Robblee, founder of Scalize Systems. I'm here to help identify and remove friction in processes, and to build, scale, and optimize systems that bring efficiency and predictability to an organization. Please provide information about your company and I'll be in touch, or book a 15-minute call to talk through it live.
+              Add your name and contact information along with what you'd like help with and I'll be in touch. If you prefer, book a free 15 minute consultation below.
             </p>
           </FadeSection>
         </div>
@@ -253,7 +253,19 @@ export default function Contact() {
       </section>
 
       {/* Calendly — directly below form, reduced gap */}
-      <CalendlyEmbed url="https://calendly.com/katie-scalizesystems/15-mins" />
+      <section className="pt-8 pb-0" style={{ background: 'white' }}>
+        <div className="container max-w-4xl">
+          <FadeSection>
+            <h2
+              className="text-xl font-semibold mb-4"
+              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+            >
+              Book a free 15-minute consultation
+            </h2>
+          </FadeSection>
+        </div>
+      </section>
+      <CalendlyEmbed url="https://calendly.com/katie-scalizesystems/15-mins?hide_event_type_details=1&hide_gdpr_banner=1" />
 
       <Footer />
     </div>
