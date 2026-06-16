@@ -227,8 +227,8 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Calendly — light-blue band separates it from the white send-message form while keeping the calendar itself tight */}
-      <section className="pt-8 md:pt-10 pb-0" style={{ background: '#EEF2F8' }}>
+      {/* Calendly — below the form with breathing room above the title, while keeping the calendar itself tight */}
+      <section className="pt-8 md:pt-10 pb-0" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <h2
             className="text-xl font-semibold mb-1"
