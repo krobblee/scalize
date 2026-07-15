@@ -192,36 +192,39 @@ export default function Writing() {
                 {visiblePosts.map((post, i) => (
                   <FadeSection key={post.slug} delay={i * 50}>
                     <Link href={`/writing/${post.slug}`} className="block no-underline group">
-                      <div className="py-4 border-b transition-colors duration-150" style={{ borderColor: '#e5e9f0' }}>
-                        <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
-                          <h2
-                            className="text-xl font-semibold transition-colors duration-150 group-hover:text-blue-700"
-                            style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-                          >
-                            {post.title}
-                          </h2>
-                          <span className="text-xs flex-shrink-0" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#6B8AB5' }}>
-                            {formatDate(post.date)}
-                          </span>
-                        </div>
-                        {post.excerpt && (
-                          <p
-                            className="text-sm leading-relaxed mb-3"
-                            style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
-                          >
-                            {post.excerpt}
-                          </p>
-                        )}
-                        <div className="flex items-center gap-3">
-                          <span className="text-xs" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#6B8AB5' }}>
-                            {post.author}
-                          </span>
-                          <span
-                            className="text-xs font-medium transition-colors duration-150 group-hover:text-blue-600"
-                            style={{ color: '#046CC5', fontFamily: 'Inter, system-ui, sans-serif' }}
-                          >
-                            Read →
-                          </span>
+                      <div className="py-4 border-b flex items-start gap-4 transition-colors duration-150" style={{ borderColor: '#e5e9f0' }}>
+                        <Thumbnail image={post.image} size={72} />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
+                            <h2
+                              className="text-xl font-semibold transition-colors duration-150 group-hover:text-blue-700"
+                              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+                            >
+                              {post.title}
+                            </h2>
+                            <span className="text-xs flex-shrink-0" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#6B8AB5' }}>
+                              {formatDate(post.date)}
+                            </span>
+                          </div>
+                          {post.excerpt && (
+                            <p
+                              className="text-sm leading-relaxed mb-3"
+                              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
+                            >
+                              {post.excerpt}
+                            </p>
+                          )}
+                          <div className="flex items-center gap-3">
+                            <span className="text-xs" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#6B8AB5' }}>
+                              {post.author}
+                            </span>
+                            <span
+                              className="text-xs font-medium transition-colors duration-150 group-hover:text-blue-600"
+                              style={{ color: '#046CC5', fontFamily: 'Inter, system-ui, sans-serif' }}
+                            >
+                              Read →
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </Link>

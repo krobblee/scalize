@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'wouter';
 import { PortableText } from '@portabletext/react';
 import { getPostBySlug, type Post } from './posts';
+import { urlForImage } from './sanity';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
@@ -110,6 +111,15 @@ export default function PostPage() {
               {formatDate(post.date)}
             </span>
           </div>
+          {post.image && (
+            <div className="mt-8 overflow-hidden rounded-sm" style={{ border: '1px solid #e5e9f0' }}>
+              <img
+                src={urlForImage(post.image).width(1200).height(630).fit('crop').url()}
+                alt={post.title}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </div>
+          )}
         </div>
       </section>
 
