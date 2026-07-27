@@ -132,35 +132,6 @@ export default function PostPage() {
         </div>
       </section>
 
-      {/* Author bio */}
-      <section className="section-band" style={{ background: '#F5F7FA' }}>
-        <div className="container max-w-3xl">
-          <div
-            className="p-7 rounded-sm"
-            style={{ background: 'white', border: '1px solid #e5e9f0', borderLeft: '3px solid #078279' }}
-          >
-            <p
-              className="text-xs uppercase tracking-widest mb-3"
-              style={{ color: '#078279', fontFamily: 'DM Sans, sans-serif', letterSpacing: '0.12em' }}
-            >
-              About the author
-            </p>
-            <p
-              className="text-base font-semibold mb-2"
-              style={{ fontFamily: 'Playfair Display, Georgia, serif', color: '#073C81' }}
-            >
-              Katie Robblee
-            </p>
-            <p
-              className="text-sm leading-relaxed"
-              style={{ fontFamily: 'DM Sans, sans-serif', color: '#3D4A5C', lineHeight: '1.75' }}
-            >
-              Founder of Scalize Systems. I work with pre-seed through Series C growth-stage companies to build, optimize, and scale operational systems. My background spans product management, product operations, technical program management, and engineering management.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
