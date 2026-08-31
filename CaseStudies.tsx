@@ -134,7 +134,15 @@ export default function CaseStudies() {
         result={`The architecture made it possible to pick and validate complete multibox products before they shipped, eliminating the structural reason incomplete deliveries happened. Within the first year, supplier participation grew by 30%, customer lifetime value increased by 15%, and the program drove a $48M revenue surge. By year three, multibox shipping costs had dropped by 40%. What had been an unsolvable coordination problem across the entire industry became a solvable operational one, because the data model finally reflected how the products were actually built.`}
       />
 
-
+      <CaseStudyBlock
+        id="greenfield-platform"
+        title="Greenfield Customer Acquisition Platform and Cloud Migration"
+        tags={['SaaS Platform', 'Cloud Migration', 'Multi-Brand Architecture']}
+        bg="#F5F7FA"
+        problem={`Endurance International Group grew through an acquisition model, owning more than 100 brands serving small and mid-sized businesses, including Constant Contact and Domain.com as well as a number of hosting platforms such as HostGator and Bluehost. Each acquired brand needed its own customer acquisition flow, but no shared platform existed to support them. Every brand ran on legacy systems built independently over time, with no common architecture for promotions, domain search, or payments. Marketing depended on engineering for basic updates like a new promotion or a landing page change, which meant slow iteration across a portfolio that needed to move fast. The legacy systems also carried accumulated vulnerability surface from years of independent, uncoordinated builds.`}
+        work={`I led the organization's first greenfield platform build: a white-label customer acquisition platform designed to serve all 100+ brands from shared infrastructure. My team was the first at the organization to move to the cloud, and I oversaw that migration on AWS, then built best practice playbooks from that work for cloud infrastructure and AWS use across the organization. I owned the product strategy and roadmap, defining and delivering A/B testing, promotions, semantic domain search, Payment-as-a-Service, and a bespoke CMS that gave marketing direct control over campaigns and landing pages without routing every change through engineering. Alongside the new build, I decomposed the legacy systems underneath it and rebuilt them on a microservice infrastructure, making the platform extensible to any brand the organization acquired going forward. I also created the company's first multi-location annual planning process, coordinating delivery across 7 offices.`}
+        result={`The platform eliminated the dependency that had kept marketing waiting on engineering for routine changes, giving flagship brands direct control over their acquisition flows. Conversion rates improved 30% and CSAT gained 30% for those brands. The annual planning process improved on-time delivery by 20% across all 7 offices. The platform became core infrastructure supporting a $1B annual revenue target across the brand portfolio.`}
+      />
 
       <Footer />
     </div>
