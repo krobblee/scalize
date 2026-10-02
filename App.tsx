@@ -3,7 +3,8 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "./sonner";
 import { TooltipProvider } from "./tooltip";
 import NotFound from "./NotFound";
-import { Route, Switch, useLocation } from "wouter";
+import { Route, Switch, useLocation, Router as WouterRouter } from "wouter";
+import { PrefetchProvider, type PrefetchData } from "./prefetch";
 import ErrorBoundary from "./ErrorBoundary";
 import ScrollToTop from "./ScrollToTop";
 import { ThemeProvider } from "./ThemeContext";
@@ -52,17 +53,28 @@ function Router() {
   );
 }
 
-function App() {
+interface AppProps {
+  // Set only when pre-rendering pages at build time (see entry-server.tsx).
+  ssrPath?: string;
+  helmetContext?: Record<string, any>;
+  data?: PrefetchData;
+}
+
+function App({ ssrPath, helmetContext, data = {} }: AppProps) {
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
+    <PrefetchProvider value={data}>
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <WouterRouter ssrPath={ssrPath}>
+            <Router />
+          </WouterRouter>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
+    </PrefetchProvider>
     </HelmetProvider>
   );
 }

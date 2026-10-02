@@ -11,6 +11,7 @@ import { Link, useParams } from 'wouter';
 import { PortableText } from '@portabletext/react';
 import { getPostBySlug, type Post } from './posts';
 import { urlForImage } from './sanity';
+import { usePrefetched } from './prefetch';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
@@ -23,8 +24,9 @@ function formatDate(dateStr: string) {
 export default function PostPage() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
-  const [post, setPost] = useState<Post | null>(null);
-  const [loading, setLoading] = useState(true);
+  const prefetched = usePrefetched<Post | null>(`post:${slug}`);
+  const [post, setPost] = useState<Post | null>(prefetched ?? null);
+  const [loading, setLoading] = useState(prefetched === undefined);
 
   useEffect(() => {
     if (!slug) return;

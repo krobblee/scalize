@@ -14,6 +14,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import StatsCarousel from './StatsCarousel';
 import { getAllPosts, type PostMeta } from './posts';
+import { usePrefetched } from './prefetch';
 
 function FadeSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useFadeIn<HTMLDivElement>(delay);
@@ -31,7 +32,8 @@ function formatDate(dateStr: string) {
 }
 
 export default function Home() {
-  const [posts, setPosts] = useState<PostMeta[]>([]);
+  const prefetched = usePrefetched<PostMeta[]>('homePosts');
+  const [posts, setPosts] = useState<PostMeta[]>(prefetched ?? []);
 
   useEffect(() => {
     getAllPosts().then((all) => setPosts(all.slice(0, 3)));

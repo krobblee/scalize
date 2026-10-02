@@ -19,6 +19,7 @@ import {
   type LinkedInPost,
 } from './posts';
 import { urlForImage } from './sanity';
+import { usePrefetched } from './prefetch';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -112,11 +113,17 @@ function Thumbnail({ image, size }: { image?: any; size: number }) {
 }
 
 export default function Writing() {
-  const [posts, setPosts] = useState<PostMeta[]>([]);
-  const [templates, setTemplates] = useState<TemplateOrTool[]>([]);
-  const [podcast, setPodcast] = useState<PodcastEpisode | null>(null);
-  const [linkedInPosts, setLinkedInPosts] = useState<LinkedInPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const prefetched = usePrefetched<{
+    posts: PostMeta[];
+    templates: TemplateOrTool[];
+    podcast: PodcastEpisode | null;
+    linkedInPosts: LinkedInPost[];
+  }>('writing');
+  const [posts, setPosts] = useState<PostMeta[]>(prefetched?.posts ?? []);
+  const [templates, setTemplates] = useState<TemplateOrTool[]>(prefetched?.templates ?? []);
+  const [podcast, setPodcast] = useState<PodcastEpisode | null>(prefetched?.podcast ?? null);
+  const [linkedInPosts, setLinkedInPosts] = useState<LinkedInPost[]>(prefetched?.linkedInPosts ?? []);
+  const [loading, setLoading] = useState(!prefetched);
 
   const [showAllArticles, setShowAllArticles] = useState(false);
   const [showAllTemplates, setShowAllTemplates] = useState(false);
