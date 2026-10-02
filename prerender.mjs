@@ -63,6 +63,42 @@ for (const { url, data } of pages) {
   console.log(`prerendered ${url}`);
 }
 
+const oneLine = (text) => text.replace(/\s+/g, ' ').trim();
+
+// sitemap.xml: every page on this site, including each article, rebuilt from Sanity on every build.
+const SITEMAP_HOST = 'https://scalizesystems.com';
+const sitemapEntries = [
+  { url: '/', priority: '1.0', changefreq: 'monthly' },
+  { url: '/services', priority: '0.8', changefreq: 'monthly' },
+  { url: '/how-i-work', priority: '0.8', changefreq: 'monthly' },
+  { url: '/case-studies', priority: '0.8', changefreq: 'monthly' },
+  { url: '/writing', priority: '0.7', changefreq: 'weekly' },
+  { url: '/about', priority: '0.7', changefreq: 'monthly' },
+  { url: '/contact', priority: '0.7', changefreq: 'monthly' },
+  { url: '/resources/graduated-hitl-eval-ownership-model', priority: '0.6', changefreq: 'monthly' },
+  ...posts.map((p) => ({ url: `/writing/${p.slug}`, priority: '0.6', changefreq: 'monthly', lastmod: p.date })),
+];
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapEntries
+  .map(({ url, priority, changefreq, lastmod }) =>
+    [
+      '  <url>',
+      `    <loc>${SITEMAP_HOST}${url}</loc>`,
+      lastmod ? `    <lastmod>${lastmod.slice(0, 10)}</lastmod>` : null,
+      `    <changefreq>${changefreq}</changefreq>`,
+      `    <priority>${priority}</priority>`,
+      '  </url>',
+    ]
+      .filter(Boolean)
+      .join('\n'),
+  )
+  .join('\n')}
+</urlset>
+`;
+fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
+console.log(`wrote sitemap.xml (${sitemapEntries.length} pages)`);
+
 // llms.txt: a plain-text summary of the site for AI agents (https://llmstxt.org).
 const SITE = 'https://www.scalizesystems.com';
 const llms = `# Scalize Systems
@@ -84,15 +120,30 @@ Contact: katie@scalizesystems.com, or book a free 15-minute consultation at ${SI
 - [Case Studies](${SITE}/case-studies): client problems, the work, and results
 - [About](${SITE}/about): Katie Robblee's background
 - [Contact](${SITE}/contact): get in touch or book a consultation
+- [Graduated HITL Eval Ownership Model](${SITE}/resources/graduated-hitl-eval-ownership-model): a step-by-step framework for building product judgment through human-in-the-loop evaluation, with a PDF download
 
 ## Articles
 
 ${posts.map((p) => `- [${p.title}](${SITE}/writing/${p.slug})`).join('\n')}
 
-## Resources
+## Templates and Tools
 
-- [Graduated HITL Eval Ownership Model](${SITE}/resources/graduated-hitl-eval-ownership-model)
-- [Library](${SITE}/writing): articles, templates and tools, podcast, and LinkedIn posts
+${templates
+  .filter((t) => t.downloadUrl || t.fileUrl)
+  .map((t) => `- [${t.title}](${t.downloadUrl || t.fileUrl})${t.description ? `: ${oneLine(t.description)}` : ''}`)
+  .join('\n')}
+${podcast ? `
+## Podcast
+
+- [${podcast.episodeTitle}](${podcast.listenUrl}): ${podcast.showName}, hosted by ${podcast.host}${podcast.description ? `. ${oneLine(podcast.description)}` : ''}
+` : ''}${linkedInPosts.length ? `
+## LinkedIn Posts
+
+${linkedInPosts.map((l) => `- [${l.title}](${l.externalUrl.split('?')[0]})`).join('\n')}
+` : ''}
+## Optional
+
+- [Library](${SITE}/writing): all articles, templates and tools, podcast, and LinkedIn posts in one place
 `;
 fs.writeFileSync(path.join(dist, 'llms.txt'), llms);
 console.log('wrote llms.txt');

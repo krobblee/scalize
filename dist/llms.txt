@@ -17,6 +17,7 @@ Contact: katie@scalizesystems.com, or book a free 15-minute consultation at http
 - [Case Studies](https://www.scalizesystems.com/case-studies): client problems, the work, and results
 - [About](https://www.scalizesystems.com/about): Katie Robblee's background
 - [Contact](https://www.scalizesystems.com/contact): get in touch or book a consultation
+- [Graduated HITL Eval Ownership Model](https://www.scalizesystems.com/resources/graduated-hitl-eval-ownership-model): a step-by-step framework for building product judgment through human-in-the-loop evaluation, with a PDF download
 
 ## Articles
 
@@ -26,7 +27,19 @@ Contact: katie@scalizesystems.com, or book a free 15-minute consultation at http
 - [Doubling Down on AI Without a Long-Term View Is a Bet You Can't Afford to Lose](https://www.scalizesystems.com/writing/doubling-down-on-ai-without-a-long-term-view-is-a-bet-you-can-t-afford-to-lose)
 - [The Friction Was the Curriculum](https://www.scalizesystems.com/writing/the-friction-was-the-curriculum)
 
-## Resources
+## Templates and Tools
 
-- [Graduated HITL Eval Ownership Model](https://www.scalizesystems.com/resources/graduated-hitl-eval-ownership-model)
-- [Library](https://www.scalizesystems.com/writing): articles, templates and tools, podcast, and LinkedIn posts
+- [AI RACI for Product and Engineering Teams](https://cdn.sanity.io/files/z13orr0o/production/e3700eaa228aefc594f0765fbe83d9c2d4116d54.xlsx): This RACI template gives teams a way to negotiate ownership over the roles AI has reshaped, from reviewing AI-generated code to catching a hallucination before it ships. It gives facilitators a starting list of jobs and allows teams to visualize where ownership is still unclaimed.
+- [Graduated Human-in-the-Loop Eval Ownership Model](https://cdn.sanity.io/files/z13orr0o/production/2985dbcae89550c626f230d169000fccc4392002.pdf): This framework gives senior PMs a structured approach for reintroducing that friction deliberately, through human-in-the-loop evaluation work. It gives junior PMs a clear picture of what is expected at each stage and what evidence demonstrates readiness to advance. It gives organizational leaders a model for what skill-building in an AI-native product team actually requires.
+
+## Podcast
+
+- [How AI agents are changing the product development lifecycle](https://www.usertesting.com/resources/podcast/ai-agents-and-product-development-lifecycle): Insights Unlocked, hosted by Mike Mace. AI can build almost anything now. That’s the problem. Learn how AI agents are transforming product development, why customer discovery matters more than ever, and how teams can adopt AI successfully.
+
+## LinkedIn Posts
+
+- [Maybe You Shouldn't Go All-In On AI](https://www.linkedin.com/posts/katierobblee_we-all-thought-blackberry-was-the-future-activity-7471288813361913857-XG9s)
+
+## Optional
+
+- [Library](https://www.scalizesystems.com/writing): all articles, templates and tools, podcast, and LinkedIn posts in one place
