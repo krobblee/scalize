@@ -63,4 +63,38 @@ for (const { url, data } of pages) {
   console.log(`prerendered ${url}`);
 }
 
+// llms.txt: a plain-text summary of the site for AI agents (https://llmstxt.org).
+const SITE = 'https://www.scalizesystems.com';
+const llms = `# Scalize Systems
+
+> Operational systems for companies scaling faster than their processes can support. Scalize Systems helps pre-seed through Series C growth-stage companies build, optimize, and scale systems.
+
+Scalize Systems was founded by Katie Robblee, whose background spans product management, product operations, technical program management, and engineering management. The work: building scalable processes, designing decision frameworks, and helping teams figure out where AI adds value and where humans need to stay in the loop.
+
+Engagements:
+- Operating Diagnostic (two to three weeks): maps how an organization operates, where effort is going, and where the friction is. Deliverables are a Process Alignment Map, a Decision Friction Audit, and a Prioritized Recommendation Roadmap.
+- Build Engagement (three to six months): scoped directly from the diagnostic findings, producing processes and frameworks and a plan to scale them with the company.
+
+Contact: katie@scalizesystems.com, or book a free 15-minute consultation at ${SITE}/contact
+
+## Pages
+
+- [Services](${SITE}/services): Operating Diagnostic and Build Engagement in detail
+- [How I Work](${SITE}/how-i-work): methodology and engagement arc
+- [Case Studies](${SITE}/case-studies): client problems, the work, and results
+- [About](${SITE}/about): Katie Robblee's background
+- [Contact](${SITE}/contact): get in touch or book a consultation
+
+## Articles
+
+${posts.map((p) => `- [${p.title}](${SITE}/writing/${p.slug})`).join('\n')}
+
+## Resources
+
+- [Graduated HITL Eval Ownership Model](${SITE}/resources/graduated-hitl-eval-ownership-model)
+- [Library](${SITE}/writing): articles, templates and tools, podcast, and LinkedIn posts
+`;
+fs.writeFileSync(path.join(dist, 'llms.txt'), llms);
+console.log('wrote llms.txt');
+
 fs.rmSync(path.join(root, 'dist-ssr'), { recursive: true, force: true });

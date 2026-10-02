@@ -1,0 +1,5 @@
+# All crawlers, including AI agents, are welcome to read this site.
+User-agent: *
+Allow: /
+
+Sitemap: https://scalizesystems.com/sitemap.xml

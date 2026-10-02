@@ -1,0 +1,32 @@
+# Scalize Systems
+
+> Operational systems for companies scaling faster than their processes can support. Scalize Systems helps pre-seed through Series C growth-stage companies build, optimize, and scale systems.
+
+Scalize Systems was founded by Katie Robblee, whose background spans product management, product operations, technical program management, and engineering management. The work: building scalable processes, designing decision frameworks, and helping teams figure out where AI adds value and where humans need to stay in the loop.
+
+Engagements:
+- Operating Diagnostic (two to three weeks): maps how an organization operates, where effort is going, and where the friction is. Deliverables are a Process Alignment Map, a Decision Friction Audit, and a Prioritized Recommendation Roadmap.
+- Build Engagement (three to six months): scoped directly from the diagnostic findings, producing processes and frameworks and a plan to scale them with the company.
+
+Contact: katie@scalizesystems.com, or book a free 15-minute consultation at https://www.scalizesystems.com/contact
+
+## Pages
+
+- [Services](https://www.scalizesystems.com/services): Operating Diagnostic and Build Engagement in detail
+- [How I Work](https://www.scalizesystems.com/how-i-work): methodology and engagement arc
+- [Case Studies](https://www.scalizesystems.com/case-studies): client problems, the work, and results
+- [About](https://www.scalizesystems.com/about): Katie Robblee's background
+- [Contact](https://www.scalizesystems.com/contact): get in touch or book a consultation
+
+## Articles
+
+- [Don't Let FOMO Override Your AI Strategy](https://www.scalizesystems.com/writing/don-t-let-fomo-override-your-ai-strategy)
+- [No Leadership Allowed: RACI Charts Are Team-Level Tools](https://www.scalizesystems.com/writing/no-leadership-allowed-raci-charts-are-team-level-tools)
+- [The Leadership Discipline AI Did Not Change](https://www.scalizesystems.com/writing/the-leadership-discipline-ai-did-not-change)
+- [Doubling Down on AI Without a Long-Term View Is a Bet You Can't Afford to Lose](https://www.scalizesystems.com/writing/doubling-down-on-ai-without-a-long-term-view-is-a-bet-you-can-t-afford-to-lose)
+- [The Friction Was the Curriculum](https://www.scalizesystems.com/writing/the-friction-was-the-curriculum)
+
+## Resources
+
+- [Graduated HITL Eval Ownership Model](https://www.scalizesystems.com/resources/graduated-hitl-eval-ownership-model)
+- [Library](https://www.scalizesystems.com/writing): articles, templates and tools, podcast, and LinkedIn posts
