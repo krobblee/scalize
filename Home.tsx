@@ -56,13 +56,13 @@ export default function Home() {
         <div className="container max-w-4xl">
           <FadeSection>
             <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-7"
-              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+              className="text-[20px] md:text-[24px] lg:text-[32px] font-bold mb-7"
+              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81', lineHeight: '1.125' }}
             >
               {HERO.headline}
             </h1>
             <p
-              className="text-base md:text-lg leading-relaxed mb-9 max-w-2xl"
+              className="text-base md:text-lg leading-relaxed mb-9"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
             >
               {HERO.subtext}
