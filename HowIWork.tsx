@@ -1,5 +1,5 @@
 /*
- * SCALIZE SYSTEMS — How I Work Page
+ * SCALIZE SYSTEMS: How I Work Page
  * Design: Refined Editorial | White bg | Playfair Display headlines | DM Sans body
  * Sections: Methodology, Engagement Arc (4 phases), Knowledge Transfer
  */
@@ -20,7 +20,7 @@ const PHASES = [
     number: '01',
     title: 'Operating Diagnostic',
     duration: 'Two to three weeks',
-    desc: 'The engagement begins with the diagnostic. I conduct structured interviews and workshops with the project sponsor, core decision makers, and key team members, and review internal documentation, OKRs, and the places where work actually happens. At the end, I deliver three artifacts: a process alignment map, a decision friction audit, and a prioritized recommendation roadmap. The findings presentation is a working session, not a report handoff.',
+    desc: 'The engagement begins with the diagnostic. I conduct structured interviews and workshops with the project sponsor, core decision makers, and key team members, and review internal documentation, OKRs, and the places where humans and agents do the work. At the end, I deliver three artifacts: a process alignment map that includes a human and agent view of the PDLC and SDLC, a decision friction audit, and a prioritized recommendation roadmap. The findings presentation is a working session, not a report handoff.',
   },
   {
     number: '02',
@@ -32,7 +32,7 @@ const PHASES = [
     number: '03',
     title: 'Build Engagement',
     duration: 'Three to six months',
-    desc: 'The build is a mix of structured working sessions, async document review, and time spent in meetings observing how teams operate. Deliverables are defined at scoping and do not shift without a documented reason. The engagement closes with a before-and-after operating view, a decision-making framework, and a 30/60/90 day plan with clear milestones and accountable owners.',
+    desc: 'The build is a mix of structured working sessions, async document review, and time spent in meetings observing how teams operate. I redesign the stages, gates, and handoffs of the PDLC and SDLC for human and agent work. Deliverables are defined at scoping and do not shift without a documented reason. The engagement closes with a before-and-after operating view, a decision-making framework, and a 30/60/90 day plan with clear milestones and accountable owners.',
   },
   {
     number: '04',
@@ -48,13 +48,13 @@ export default function HowIWork() {
       <Helmet>
         <title>How I Work | Scalize Systems</title>
         <meta property="og:title" content="How I Work | Scalize Systems" />
-        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
         <meta property="og:url" content="https://scalizesystems.com/how-i-work" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
 
-      {/* Page header — no label per approved copy */}
+      {/* Page header: no label per approved copy */}
       <section className="pt-24 pb-10 md:pt-28 md:pb-12" style={{ background: 'white' }}>
         <div className="container max-w-3xl">
           <FadeSection>
@@ -84,7 +84,13 @@ export default function HowIWork() {
                   className="text-base leading-relaxed"
                   style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
                 >
-                  My job is to close those gaps. I do it by going to the source: Slack threads, Jira tickets, Git commits, meeting transcripts, sales calls, and customer feedback. The signal I'm looking for isn't what teams say they prioritize; it's what the work record shows they do with their time. That gap between stated priority and actual effort is where the most important opportunities tend to live, and it's difficult for organizations to surface it from the inside.
+                  My job is to close those gaps. I do it by going to the source: Slack threads, Jira tickets, Git commits, agent activity logs, meeting transcripts, sales calls, and customer feedback. The signal I'm looking for isn't what teams say they prioritize; it's what the work record shows they do with their time. That gap between stated priority and actual effort is where the most important opportunities tend to live, and it's difficult for organizations to surface it from the inside.
+                </p>
+                <p
+                  className="text-base leading-relaxed"
+                  style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
+                >
+                  Agents change how work moves through a lifecycle. Specs, context, and review points that worked for a team of people need to be designed for a reader that is not human, and I build that into both the diagnostic and the build.
                 </p>
                 <p
                   className="text-base leading-relaxed"
@@ -151,7 +157,7 @@ export default function HowIWork() {
         </div>
       </section>
 
-      {/* Simple text link CTA — no dark section */}
+      {/* Simple text link CTA: no dark section */}
       <section className="section-band" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-3xl">
           <FadeSection>

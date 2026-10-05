@@ -1,5 +1,5 @@
 /*
- * SCALIZE SYSTEMS — Home Page
+ * SCALIZE SYSTEMS: Home Page
  * Design: Refined Editorial | White bg | Inter font
  * Sections: Hero (no label), Positioning, Services Preview, Case Studies Preview, Writing Preview
  * Max content width: max-w-4xl for readability
@@ -42,15 +42,15 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
       <Helmet>
-        <title>Scalize Systems | Operational Systems for Growth-Stage Companies</title>
-        <meta property="og:title" content="Scalize Systems | Operational Systems for Growth-Stage Companies" />
-        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <title>Scalize Systems | Reimagining Processes for Human and Agent Teams</title>
+        <meta property="og:title" content="Scalize Systems | Reimagining Processes for Human and Agent Teams" />
+        <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
         <meta property="og:url" content="https://scalizesystems.com/" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
 
-      {/* Hero — no label above headline */}
+      {/* Hero: no label above headline */}
       <section className="pt-24 pb-12 md:pt-28 md:pb-12" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <FadeSection>
@@ -58,13 +58,13 @@ export default function Home() {
               className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-7"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
             >
-              Operational systems for companies scaling faster than their processes can support.
+              Redesigning the product and software development lifecycle for teams made up of humans and agents.
             </h1>
             <p
               className="text-base md:text-lg leading-relaxed mb-9 max-w-2xl"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
             >
-              I build scalable processes, design decision frameworks, and help teams figure out where AI adds value and where humans need to stay in the loop.
+              I design the processes, decision frameworks, and systemwide handoffs built for humans and AI agents working together, so product and engineering teams can ship faster with clear accountability at every stage of the lifecycle.
             </p>
             <Link
               href="/contact"
@@ -84,7 +84,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Positioning paragraph — exact copy from brief */}
+      {/* Positioning paragraph: exact copy from brief */}
       <section className="section-band" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-4xl">
           <FadeSection>
@@ -92,7 +92,7 @@ export default function Home() {
               className="text-base md:text-lg leading-relaxed"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.85' }}
             >
-              Most organizations set priorities but don't have the tools in place to see where teams are expending the majority of their efforts. That gap makes it difficult for leadership to know where to course correct. Scalize Systems identifies the right signals through Slack messages, Jira tickets, Git commits, meeting transcripts, customer feedback, and sales calls, and surfaces where priorities and effort diverge. Then I build the plan and implement lightweight processes to close them.
+              Most organizations set priorities but don't have the tools in place to see where teams are expending the majority of their efforts. That gap makes it difficult for leadership to know where to course correct. Scalize Systems identifies the right signals through Slack messages, Jira tickets, Git commits, agent activity logs, meeting transcripts, customer feedback, and sales calls, and surfaces where priorities and effort diverge. Then I redesign the product and software development lifecycle so that each stage, handoff, and review point is defined for both humans and agents, and I implement lightweight processes to close the gaps.
             </p>
           </FadeSection>
         </div>
@@ -137,7 +137,7 @@ export default function Home() {
                     className="text-sm leading-relaxed"
                     style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
                   >
-                    A two to three week engagement that maps how your organization operates, where effort is going, and where the friction is.
+                    A two to three week engagement that maps how your organization operates across the PDLC and SDLC, where effort is going, which work belongs to humans, agents, or both, and where the friction is.
                   </p>
                 </div>
               </Link>
@@ -158,7 +158,7 @@ export default function Home() {
                     className="text-sm leading-relaxed"
                     style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
                   >
-                    A three to six month engagement scoped directly from the diagnostic findings, producing processes and frameworks and a plan to scale them with the company.
+                    A three to six month engagement scoped directly from the diagnostic findings, producing human and agent ready processes, decision frameworks, and an executable plan to scale and measure reimagined processes across the organization.
                   </p>
                 </div>
               </Link>
@@ -256,7 +256,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Writing Preview — 3 most recent articles from /content/writing/ */}
+      {/* Writing Preview: 3 most recent articles from /content/writing/ */}
       <section className="section-band" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <FadeSection>

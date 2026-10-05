@@ -1,5 +1,5 @@
 /*
- * SCALIZE SYSTEMS — Contact Page
+ * SCALIZE SYSTEMS: Contact Page
  * Design: Refined Editorial | White bg | Inter font
  * Structure: Intro → Form → Calendly (tighter spacing) → Email + LinkedIn
  */
@@ -60,7 +60,7 @@ export default function Contact() {
       <Helmet>
         <title>Contact | Scalize Systems</title>
         <meta property="og:title" content="Contact | Scalize Systems" />
-        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
         <meta property="og:url" content="https://scalizesystems.com/contact" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -235,7 +235,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Calendly — below the form with breathing room above the title, while keeping the calendar itself tight */}
+      {/* Calendly: below the form with breathing room above the title, while keeping the calendar itself tight */}
       <section className="pt-8 md:pt-10 pb-0" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <h2

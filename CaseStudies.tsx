@@ -1,5 +1,5 @@
 /*
- * SCALIZE SYSTEMS — Case Studies Page
+ * SCALIZE SYSTEMS: Case Studies Page
  * Design: Refined Editorial | White bg | Playfair Display headlines | DM Sans body
  * Both case studies on a single scrollable page with anchor IDs
  */
@@ -99,7 +99,7 @@ export default function CaseStudies() {
       <Helmet>
         <title>Case Studies | Scalize Systems</title>
         <meta property="og:title" content="Case Studies | Scalize Systems" />
-        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
         <meta property="og:url" content="https://scalizesystems.com/case-studies" />
         <meta property="og:type" content="website" />
       </Helmet>

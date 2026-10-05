@@ -1,5 +1,5 @@
 /*
- * SCALIZE SYSTEMS — Services Page
+ * SCALIZE SYSTEMS: Services Page
  * Design: Refined Editorial | White bg | Inter font
  * Sections: Page header, AI Stats Carousel, Operating Diagnostic, Build Engagement, FAQ, Bottom CTA
  * Max content width: max-w-4xl
@@ -175,7 +175,15 @@ function AiStatsCarousel() {
 const FAQ_ITEMS = [
   {
     q: 'What stage companies do you work with?',
-    a: 'I work with pre-seed through Series C growth stage companies. This is the stage where the organization is still building toward scale, and the right operational foundation can be put in place before the complexity of growth makes it harder to do. The goal is always to build processes that are optimized for how the organization works today and designed to scale as it grows.',
+    a: 'I work with growth-stage companies. This is the stage where the organization is still building toward scale, and the right operational foundation can be put in place before the complexity of growth makes it harder to do. The goal is always to build processes that are optimized for how the organization works today and designed to scale as it grows.',
+  },
+  {
+    q: 'What does it mean to design processes for humans and agents?',
+    a: 'Traditional PDLC and SDLC practices assume that humans read the specs, attend the reviews, and pass work between functions. When agents write code, draft requirements, and review changes, each of those stages needs inputs an agent can act on, outputs a person can verify, and clear rules for when work moves between the two. I define those stages, handoffs, and decision-making responsibilities so that humans and agents operate from the same process and leadership can see where human judgment is required.',
+  },
+  {
+    q: 'Do you implement AI tools?',
+    a: 'I design the operating model: which stages of the lifecycle use agents, what each agent needs as input, where humans review, and how the team measures the result. Tool and vendor selection follows from those decisions and stays with your team, and I advise on evaluation criteria where that is useful.',
   },
   {
     q: 'How long does an engagement take?',
@@ -226,11 +234,11 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 const DIAGNOSTIC_DELIVERABLES = [
   {
     title: 'Process Alignment Map',
-    desc: 'A visual artifact similar to a heat map that shows where an organization\'s stated priorities and team effort are out of sync.',
+    desc: 'A visual artifact similar to a heat map that shows where an organization\'s stated priorities and team effort are out of sync, paired with a stage-by-stage view of the PDLC and SDLC showing which work is owned by humans or agents, and where the two hand off to each other.',
   },
   {
     title: 'Decision Friction Audit',
-    desc: 'Identifies where decisions are getting stuck, how long it takes to resolve priority conflicts, and what that lag is costing in shipping speed and engineering cycles.',
+    desc: 'Identifies where decisions are getting stuck, including human review gates that add delay without adding value, how long it takes to resolve priority conflicts, and what those inefficiencies cost the organization\'s shipping speed and engineering cycles.',
   },
   {
     title: 'Prioritized Recommendation Roadmap',
@@ -245,15 +253,15 @@ const BUILD_DELIVERABLES = [
   },
   {
     title: 'Documented Process Updates',
-    desc: 'Lightweight frameworks that teams can adapt as they scale. All knowledge will be transferred to teams before the engagement closes.',
+    desc: 'Lightweight frameworks that teams can adapt as they scale, including specs, acceptance criteria, escalation rules, and handoff standards written so that both humans and agents can act on them. All knowledge will be transferred to teams before the engagement closes.',
   },
   {
     title: 'Before-and-After Operations View',
     desc: 'Shows what efficiency gaps were filled and who is accountable for outcomes across teams.',
   },
   {
-    title: 'Decision Making Framework',
-    desc: 'For leadership to ensure future planning and work adheres to organizational priorities.',
+    title: 'Decision-Making Framework',
+    desc: 'For leadership to ensure future planning and work adhere to organizational priorities, defining which decisions agents make, which they recommend, and which stay with humans.',
   },
 ];
 
@@ -272,7 +280,7 @@ export default function Services() {
       <Helmet>
         <title>Services | Scalize Systems</title>
         <meta property="og:title" content="Services | Scalize Systems" />
-        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
         <meta property="og:url" content="https://scalizesystems.com/services" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -300,10 +308,10 @@ export default function Services() {
               {/* Left column: body copy + italic duration */}
               <div className="md:w-1/2">
                 <p className="text-base leading-relaxed mb-5" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}>
-                  The Operating Diagnostic maps how an organization currently operates, where teams are expending the most effort, and where there are opportunities to make that work more efficient and directly tied to stated priorities.
+                  The Operating Diagnostic maps how an organization currently operates across its product development lifecycle (PDLC) and software development lifecycle (SDLC), where humans and agents are expending the most effort, and where there are opportunities to make that work more efficient and directly tied to stated priorities.
                 </p>
                 <p className="text-base leading-relaxed mb-5" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}>
-                  Over two to three weeks, I conduct structured interviews and workshops with the project sponsor, core decision makers, and key team members across the organization. I review strategy documents, OKRs, GitHub commits, Jira tickets, and other internal documentation. I pull signal from everywhere teams work, then synthesize that information to identify key opportunities to remove friction and increase predictability.
+                  Over two to three weeks, I conduct structured interviews and workshops with the project sponsor, core decision makers, and key team members across the organization. I review strategy documents, OKRs, GitHub commits, Jira tickets, agent activity logs, and other internal documentation. I map each stage of the lifecycle from discovery and specification through build, review, release, and measurement. I pull signal from everywhere teams and agents work, then synthesize that information to identify key opportunities to remove friction and increase predictability.
                 </p>
                 <p className="text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', fontStyle: 'italic' }}>
                   Duration: Two to three weeks

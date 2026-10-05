@@ -1,5 +1,5 @@
 /*
- * SCALIZE SYSTEMS — Library Page
+ * SCALIZE SYSTEMS: Library Page
  * Design: Refined Editorial | White bg | Playfair Display headlines | DM Sans body
  * Four sections (Articles, Templates & Tools, Podcast, LinkedIn), alternating
  * white / light-blue bands, content loaded from the Sanity "Scalize Writing CMS" project
@@ -150,7 +150,7 @@ export default function Writing() {
       <Helmet>
         <title>Resources & Writing | Scalize Systems</title>
         <meta property="og:title" content="Resources & Writing | Scalize Systems" />
-        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
         <meta property="og:url" content="https://scalizesystems.com/writing" />
         <meta property="og:type" content="website" />
       </Helmet>

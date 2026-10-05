@@ -1,5 +1,5 @@
 /*
- * SCALIZE SYSTEMS — About Page
+ * SCALIZE SYSTEMS: About Page
  * Design: Refined Editorial | Inter font | brand palette
  * Layout: Standard page header, centered name/title, inline right-aligned headshot with bio copy
  */
@@ -21,7 +21,7 @@ export default function About() {
       <Helmet>
         <title>About | Scalize Systems</title>
         <meta property="og:title" content="About | Scalize Systems" />
-        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
         <meta property="og:url" content="https://scalizesystems.com/about" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -36,7 +36,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Bio — centered name/title, then body copy with inline right-aligned headshot */}
+      {/* Bio: centered name/title, then body copy with inline right-aligned headshot */}
       <section className="section-band pt-12 md:pt-14" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-4xl">
           <FadeSection>
@@ -68,13 +68,13 @@ export default function About() {
                   width="720"
                   height="832"
                 />
-                I'm Katie Robblee and my background spans product management, product operations, technical program management, and engineering management. I build the operating infrastructure that allows product and engineering teams to work with less friction and greater efficiency. Over the course of my career I have worked across ed tech, legal tech, supply chain, enterprise billing, and SMB, on SaaS and enterprise products at companies ranging from pre-seed to multibillion dollar scale, and have overseen product lines exceeding $3B in gross revenue.
+                I'm Katie Robblee and my background spans product management, product operations, technical program management, and engineering management. I build the operating infrastructure that allows product and engineering teams, and the AI agents working alongside them, to work with less friction and greater efficiency. Over the course of my career I have worked across ed tech, legal tech, supply chain, enterprise billing, and SMB, on SaaS and enterprise products at companies ranging from pre-seed to multibillion dollar scale, and have overseen product lines exceeding $3B in gross revenue.
               </p>
               <p
                 className="text-base leading-relaxed"
                 style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
               >
-                I founded Scalize Systems because the same set of problems keeps showing up regardless of industry, stage, or size. Leadership is unclear on objectives and success criteria. Teams don't have a shared understanding of priorities, roles, or accountability. Handoffs between functions are messy, context gets lost, and the communication infrastructure to prevent that doesn't exist. And organizations rush into building before the foundation is in place, without thinking through how the work will be maintained, monitored, measured, or rolled out.
+                I founded Scalize Systems because the same set of problems keeps showing up regardless of industry, stage, or size. Leadership is unclear on objectives and success criteria. Teams don't have a shared understanding of priorities, roles, or accountability. Handoffs between functions are messy, context gets lost, and the communication infrastructure to prevent that doesn't exist. As agents take on more of the work, specs and context written for people often cannot be acted on by an agent, which widens those gaps. And organizations rush into building before the foundation is in place, without thinking through how the work will be maintained, monitored, measured, or rolled out.
               </p>
               <p
                 className="text-base leading-relaxed"
@@ -86,7 +86,7 @@ export default function About() {
                 className="text-base leading-relaxed"
                 style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
               >
-                I excel at systems thinking and can operate across multiple layers of complexity at once, moving between the 30,000 foot view and the ground level without losing either one. A lot of companies don't know what good looks like. That's what I bring to the table.
+                I excel at systems thinking and can operate across multiple layers of complexity at once, moving between the 30,000 foot view and the ground level without losing either one. Best practices for traditional processes have shifted as teams incorporate agents that write code, draft specs, and review work. I specialize in updating those processes into a reimagined workflow that works for both humans and agents.
               </p>
               <p
                 className="text-base leading-relaxed"

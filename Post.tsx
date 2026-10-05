@@ -1,5 +1,5 @@
 /*
- * SCALIZE SYSTEMS — Individual Article/Post Page
+ * SCALIZE SYSTEMS: Individual Article/Post Page
  * Design: Refined Editorial | White bg | Inter headlines and body
  * Renders Portable Text content from the Sanity "Scalize Writing CMS" project
  * Includes author bio at bottom
@@ -77,7 +77,7 @@ export default function PostPage() {
       <Helmet>
         <title>{post ? `${post.title} | Scalize Systems` : 'Resources & Writing | Scalize Systems'}</title>
         <meta property="og:title" content={post ? `${post.title} | Scalize Systems` : 'Resources & Writing | Scalize Systems'} />
-        <meta property="og:description" content="Scalize Systems partners with pre-seed through Series C growth stage companies to build operating infrastructure, develop AI strategy, and remove friction from processes so organizations can scale with confidence." />
+        <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
         <meta property="og:type" content="article" />
       </Helmet>
       <Navbar />
