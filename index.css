@@ -205,6 +205,35 @@
   }
 
   /* Scroll fade-in animation */
+  /* Home hero illustration: in normal flow under the buttons at 760px and below,
+     a faded decorative layer behind the copy above that. */
+  .hero-illustration {
+    display: block;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+  @media (max-width: 760px) {
+    .hero-illustration {
+      width: min(48vw, 190px);
+      opacity: 0.26;
+      margin: 18px auto 0;
+    }
+  }
+  @media (min-width: 761px) {
+    .hero-illustration {
+      position: absolute;
+      top: 25px;
+      left: 55%;
+      transform: translateX(-50%);
+      width: min(45%, 480px);
+      opacity: 0.15;
+      z-index: 0;
+      -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+    }
+  }
+
   .fade-in-up {
     opacity: 0;
     transform: translateY(16px);
