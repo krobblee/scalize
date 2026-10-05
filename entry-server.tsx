@@ -9,6 +9,7 @@ import App from './App';
 import type { PrefetchData } from './prefetch';
 
 export { getAllPosts, getPostBySlug, getTemplatesAndTools, getPodcastEpisode, getLinkedInPosts } from './posts';
+export { urlForImage } from './sanity';
 
 export function render(url: string, data: PrefetchData) {
   return renderToString(

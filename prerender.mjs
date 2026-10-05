@@ -44,6 +44,90 @@ for (const { slug } of posts) {
   if (post) pages.push({ url: `/writing/${slug}`, data: { [`post:${slug}`]: post } });
 }
 
+const oneLine = (text) => text.replace(/\s+/g, ' ').trim();
+
+// Structured data (schema.org JSON-LD): states key facts in a format search engines and AI agents read directly.
+const SITE = 'https://www.scalizesystems.com';
+const ORG_ID = `${SITE}/#organization`;
+const PERSON_ID = `${SITE}/about#katie-robblee`;
+const organization = {
+  '@type': 'ProfessionalService',
+  '@id': ORG_ID,
+  name: 'Scalize Systems',
+  url: SITE,
+  logo: `${SITE}/assets/images/scalize-logo-horizontal.png`,
+  image: `${SITE}/assets/images/scalize-logo-horizontal.png`,
+  email: 'katie@scalizesystems.com',
+  description:
+    'Operational systems for companies scaling faster than their processes can support. Scalize Systems helps pre-seed through Series C growth-stage companies build, optimize, and scale systems.',
+  founder: { '@id': PERSON_ID },
+  address: { '@type': 'PostalAddress', addressRegion: 'MA', addressCountry: 'US' },
+  areaServed: 'Worldwide',
+};
+const person = {
+  '@type': 'Person',
+  '@id': PERSON_ID,
+  name: 'Katie Robblee',
+  jobTitle: 'Founder',
+  worksFor: { '@id': ORG_ID },
+  url: `${SITE}/about`,
+  image: `${SITE}/assets/images/katie-headshot-charcoal-720.png`,
+  email: 'katie@scalizesystems.com',
+  homeLocation: { '@type': 'Place', name: 'Outside of Boston, Massachusetts' },
+  sameAs: ['https://www.linkedin.com/in/katierobblee/'],
+};
+const services = [
+  {
+    '@type': 'Service',
+    name: 'Operating Diagnostic',
+    provider: { '@id': ORG_ID },
+    description:
+      'A two to three week engagement that maps how your organization operates, where effort is going, and where the friction is.',
+  },
+  {
+    '@type': 'Service',
+    name: 'Build Engagement',
+    provider: { '@id': ORG_ID },
+    description:
+      'A three to six month engagement scoped directly from the diagnostic findings, producing processes and frameworks and a plan to scale them with the company.',
+  },
+];
+
+// First ~200 characters of the article's text, cut at a word boundary.
+function articleSummary(post) {
+  const text = oneLine(
+    (post.body || [])
+      .filter((b) => b._type === 'block')
+      .map((b) => (b.children || []).map((c) => c.text || '').join(''))
+      .join(' '),
+  );
+  if (text.length <= 200) return text;
+  return `${text.slice(0, 200).replace(/\s+\S*$/, '')}…`;
+}
+
+function structuredData(url, data) {
+  const graph = [organization, person];
+  if (url === '/services') graph.push(...services.map((s) => ({ ...s, url: `${SITE}/services` })));
+  const post = url.startsWith('/writing/') ? data[`post:${url.slice('/writing/'.length)}`] : null;
+  if (post) {
+    graph.push({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      url: `${SITE}${url}`,
+      mainEntityOfPage: `${SITE}${url}`,
+      ...(articleSummary(post) && { description: articleSummary(post) }),
+      author: { '@id': PERSON_ID },
+      publisher: { '@id': ORG_ID },
+      ...(post.date && { datePublished: post.date }),
+      ...(post.image && {
+        image: server.urlForImage(post.image).width(1200).height(630).fit('crop').url(),
+      }),
+    });
+  }
+  const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+  return `<script type="application/ld+json">${json}</script>`;
+}
+
 for (const { url, data } of pages) {
   const rendered = server.render(url, data);
   // React places page <title>/<meta>/<link> tags at the start of its output; move them into <head>.
@@ -54,7 +138,7 @@ for (const { url, data } of pages) {
 
   let page = template
     .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
-    .replace('</head>', `${headTags}<script>window.__PRERENDER_DATA__=${json}</script></head>`);
+    .replace('</head>', `${headTags}${structuredData(url, data)}<script>window.__PRERENDER_DATA__=${json}</script></head>`);
   if (headTags.includes('<title>')) page = page.replace('<title>Scalize Systems</title>', '');
 
   const file = url === '/' ? 'index.html' : `${url.slice(1)}.html`;
@@ -62,8 +146,6 @@ for (const { url, data } of pages) {
   fs.writeFileSync(path.join(dist, file), page);
   console.log(`prerendered ${url}`);
 }
-
-const oneLine = (text) => text.replace(/\s+/g, ' ').trim();
 
 // sitemap.xml: every page on this site, including each article, rebuilt from Sanity on every build.
 const SITEMAP_HOST = 'https://scalizesystems.com';
@@ -100,7 +182,6 @@ fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
 console.log(`wrote sitemap.xml (${sitemapEntries.length} pages)`);
 
 // llms.txt: a plain-text summary of the site for AI agents (https://llmstxt.org).
-const SITE = 'https://www.scalizesystems.com';
 const llms = `# Scalize Systems
 
 > Operational systems for companies scaling faster than their processes can support. Scalize Systems helps pre-seed through Series C growth-stage companies build, optimize, and scale systems.
