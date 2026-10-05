@@ -2,22 +2,35 @@
 
 > Scalize Systems reimagines product and software development lifecycles for growth-stage companies, designing and building the workflows, decision frameworks, and handoffs that work for humans and agents.
 
-Scalize Systems was founded by Katie Robblee, whose background spans product management, product operations, technical program management, and engineering management. Traditional product and software development processes don't work with AI. Scalize Systems helps teams reimagine workflows, decision frameworks, and systemwide handoffs to work for humans and agents alike, so they can ship faster with clear accountability at every stage of the build lifecycle.
+Traditional product development processes weren’t designed for AI agents. I help growth-stage product and engineering teams redesign decisions, workflows, and handoffs so people and agents can work together with clear accountability.
 
-Engagements:
-- Operating Diagnostic (two to three weeks): maps how an organization operates across the PDLC and SDLC, where effort is going, which work belongs to humans, agents, or both, and where the friction is. Deliverables are a Process Alignment Map, a Decision Friction Audit, and a Prioritized Recommendation Roadmap.
-- Build Engagement (three to six months): scoped directly from the diagnostic findings, producing human and agent ready processes, decision frameworks, and an executable plan to scale and measure reimagined processes across the organization.
+Founder: [Katie Robblee](https://www.scalizesystems.com/about)
 
 Contact: katie@scalizesystems.com, or book a free 15-minute consultation at https://www.scalizesystems.com/contact
 
+## Problems Scalize Systems helps solve
+
+- What you may be seeing: It’s hard to tell how much product and engineering effort supports your stated priorities.
+  How Scalize helps: A heat-map-style view compares actual work with those priorities, so leaders can see where to adjust course.
+- What you may be seeing: Work slows when teams don’t know who can decide, which reviews matter, or when to escalate.
+  How Scalize helps: A decision audit identifies bottlenecks and informs clearer ownership and review rules, so decisions can move faster.
+- What you may be seeing: Context gets lost as work moves between people and AI agents.
+  How Scalize helps: Handoff standards define the inputs, checks, and owners at each stage, so work moves forward with clear accountability.
+
+## Services
+
+- [Operating Diagnostic](https://www.scalizesystems.com/services#operating-diagnostic): A two to three week engagement that maps how your organization operates across the PDLC and SDLC, where effort is going, which work belongs to humans, agents, or both, and where the friction is.
+- [Build Engagement](https://www.scalizesystems.com/services#build-engagement): A three to six month engagement scoped directly from the diagnostic findings, producing human and agent ready processes, decision frameworks, and an executable plan to scale and measure reimagined processes across the organization.
+
 ## Pages
 
-- [Services](https://www.scalizesystems.com/services): Operating Diagnostic and Build Engagement in detail
-- [How I Work](https://www.scalizesystems.com/how-i-work): methodology and engagement arc
-- [Case Studies](https://www.scalizesystems.com/case-studies): client problems, the work, and results
-- [About](https://www.scalizesystems.com/about): Katie Robblee's background
-- [Contact](https://www.scalizesystems.com/contact): get in touch or book a consultation
-- [Graduated HITL Eval Ownership Model](https://www.scalizesystems.com/resources/graduated-hitl-eval-ownership-model): a step-by-step framework for building product judgment through human-in-the-loop evaluation, with a PDF download
+- [Services](https://www.scalizesystems.com/services)
+- [How I Work](https://www.scalizesystems.com/how-i-work)
+- [Case Studies](https://www.scalizesystems.com/case-studies)
+- [Resources & Writing](https://www.scalizesystems.com/writing)
+- [About](https://www.scalizesystems.com/about)
+- [Contact](https://www.scalizesystems.com/contact)
+- [Graduated HITL Eval Ownership Model](https://www.scalizesystems.com/resources/graduated-hitl-eval-ownership-model)
 
 ## Articles
 
@@ -40,6 +53,3 @@ Contact: katie@scalizesystems.com, or book a free 15-minute consultation at http
 
 - [Maybe You Shouldn't Go All-In On AI](https://www.linkedin.com/posts/katierobblee_we-all-thought-blackberry-was-the-future-activity-7471288813361913857-XG9s)
 
-## Optional
-
-- [Library](https://www.scalizesystems.com/writing): all articles, templates and tools, podcast, and LinkedIn posts in one place

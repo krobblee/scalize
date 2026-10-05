@@ -23,6 +23,11 @@ const STATIC_ROUTES = [
 ];
 
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf-8');
+// Agent-facing text below is pulled from the site's own copy (index.html and siteCopy.ts), never written separately.
+const decodeEntities = (text) =>
+  text.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+const SITE_DESCRIPTION = decodeEntities(template.match(/<meta name="description" content="([^"]*)"/)[1]);
+const { HERO, PROBLEMS, SERVICES } = server;
 
 // Unknown URLs (and articles published after this build) fall back to the plain app shell.
 fs.writeFileSync(path.join(dist, 'app-shell.html'), template);
@@ -58,8 +63,7 @@ const organization = {
   logo: `${SITE}/assets/images/scalize-logo-horizontal.png`,
   image: `${SITE}/assets/images/scalize-logo-horizontal.png`,
   email: 'katie@scalizesystems.com',
-  description:
-    'Scalize Systems reimagines product and software development lifecycles for growth-stage companies, designing and building the workflows, decision frameworks, and handoffs that work for humans and agents.',
+  description: SITE_DESCRIPTION,
   founder: { '@id': PERSON_ID },
   address: { '@type': 'PostalAddress', addressRegion: 'MA', addressCountry: 'US' },
   areaServed: 'Worldwide',
@@ -76,22 +80,12 @@ const person = {
   homeLocation: { '@type': 'Place', name: 'Outside of Boston, Massachusetts' },
   sameAs: ['https://www.linkedin.com/in/katierobblee/'],
 };
-const services = [
-  {
-    '@type': 'Service',
-    name: 'Operating Diagnostic',
-    provider: { '@id': ORG_ID },
-    description:
-      'A two to three week engagement that maps how your organization operates across the PDLC and SDLC, where effort is going, which work belongs to humans, agents, or both, and where the friction is.',
-  },
-  {
-    '@type': 'Service',
-    name: 'Build Engagement',
-    provider: { '@id': ORG_ID },
-    description:
-      'A three to six month engagement scoped directly from the diagnostic findings, producing human and agent ready processes, decision frameworks, and an executable plan to scale and measure reimagined processes across the organization.',
-  },
-];
+const services = SERVICES.map((service) => ({
+  '@type': 'Service',
+  name: service.name,
+  provider: { '@id': ORG_ID },
+  description: service.description,
+}));
 
 // First ~200 characters of the article's text, cut at a word boundary.
 function articleSummary(post) {
@@ -184,24 +178,31 @@ console.log(`wrote sitemap.xml (${sitemapEntries.length} pages)`);
 // llms.txt: a plain-text summary of the site for AI agents (https://llmstxt.org).
 const llms = `# Scalize Systems
 
-> Scalize Systems reimagines product and software development lifecycles for growth-stage companies, designing and building the workflows, decision frameworks, and handoffs that work for humans and agents.
+> ${SITE_DESCRIPTION}
 
-Scalize Systems was founded by Katie Robblee, whose background spans product management, product operations, technical program management, and engineering management. Traditional product and software development processes don't work with AI. Scalize Systems helps teams reimagine workflows, decision frameworks, and systemwide handoffs to work for humans and agents alike, so they can ship faster with clear accountability at every stage of the build lifecycle.
+${HERO.headline} ${HERO.subtext}
 
-Engagements:
-- Operating Diagnostic (two to three weeks): maps how an organization operates across the PDLC and SDLC, where effort is going, which work belongs to humans, agents, or both, and where the friction is. Deliverables are a Process Alignment Map, a Decision Friction Audit, and a Prioritized Recommendation Roadmap.
-- Build Engagement (three to six months): scoped directly from the diagnostic findings, producing human and agent ready processes, decision frameworks, and an executable plan to scale and measure reimagined processes across the organization.
+Founder: [Katie Robblee](${SITE}/about)
 
 Contact: katie@scalizesystems.com, or book a free 15-minute consultation at ${SITE}/contact
 
+## ${PROBLEMS.heading}
+
+${PROBLEMS.rows.map((row) => `- ${PROBLEMS.problemLabel}: ${row.problem}\n  ${PROBLEMS.helpLabel}: ${row.help}`).join('\n')}
+
+## Services
+
+${SERVICES.map((service) => `- [${service.name}](${SITE}${service.href}): ${service.description}`).join('\n')}
+
 ## Pages
 
-- [Services](${SITE}/services): Operating Diagnostic and Build Engagement in detail
-- [How I Work](${SITE}/how-i-work): methodology and engagement arc
-- [Case Studies](${SITE}/case-studies): client problems, the work, and results
-- [About](${SITE}/about): Katie Robblee's background
-- [Contact](${SITE}/contact): get in touch or book a consultation
-- [Graduated HITL Eval Ownership Model](${SITE}/resources/graduated-hitl-eval-ownership-model): a step-by-step framework for building product judgment through human-in-the-loop evaluation, with a PDF download
+- [Services](${SITE}/services)
+- [How I Work](${SITE}/how-i-work)
+- [Case Studies](${SITE}/case-studies)
+- [Resources & Writing](${SITE}/writing)
+- [About](${SITE}/about)
+- [Contact](${SITE}/contact)
+- [Graduated HITL Eval Ownership Model](${SITE}/resources/graduated-hitl-eval-ownership-model)
 
 ## Articles
 
@@ -222,9 +223,6 @@ ${podcast ? `
 
 ${linkedInPosts.map((l) => `- [${l.title}](${l.externalUrl.split('?')[0]})`).join('\n')}
 ` : ''}
-## Optional
-
-- [Library](${SITE}/writing): all articles, templates and tools, podcast, and LinkedIn posts in one place
 `;
 fs.writeFileSync(path.join(dist, 'llms.txt'), llms);
 console.log('wrote llms.txt');

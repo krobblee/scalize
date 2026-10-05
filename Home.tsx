@@ -14,6 +14,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import StatsCarousel from './StatsCarousel';
 import { getAllPosts, type PostMeta } from './posts';
+import { HERO, PROBLEMS, SERVICES } from './siteCopy';
 import { usePrefetched } from './prefetch';
 
 function FadeSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -58,42 +59,127 @@ export default function Home() {
               className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-7"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
             >
-              Traditional product and software development processes don't work with AI.
+              {HERO.headline}
             </h1>
             <p
               className="text-base md:text-lg leading-relaxed mb-9 max-w-2xl"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
             >
-              Reimagine workflows, decision frameworks, and systemwide handoffs to work for humans and agents alike. Ship faster with clear accountability at every stage of the build lifecycle.
+              {HERO.subtext}
             </p>
-            <Link
-              href="/contact"
-              className="inline-block px-6 py-3 text-sm font-semibold no-underline rounded transition-all duration-160 active:scale-97"
-              style={{
-                background: '#073C81',
-                color: 'white',
-                fontFamily: 'Inter, system-ui, sans-serif',
-                letterSpacing: '0.02em',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#046CC5')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#073C81')}
-            >
-              Get in touch
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://calendly.com/katie-scalizesystems/15-mins"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 text-sm font-semibold no-underline rounded transition-all duration-160 active:scale-97"
+                style={{
+                  background: '#073C81',
+                  color: 'white',
+                  border: '1px solid #073C81',
+                  fontFamily: 'Inter, system-ui, sans-serif',
+                  letterSpacing: '0.02em',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#046CC5';
+                  e.currentTarget.style.borderColor = '#046CC5';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#073C81';
+                  e.currentTarget.style.borderColor = '#073C81';
+                }}
+              >
+                Book a 15-minute call
+              </a>
+              <Link
+                href="/services"
+                className="inline-block px-6 py-3 text-sm font-semibold no-underline rounded transition-all duration-160 active:scale-97"
+                style={{
+                  background: 'white',
+                  color: '#073C81',
+                  border: '1px solid #073C81',
+                  fontFamily: 'Inter, system-ui, sans-serif',
+                  letterSpacing: '0.02em',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = '#EEF2F8')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = 'white')}
+              >
+                Explore services
+              </Link>
+            </div>
           </FadeSection>
         </div>
       </section>
 
-      {/* Positioning paragraph: exact copy from brief */}
-      <section className="section-band" style={{ background: '#EEF2F8' }}>
+      {/* Problems Scalize Systems helps solve: a real table so agents and screen readers get the pairing without the visual layout */}
+      <section className="py-10 md:py-12" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-4xl">
           <FadeSection>
-            <p
-              className="text-base md:text-lg leading-relaxed"
-              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.85' }}
+            <h2
+              id="problems-heading"
+              className="text-[21px] md:text-2xl font-semibold leading-snug mb-6"
+              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
             >
-              Most organizations set priorities but don't have the tools in place to see where teams are expending the majority of their efforts. That gap makes it difficult for leadership to know where to course correct. Scalize Systems identifies the right signals through Slack messages, Jira tickets, Git commits, agent activity logs, meeting transcripts, customer feedback, and sales calls, and surfaces where priorities and effort diverge. Then I redesign the product and software development lifecycle so that each stage, handoff, and review point is defined for both humans and agents, and I implement lightweight processes to close the gaps.
-            </p>
+              {PROBLEMS.heading}
+            </h2>
+            <div className="rounded-sm border px-5 md:px-8 py-2 md:py-3" style={{ background: 'white', borderColor: '#e5e9f0' }}>
+              <table
+                aria-labelledby="problems-heading"
+                className="block md:table w-full border-collapse text-left"
+                style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
+              >
+                <thead className="hidden md:table-header-group">
+                  <tr>
+                    {[PROBLEMS.problemLabel, PROBLEMS.helpLabel].map((label) => (
+                      <th
+                        key={label}
+                        scope="col"
+                        className="w-1/2 pt-4 pb-3 pr-8 last:pr-0 text-xs font-semibold uppercase tracking-wider"
+                        style={{ color: '#078279', borderBottom: '1px solid #D5DEEA' }}
+                      >
+                        {label}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="block md:table-row-group">
+                  {PROBLEMS.rows.map((row, i) => (
+                    <tr
+                      key={row.problem}
+                      className="block md:table-row py-5 md:py-0"
+                      style={{ borderTop: i === 0 ? 'none' : '1px solid #E5E9F0' }}
+                    >
+                      <th
+                        scope="row"
+                        className="block md:table-cell align-top md:py-5 md:pr-8 text-base font-medium"
+                        style={{ color: '#073C81', lineHeight: '1.6' }}
+                      >
+                        <span className="md:hidden block mb-1 text-xs font-semibold uppercase tracking-wider" style={{ color: '#078279' }}>
+                          {PROBLEMS.problemLabel}
+                        </span>
+                        {row.problem}
+                      </th>
+                      <td
+                        className="block md:table-cell align-top pt-4 md:py-5 text-base"
+                        style={{ color: '#3D4A5C', lineHeight: '1.6' }}
+                      >
+                        <span className="md:hidden block mb-1 text-xs font-semibold uppercase tracking-wider" style={{ color: '#078279' }}>
+                          {PROBLEMS.helpLabel}
+                        </span>
+                        {row.help}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <Link
+              href="/how-i-work"
+              className="inline-block mt-6 text-base font-medium no-underline transition-colors duration-150"
+              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#046CC5' }}
+            >
+              See how I work →
+            </Link>
           </FadeSection>
         </div>
       </section>
@@ -131,13 +217,13 @@ export default function Home() {
                     className="text-lg font-semibold mb-3 transition-colors duration-150"
                     style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
                   >
-                    Operating Diagnostic
+                    {SERVICES[0].name}
                   </h3>
                   <p
                     className="text-sm leading-relaxed"
                     style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
                   >
-                    A two to three week engagement that maps how your organization operates across the PDLC and SDLC, where effort is going, which work belongs to humans, agents, or both, and where the friction is.
+                    {SERVICES[0].description}
                   </p>
                 </div>
               </Link>
@@ -152,13 +238,13 @@ export default function Home() {
                     className="text-lg font-semibold mb-3 transition-colors duration-150"
                     style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
                   >
-                    Build Engagement
+                    {SERVICES[1].name}
                   </h3>
                   <p
                     className="text-sm leading-relaxed"
                     style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
                   >
-                    A three to six month engagement scoped directly from the diagnostic findings, producing human and agent ready processes, decision frameworks, and an executable plan to scale and measure reimagined processes across the organization.
+                    {SERVICES[1].description}
                   </p>
                 </div>
               </Link>

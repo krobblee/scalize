@@ -13,5 +13,9 @@
 - Replaced "pre-seed through Series C" audience language with "growth-stage companies" site-wide (About page career history unchanged).
 - Updated llms.txt and structured data to match the new copy.
 
+- Rewrote the Home hero (new headline and subtext) and replaced the "Get in touch" button with "Book a 15-minute call" (opens Calendly) and "Explore services".
+- Replaced the paragraph below the Home hero with a "Problems Scalize Systems helps solve" comparison table, with tighter section padding.
+- llms.txt and structured data are now generated from the site's own copy (siteCopy.ts and the index.html meta description), so they always match the live pages.
+
 ### Notes
 - All four sections currently render their empty states except Articles, until content is published for the new types in Studio.
