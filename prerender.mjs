@@ -186,7 +186,7 @@ const llms = `# Scalize Systems
 
 > Scalize Systems reimagines product and software development lifecycles for growth-stage companies, designing and building the workflows, decision frameworks, and handoffs that work for humans and agents.
 
-Scalize Systems was founded by Katie Robblee, whose background spans product management, product operations, technical program management, and engineering management. The work: redesigning the product development lifecycle (PDLC) and software development lifecycle (SDLC) for teams made up of humans and agents, and designing the processes, decision frameworks, and systemwide handoffs built for humans and AI agents working together, so product and engineering teams can ship faster with clear accountability at every stage of the lifecycle.
+Scalize Systems was founded by Katie Robblee, whose background spans product management, product operations, technical program management, and engineering management. Traditional product and software development processes don't work with AI. Scalize Systems designs the processes, decision frameworks, and systemwide handoffs built for humans and AI agents working together, so product and engineering teams can ship faster with clear accountability at every stage of the lifecycle.
 
 Engagements:
 - Operating Diagnostic (two to three weeks): maps how an organization operates across the PDLC and SDLC, where effort is going, which work belongs to humans, agents, or both, and where the friction is. Deliverables are a Process Alignment Map, a Decision Friction Audit, and a Prioritized Recommendation Roadmap.

@@ -58,7 +58,7 @@ export default function Home() {
               className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-7"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
             >
-              Redesigning the product and software development lifecycle for teams made up of humans and agents.
+              Traditional product and software development processes don't work with AI.
             </h1>
             <p
               className="text-base md:text-lg leading-relaxed mb-9 max-w-2xl"
