@@ -64,7 +64,7 @@ export default function Home() {
               className="text-base md:text-lg leading-relaxed mb-9 max-w-2xl"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
             >
-              I design the processes, decision frameworks, and systemwide handoffs built for humans and AI agents working together, so product and engineering teams can ship faster with clear accountability at every stage of the lifecycle.
+              Reimagine workflows, decision frameworks, and systemwide handoffs to work for humans and agents alike. Ship faster with clear accountability at every stage of the build lifecycle.
             </p>
             <Link
               href="/contact"
