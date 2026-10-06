@@ -17,7 +17,5 @@
 - Replaced the paragraph below the Home hero with a "Problems Scalize Systems helps solve" comparison table, with tighter section padding.
 - llms.txt and structured data are now generated from the site's own copy (siteCopy.ts and the index.html meta description), so they always match the live pages.
 
-- Added a decorative conversation illustration to the Home hero: a faded layer behind the copy above 760px, and a small centered image below the buttons at 760px and narrower.
-
 ### Notes
 - All four sections currently render their empty states except Articles, until content is published for the new types in Studio.

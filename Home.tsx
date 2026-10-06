@@ -54,20 +54,20 @@ export default function Home() {
       {/* Hero: no label above headline */}
       <section className="pt-24 pb-12 md:pt-28 md:pb-12" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
-          <FadeSection className="relative">
+          <FadeSection>
             <h1
-              className="relative z-[1] text-[20px] md:text-[24px] lg:text-[32px] font-bold mb-7"
+              className="text-[20px] md:text-[24px] lg:text-[32px] font-bold mb-7"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81', lineHeight: '1.125' }}
             >
               {HERO.headline}
             </h1>
             <p
-              className="relative z-[1] text-base md:text-lg leading-relaxed mb-9"
+              className="text-base md:text-lg leading-relaxed mb-9"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
             >
               {HERO.subtext}
             </p>
-            <div className="relative z-[1] flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3">
               <a
                 href="https://calendly.com/katie-scalizesystems/15-mins"
                 target="_blank"
@@ -107,17 +107,6 @@ export default function Home() {
                 Explore services
               </Link>
             </div>
-            <img
-              className="hero-illustration"
-              src="/assets/images/hero-conversation-640.png"
-              srcSet="/assets/images/hero-conversation-400.png 400w, /assets/images/hero-conversation-640.png 640w, /assets/images/hero-conversation-960.png 960w"
-              sizes="(max-width: 760px) min(48vw, 190px), min(45vw, 480px)"
-              width={960}
-              height={735}
-              alt=""
-              loading="eager"
-              decoding="async"
-            />
           </FadeSection>
         </div>
       </section>
