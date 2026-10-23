@@ -10,7 +10,7 @@ import type { PrefetchData } from './prefetch';
 
 export { getAllPosts, getPostBySlug, getTemplatesAndTools, getPodcastEpisode, getLinkedInPosts } from './posts';
 export { urlForImage } from './sanity';
-export { HERO, PROBLEMS, SERVICES } from './siteCopy';
+export { HERO, INTRO_CALL, PROOF, PROBLEMS, SERVICES } from './siteCopy';
 
 export function render(url: string, data: PrefetchData) {
   return renderToString(

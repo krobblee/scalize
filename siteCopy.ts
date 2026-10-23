@@ -5,10 +5,45 @@
  * Edit the copy here, not in those files.
  */
 
+// The intro call button: same wording and booking link everywhere it appears.
+export const INTRO_CALL = {
+  label: 'Book an intro call',
+  href: 'https://calendly.com/katie-scalizesystems/30-mins',
+};
+
 export const HERO = {
   headline: 'Traditional product development processes weren’t designed for AI agents.',
   subtext:
     'I help growth-stage product and engineering teams redesign decisions, workflows, and handoffs so people and agents can work together with clear accountability.',
+};
+
+// Historical results from past roles, shown as static cards below the hero. Not forecasts or promises.
+// Each href points to the case study that substantiates that result.
+export const PROOF = {
+  label: 'Selected results from consulting and in-house leadership roles',
+  cards: [
+    {
+      metric: '30×',
+      unit: 'faster releases',
+      description:
+        'Diagnosed an outdated architecture and redesigned product workflows for a full product rewrite at a B2B SaaS startup, reaching full CI/CD and a 30x improvement in release frequency.',
+      href: '/case-studies#product-rewrite',
+    },
+    {
+      metric: '50%',
+      unit: 'faster time to first value',
+      description:
+        'Improved design and onboarding in the rewritten product, so customers reached first value 50% faster than with the previous product.',
+      href: '/case-studies#product-rewrite',
+    },
+    {
+      metric: '25%',
+      unit: 'lower operating costs',
+      description:
+        'Led product strategy and delivery for a shared customer acquisition platform that replaced seven legacy systems across more than 100 brands.',
+      href: '/case-studies#greenfield-platform',
+    },
+  ],
 };
 
 export const PROBLEMS = {

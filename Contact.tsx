@@ -10,6 +10,7 @@ import emailjs from '@emailjs/browser';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { INTRO_CALL } from './siteCopy';
 
 const EMAILJS_SERVICE_ID = 'service_s365yrl';
 const EMAILJS_TEMPLATE_NOTIFY = 'template_4t4sq5d';  // notification to Katie
@@ -74,7 +75,7 @@ export default function Contact() {
               className="text-base mb-6"
               style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
             >
-              Add your name and contact information along with what you'd like help with and I'll be in touch. If you prefer, book a free 15 minute consultation below.
+              Add your name and contact information along with what you'd like help with and I'll be in touch. If you prefer, book an intro call below.
             </p>
           </FadeSection>
         </div>
@@ -242,19 +243,19 @@ export default function Contact() {
             className="text-xl font-semibold mb-1"
             style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
           >
-            Book a free 15-minute consultation
+            {INTRO_CALL.label}
           </h2>
           <div
             className="rounded-sm overflow-hidden"
             style={{ height: '690px', background: 'white' }}
           >
             <iframe
-              src="https://calendly.com/katie-scalizesystems/15-mins?hide_event_type_details=1&hide_gdpr_banner=1&embed_domain=scalizesystems.com&embed_type=Inline"
+              src={`${INTRO_CALL.href}?hide_event_type_details=1&hide_gdpr_banner=1&embed_domain=scalizesystems.com&embed_type=Inline`}
               width="100%"
               height="760"
               frameBorder="0"
               scrolling="no"
-              title="Book a free 15-minute consultation with Katie Robblee"
+              title={`${INTRO_CALL.label} with Katie Robblee`}
               style={{ display: 'block', transform: 'translateY(-58px)' }}
             />
           </div>

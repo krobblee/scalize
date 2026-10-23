@@ -1,21 +1,17 @@
 /*
  * SCALIZE SYSTEMS: Home Page
  * Design: Refined Editorial | White bg | Inter font
- * Sections: Hero (no label), Positioning, Services Preview, Case Studies Preview, Writing Preview
+ * Sections: Hero (no label), Proof cards, Problems table, Services Preview
  * Max content width: max-w-4xl for readability
- * Calendly: Contact page only
+ * Calendly: intro call button in the hero; the embedded calendar is on the Contact page
  */
 
-import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import StatsCarousel from './StatsCarousel';
-import { getAllPosts, type PostMeta } from './posts';
-import { HERO, PROBLEMS, SERVICES } from './siteCopy';
-import { usePrefetched } from './prefetch';
+import { HERO, INTRO_CALL, PROOF, PROBLEMS, SERVICES } from './siteCopy';
 
 function FadeSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useFadeIn<HTMLDivElement>(delay);
@@ -26,20 +22,10 @@ function FadeSection({ children, delay = 0, className = '' }: { children: React.
   );
 }
 
-function formatDate(dateStr: string) {
-  if (!dateStr) return '';
-  const d = new Date(dateStr);
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-}
+// Where the hero headline breaks onto its second line on wider screens. If the headline copy changes, this falls back to natural wrapping.
+const HERO_BREAK = HERO.headline.indexOf('weren’t');
 
 export default function Home() {
-  const prefetched = usePrefetched<PostMeta[]>('homePosts');
-  const [posts, setPosts] = useState<PostMeta[]>(prefetched ?? []);
-
-  useEffect(() => {
-    getAllPosts().then((all) => setPosts(all.slice(0, 3)));
-  }, []);
-
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
       <Helmet>
@@ -51,63 +37,131 @@ export default function Home() {
       </Helmet>
       <Navbar />
 
-      {/* Hero: no label above headline */}
-      <section className="pt-24 pb-12 md:pt-28 md:pb-12" style={{ background: 'white' }}>
+      {/* Hero: no label above headline. Top padding clears the fixed navbar so none of the background art hides behind it */}
+      <section className="pt-16 md:pt-[4.5rem]" style={{ background: 'white' }}>
+        {/* Sized to the art's proportions (tall on phones, wide from 768px up) so the full image shows edge to edge without stretching.
+            Text sits at the bottom so spare height goes above the headline, not under the buttons.
+            If the text needs more room, the box grows and the art stays anchored at the top at its natural shape. */}
+        <div className="relative flex items-end aspect-[1086/1448] md:aspect-[2000/750]">
+          <div
+            aria-hidden="true"
+            className="md:hidden absolute inset-0 pointer-events-none"
+            style={{ backgroundImage: 'url(/assets/images/hero-bg-mobile.webp)', backgroundSize: '100% auto', backgroundRepeat: 'no-repeat', backgroundPosition: 'center top', opacity: 0.2 }}
+          />
+          <div
+            aria-hidden="true"
+            className="hidden md:block absolute inset-0 pointer-events-none"
+            style={{ backgroundImage: 'url(/assets/images/hero-bg-desktop.webp)', backgroundSize: '100% auto', backgroundRepeat: 'no-repeat', backgroundPosition: 'center top', opacity: 0.2 }}
+          />
+          <div className="container max-w-4xl relative pt-10 pb-6 md:pt-12 md:pb-8">
+            <FadeSection>
+              {/* Two lines from 768px up: breaks before "weren’t", sized so each half fits the text column.
+                  From 1280px the headline may run 6rem past the column's right edge so it can stay at 44px.
+                  Phones wrap naturally; two lines would need an unreadably small size there. */}
+              <h1
+                className="text-[28px] md:text-[34px] lg:text-[38px] xl:text-[44px] xl:-mr-24 font-bold mb-7"
+                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81', lineHeight: '1.125' }}
+              >
+                {HERO_BREAK > 0 ? (
+                  <>
+                    {HERO.headline.slice(0, HERO_BREAK)}
+                    <br className="hidden md:inline" />
+                    {HERO.headline.slice(HERO_BREAK)}
+                  </>
+                ) : (
+                  HERO.headline
+                )}
+              </h1>
+              <p
+                className="text-base md:text-lg leading-relaxed mb-9"
+                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
+              >
+                {HERO.subtext}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={INTRO_CALL.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 text-sm font-semibold no-underline rounded transition-all duration-160 active:scale-97"
+                  style={{
+                    background: '#073C81',
+                    color: 'white',
+                    border: '1px solid #073C81',
+                    fontFamily: 'Inter, system-ui, sans-serif',
+                    letterSpacing: '0.02em',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#046CC5';
+                    e.currentTarget.style.borderColor = '#046CC5';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#073C81';
+                    e.currentTarget.style.borderColor = '#073C81';
+                  }}
+                >
+                  {INTRO_CALL.label}
+                </a>
+                <Link
+                  href="/services"
+                  className="inline-block px-6 py-3 text-sm font-semibold no-underline rounded transition-all duration-160 active:scale-97"
+                  style={{
+                    background: 'white',
+                    color: '#073C81',
+                    border: '1px solid #073C81',
+                    fontFamily: 'Inter, system-ui, sans-serif',
+                    letterSpacing: '0.02em',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = '#EEF2F8')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = 'white')}
+                >
+                  Explore services
+                </Link>
+              </div>
+            </FadeSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Proof cards: their own section, static on purpose (no fade or rotation) */}
+      <section className="py-10 md:py-12" style={{ background: '#F8FAFC', borderTop: '1px solid #E5E9F0' }}>
         <div className="container max-w-4xl">
-          <FadeSection>
-            <h1
-              className="text-[20px] md:text-[24px] lg:text-[32px] font-bold mb-7"
-              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81', lineHeight: '1.125' }}
+          <div>
+            <h2
+              id="proof-heading"
+              className="text-xs font-semibold uppercase tracking-wider mb-5"
+              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#066B63', lineHeight: '1.5' }}
             >
-              {HERO.headline}
-            </h1>
-            <p
-              className="text-base md:text-lg leading-relaxed mb-9"
-              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}
-            >
-              {HERO.subtext}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="https://calendly.com/katie-scalizesystems/15-mins"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 text-sm font-semibold no-underline rounded transition-all duration-160 active:scale-97"
-                style={{
-                  background: '#073C81',
-                  color: 'white',
-                  border: '1px solid #073C81',
-                  fontFamily: 'Inter, system-ui, sans-serif',
-                  letterSpacing: '0.02em',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#046CC5';
-                  e.currentTarget.style.borderColor = '#046CC5';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#073C81';
-                  e.currentTarget.style.borderColor = '#073C81';
-                }}
-              >
-                Book a 15-minute call
-              </a>
-              <Link
-                href="/services"
-                className="inline-block px-6 py-3 text-sm font-semibold no-underline rounded transition-all duration-160 active:scale-97"
-                style={{
-                  background: 'white',
-                  color: '#073C81',
-                  border: '1px solid #073C81',
-                  fontFamily: 'Inter, system-ui, sans-serif',
-                  letterSpacing: '0.02em',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#EEF2F8')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = 'white')}
-              >
-                Explore services
-              </Link>
-            </div>
-          </FadeSection>
+              {PROOF.label}
+            </h2>
+            <ul aria-labelledby="proof-heading" className="grid md:grid-cols-3 gap-4 md:gap-5 list-none p-0 m-0">
+              {PROOF.cards.map((card) => (
+                <li
+                  key={card.metric}
+                  className="p-6 rounded-sm border"
+                  style={{ background: 'white', borderColor: '#e5e9f0', borderTop: '3px solid #073C81', fontFamily: 'Inter, system-ui, sans-serif' }}
+                >
+                  <p className="m-0" style={{ color: '#073C81' }}>
+                    <span className="block text-4xl md:text-[2.75rem] font-bold" style={{ lineHeight: '1.05', letterSpacing: '-0.02em' }}>
+                      {card.metric}
+                    </span>
+                    <span className="block mt-1.5 text-base font-semibold" style={{ lineHeight: '1.35' }}>{card.unit}</span>
+                  </p>
+                  <p className="mt-3 mb-0 text-sm" style={{ color: '#3D4A5C', lineHeight: '1.65' }}>{card.description}</p>
+                  {card.href && (
+                    <Link
+                      href={card.href}
+                      className="inline-block mt-3 text-sm font-medium no-underline"
+                      style={{ color: '#046CC5' }}
+                      aria-label={`Read the case study behind ${card.metric} ${card.unit}`}
+                    >
+                      Read the case study →
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -184,8 +238,6 @@ export default function Home() {
         </div>
       </section>
 
-      <StatsCarousel />
-
       {/* Services Preview */}
       <section className="section-band" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
@@ -250,176 +302,6 @@ export default function Home() {
               </Link>
             </FadeSection>
           </div>
-        </div>
-      </section>
-
-      {/* Case Studies Preview */}
-      <section className="section-band" style={{ background: '#EEF2F8' }}>
-        <div className="container max-w-4xl">
-          <FadeSection>
-            <div className="flex items-baseline justify-between mb-10">
-              <h2
-                className="text-xl md:text-2xl font-semibold"
-                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-              >
-                Case Studies
-              </h2>
-              <Link
-                href="/case-studies"
-                className="text-sm font-medium no-underline transition-colors duration-150"
-                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#046CC5' }}
-              >
-                View all →
-              </Link>
-            </div>
-          </FadeSection>
-          <div className="grid md:grid-cols-2 gap-6 items-stretch">
-            <FadeSection delay={0} className="h-full">
-              <Link href="/case-studies#legal-tech" className="block no-underline group h-full">
-                <div
-                  className="p-7 rounded-sm border transition-shadow duration-200 group-hover:shadow-md h-full flex flex-col"
-                  style={{ borderColor: '#e5e9f0', background: 'white', borderLeft: '3px solid #046CC5' }}
-                >
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {['Legal Technology', 'LLM Extension', 'Human-in-the-Loop'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2 py-0.5 rounded-full"
-                        style={{ background: '#EEF1F6', color: '#3D4A5C', fontFamily: 'Inter, system-ui, sans-serif' }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h3
-                    className="text-base font-semibold mb-2 transition-colors duration-150"
-                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-                  >
-                    Expanding an AI Product into a New Market
-                  </h3>
-                  <span
-                    className="text-xs font-medium mt-auto pt-3 block"
-                    style={{ color: '#046CC5', fontFamily: 'Inter, system-ui, sans-serif' }}
-                  >
-                    Read more →
-                  </span>
-                </div>
-              </Link>
-            </FadeSection>
-            <FadeSection delay={60} className="h-full">
-              <Link href="/case-studies#supply-chain" className="block no-underline group h-full">
-                <div
-                  className="p-7 rounded-sm border transition-shadow duration-200 group-hover:shadow-md h-full flex flex-col"
-                  style={{ borderColor: '#e5e9f0', background: 'white', borderLeft: '3px solid #046CC5' }}
-                >
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {['E-Commerce', 'Supply Chain Operations', 'Cross-Functional Build'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2 py-0.5 rounded-full"
-                        style={{ background: '#EEF1F6', color: '#3D4A5C', fontFamily: 'Inter, system-ui, sans-serif' }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h3
-                    className="text-base font-semibold mb-2 transition-colors duration-150"
-                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-                  >
-                    Unlocking Growth at Scale Through a First-of-Its-Kind Supply Chain Data Architecture
-                  </h3>
-                  <span
-                    className="text-xs font-medium mt-auto pt-3 block"
-                    style={{ color: '#046CC5', fontFamily: 'Inter, system-ui, sans-serif' }}
-                  >
-                    Read more →
-                  </span>
-                </div>
-              </Link>
-            </FadeSection>
-          </div>
-        </div>
-      </section>
-
-      {/* Writing Preview: 3 most recent articles from /content/writing/ */}
-      <section className="section-band" style={{ background: 'white' }}>
-        <div className="container max-w-4xl">
-          <FadeSection>
-            <div className="flex items-baseline justify-between mb-10">
-              <h2
-                className="text-xl md:text-2xl font-semibold"
-                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-              >
-                Writing
-              </h2>
-              <Link
-                href="/writing"
-                className="text-sm font-medium no-underline transition-colors duration-150"
-                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#046CC5' }}
-              >
-                View all →
-              </Link>
-            </div>
-          </FadeSection>
-
-          {posts.length === 0 ? (
-            <FadeSection>
-              <div
-                className="py-10 text-center"
-                style={{ border: '1px dashed #c8d4e8', borderRadius: '4px' }}
-              >
-                <p
-                  className="text-sm"
-                  style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C' }}
-                >
-                  Articles coming soon.
-                </p>
-              </div>
-            </FadeSection>
-          ) : (
-            <div className="flex flex-col">
-              {posts.map((post, i) => (
-                <FadeSection key={post.slug} delay={i * 50}>
-                  <Link href={`/writing/${post.slug}`} className="block no-underline group">
-                    <div
-                      className="py-7 border-b transition-colors duration-150"
-                      style={{ borderColor: '#e5e9f0' }}
-                    >
-                      <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-2">
-                        <h3
-                          className="text-base font-semibold transition-colors duration-150 group-hover:text-blue-700"
-                          style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-                        >
-                          {post.title}
-                        </h3>
-                        <span
-                          className="text-xs flex-shrink-0"
-                          style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#6B8AB5' }}
-                        >
-                          {formatDate(post.date)}
-                        </span>
-                      </div>
-                      {post.excerpt && (
-                        <p
-                          className="text-sm leading-relaxed mb-2"
-                          style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
-                        >
-                          {post.excerpt}
-                        </p>
-                      )}
-                      <span
-                        className="text-xs font-medium"
-                        style={{ color: '#046CC5', fontFamily: 'Inter, system-ui, sans-serif' }}
-                      >
-                        Read →
-                      </span>
-                    </div>
-                  </Link>
-                </FadeSection>
-              ))}
-            </div>
-          )}
         </div>
       </section>
 

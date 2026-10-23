@@ -27,7 +27,7 @@ const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf-8');
 const decodeEntities = (text) =>
   text.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const SITE_DESCRIPTION = decodeEntities(template.match(/<meta name="description" content="([^"]*)"/)[1]);
-const { HERO, PROBLEMS, SERVICES } = server;
+const { HERO, INTRO_CALL, PROOF, PROBLEMS, SERVICES } = server;
 
 // Unknown URLs (and articles published after this build) fall back to the plain app shell.
 fs.writeFileSync(path.join(dist, 'app-shell.html'), template);
@@ -39,10 +39,7 @@ const [posts, templates, podcast, linkedInPosts] = await Promise.all([
   server.getLinkedInPosts(),
 ]);
 
-const pages = STATIC_ROUTES.map((url) => ({
-  url,
-  data: url === '/' ? { homePosts: posts.slice(0, 3) } : {},
-}));
+const pages = STATIC_ROUTES.map((url) => ({ url, data: {} }));
 pages.push({ url: '/writing', data: { writing: { posts, templates, podcast, linkedInPosts } } });
 for (const { slug } of posts) {
   const post = await server.getPostBySlug(slug);
@@ -184,7 +181,11 @@ ${HERO.headline} ${HERO.subtext}
 
 Founder: [Katie Robblee](${SITE}/about)
 
-Contact: katie@scalizesystems.com, or book a free 15-minute consultation at ${SITE}/contact
+Contact: katie@scalizesystems.com, or ${INTRO_CALL.label.toLowerCase()} at ${INTRO_CALL.href}
+
+## ${PROOF.label}
+
+${PROOF.cards.map((card) => `- ${card.metric} ${card.unit}: ${card.description}`).join('\n')}
 
 ## ${PROBLEMS.heading}
 

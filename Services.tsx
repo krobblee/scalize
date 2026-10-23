@@ -1,175 +1,21 @@
 /*
  * SCALIZE SYSTEMS: Services Page
  * Design: Refined Editorial | White bg | Inter font
- * Sections: Page header, AI Stats Carousel, Operating Diagnostic, Build Engagement, FAQ, Bottom CTA
+ * Sections: Page header, Operating Diagnostic, Diagnostic-to-build flow, Build Engagement, FAQ, Bottom CTA
  * Max content width: max-w-4xl
  */
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import DiagnosticToBuild from './ServiceDiagrams';
 
 function FadeSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useFadeIn<HTMLDivElement>(delay);
   return <div ref={ref} className={`fade-in-up ${className}`}>{children}</div>;
-}
-
-const AI_STATS = [
-  {
-    metric: '40–50%',
-    unit: 'of LLM‑generated code snippets',
-    description: 'contain at least one security vulnerability',
-  },
-  {
-    metric: '<5%',
-    unit: 'of companies using generative AI',
-    description: 'report having formal AI security policies',
-  },
-  {
-    metric: 'More likely',
-    unit: 'to introduce security flaws',
-    description: 'Developers using AI assistants are more likely to introduce security flaws, even while feeling more productive',
-  },
-  {
-    metric: '~1/3',
-    unit: 'of internal gen‑AI pilots',
-    description: 'leak at least some sensitive or confidential data in testing',
-  },
-  {
-    metric: '50%+',
-    unit: 'of organizations deploying gen‑AI',
-    description: 'admit they don\'t fully track where sensitive data flows',
-  },
-  {
-    metric: '20–70%',
-    unit: 'of unprotected AI systems',
-    description: 'are successfully compromised by prompt‑injection and jailbreak attacks in red‑team tests',
-  },
-  {
-    metric: '10% / 20% / 70%',
-    unit: 'AI transformation',
-    description: 'AI transformation is 10% algorithms, 20% data and technology, and 70% people, processes, and cultural change.',
-  },
-];
-
-function AiStatsCarousel() {
-  const [current, setCurrent] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const [paused, setPaused] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const goTo = (idx: number) => {
-    setVisible(false);
-    setTimeout(() => {
-      setCurrent(idx);
-      setVisible(true);
-    }, 350);
-  };
-
-  useEffect(() => {
-    if (paused) return;
-    timerRef.current = setTimeout(() => {
-      const next = (current + 1) % AI_STATS.length;
-      goTo(next);
-    }, 4500);
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [current, paused]);
-
-  const stat = AI_STATS[current];
-
-  return (
-    <section
-      style={{
-        background: '#0A1628',
-        backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.75\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.04\'/%3E%3C/svg%3E")',
-      }}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <div className="container max-w-4xl" style={{ paddingTop: '1.5rem', paddingBottom: '1.5rem' }}>
-        <div style={{ position: 'relative', minHeight: '120px', marginBottom: '1rem' }}>
-          {AI_STATS.map((s, i) => (
-            <div
-              key={i}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                opacity: i === current ? (visible ? 1 : 0) : 0,
-                transition: 'opacity 0.6s cubic-bezier(0.23,1,0.32,1)',
-                pointerEvents: i === current ? 'auto' : 'none',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem', marginBottom: '0.875rem', flexWrap: 'wrap' }}>
-                <span
-                  style={{
-                    fontFamily: 'Cambria, Georgia, serif',
-                    fontSize: 'clamp(2.2rem, 4.8vw, 3.6rem)',
-                    fontWeight: 700,
-                    fontStyle: 'italic',
-                    lineHeight: 1,
-                    color: '#4DB8B2',
-                    letterSpacing: '-0.01em',
-                  }}
-                >
-                  {s.metric}
-                </span>
-                <span
-                  style={{
-                    fontFamily: 'Inter, system-ui, sans-serif',
-                    fontSize: 'clamp(0.8rem, 1.6vw, 1rem)',
-                    fontWeight: 600,
-                    fontStyle: 'italic',
-                    color: 'rgba(255,255,255,0.65)',
-                    letterSpacing: '0.06em',
-                  }}
-                >
-                  {s.unit}
-                </span>
-              </div>
-              <p
-                style={{
-                  fontFamily: 'Inter, system-ui, sans-serif',
-                  fontSize: 'clamp(0.88rem, 2vw, 1.2rem)',
-                  lineHeight: 1.65,
-                  color: 'rgba(255,255,255,0.72)',
-                  maxWidth: '100%',
-                  fontWeight: 300,
-                  margin: 0,
-                }}
-              >
-                {s.description}
-              </p>
-            </div>
-          ))}
-        </div>
-        {/* Dot nav */}
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          {AI_STATS.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              aria-label={`Slide ${i + 1}`}
-              style={{
-                width: i === current ? '1.5rem' : '0.5rem',
-                height: '0.5rem',
-                borderRadius: '9999px',
-                background: i === current ? '#4DB8B2' : 'rgba(255,255,255,0.3)',
-                border: 'none',
-                cursor: 'pointer',
-                padding: 0,
-                transition: 'all 0.3s ease',
-              }}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
 }
 
 const FAQ_ITEMS = [
@@ -191,7 +37,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'What does the first conversation look like?',
-    a: 'A 15-minute call to determine fit. I want to understand the stage of the company and the shape of the problem. If an Operating Diagnostic is the right starting point, we schedule the kickoff. If it isn\'t, I will do my best to point you in the right direction.',
+    a: 'Book an intro call to determine fit. I want to understand the stage of the company and the shape of the problem. If an Operating Diagnostic is the right starting point, we schedule the kickoff. If it isn\'t, I will do my best to point you in the right direction.',
   },
   {
     q: 'What does success look like at the end of an engagement?',
@@ -265,6 +111,41 @@ const BUILD_DELIVERABLES = [
   },
 ];
 
+// A selected result from a past role, placed beside the service it relates to. Not a promised engagement outcome.
+function PastResult({ metric, unit, description, href, tinted = false }: { metric: string; unit: string; description: string; href?: string; tinted?: boolean }) {
+  return (
+    <aside
+      aria-label={`Selected past result: ${metric} ${unit}`}
+      className="h-full flex flex-col p-5 rounded-sm border"
+      style={{ background: tinted ? '#F4F7FA' : 'white', borderColor: '#e5e9f0', borderTop: '3px solid #073C81', fontFamily: 'Inter, system-ui, sans-serif' }}
+    >
+      <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#066B63' }}>Selected past result</p>
+      <p className="m-0" style={{ color: '#073C81' }}>
+        <span className="block text-3xl font-bold" style={{ lineHeight: '1.1', letterSpacing: '-0.02em' }}>{metric}</span>
+        <span className="block mt-1 text-base font-semibold">{unit}</span>
+      </p>
+      <p className="mt-2 mb-0 text-sm" style={{ color: '#3D4A5C', lineHeight: '1.65' }}>{description}</p>
+      {href && (
+        <Link href={href} className="inline-block mt-auto pt-3 text-sm font-medium no-underline" style={{ color: '#046CC5' }}>
+          Read the case study →
+        </Link>
+      )}
+    </aside>
+  );
+}
+
+// Past results for one service, side by side on wider screens, with the disclaimer stated once.
+function PastResultsRow({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mt-10">
+      <div className="grid md:grid-cols-2 gap-4">{children}</div>
+      <p className="mt-3 mb-0 text-xs" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.5' }}>
+        Selected results from my past work. Historical examples, not guaranteed engagement outcomes.
+      </p>
+    </div>
+  );
+}
+
 function DeliverableCard({ title, desc, bg }: { title: string; desc: string; bg: string }) {
   return (
     <div className="p-5 rounded-sm" style={{ background: bg, border: '1px solid #e5e9f0', borderLeft: '3px solid #078279' }}>
@@ -329,12 +210,26 @@ export default function Services() {
                 </div>
               </div>
             </div>
+            <PastResultsRow>
+              <PastResult
+                metric="$100M"
+                unit="revenue increase over three years"
+                description="Soon after joining Wayfair, identified opportunities across eight divisions to improve multibox outcomes, leading to a redesigned data structure that increased revenue by $100M over three years and customer lifetime value by 15% in the first year."
+                href="/case-studies#supply-chain"
+              />
+              <PastResult
+                metric="20%"
+                unit="improvement in on-time delivery"
+                description="Established a cross-location annual planning process that surfaced critical dependencies and improved on-time delivery."
+                href="/case-studies#greenfield-platform"
+              />
+            </PastResultsRow>
           </FadeSection>
         </div>
       </section>
 
-      {/* AI Stats Carousel */}
-      <AiStatsCarousel />
+      {/* Diagnostic-to-build flow: replaces the former third-party AI statistics carousel */}
+      <DiagnosticToBuild />
 
       {/* Build Engagement */}
       <section id="build-engagement" className="section-band" style={{ background: 'white' }}>
@@ -376,6 +271,22 @@ export default function Services() {
                 </div>
               </div>
             </div>
+            <PastResultsRow>
+              <PastResult
+                tinted
+                metric="25%"
+                unit="lower operating costs"
+                description="Led product strategy and delivery for a shared customer acquisition platform deployed across more than 100 brands."
+                href="/case-studies#greenfield-platform"
+              />
+              <PastResult
+                tinted
+                metric="30x"
+                unit="improvement in release frequency"
+                description="Oversaw a full product rewrite, delivered on time and $150K under budget, that brought full CI/CD, 50% faster time to first value, and expansion into a new market."
+                href="/case-studies#product-rewrite"
+              />
+            </PastResultsRow>
           </FadeSection>
         </div>
       </section>

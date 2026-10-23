@@ -1,9 +1,8 @@
-import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "./sonner";
 import { TooltipProvider } from "./tooltip";
 import NotFound from "./NotFound";
-import { Route, Switch, useLocation, Router as WouterRouter } from "wouter";
+import { Route, Switch, Router as WouterRouter } from "wouter";
 import { PrefetchProvider, type PrefetchData } from "./prefetch";
 import ErrorBoundary from "./ErrorBoundary";
 import ScrollToTop from "./ScrollToTop";
@@ -18,23 +17,9 @@ import About from "./About";
 import Contact from "./Contact";
 import GraduatedHitlEvalOwnershipModel from "./GraduatedHitlEvalOwnershipModel";
 
-function PageViewTracker() {
-  const [location] = useLocation();
-  useEffect(() => {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "page_view", {
-        page_path: location,
-        page_location: window.location.href,
-      });
-    }
-  }, [location]);
-  return null;
-}
-
 function Router() {
   return (
     <>
-    <PageViewTracker />
     <ScrollToTop />
     <Switch>
       <Route path="/" component={Home} />

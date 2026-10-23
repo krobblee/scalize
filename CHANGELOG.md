@@ -17,5 +17,20 @@
 - Replaced the paragraph below the Home hero with a "Problems Scalize Systems helps solve" comparison table, with tighter section padding.
 - llms.txt and structured data are now generated from the site's own copy (siteCopy.ts and the index.html meta description), so they always match the live pages.
 
+- Replaced the rotating Home statistics carousel with three static proof cards below the hero (30× faster releases, 50% faster time to first value, 25% lower operating costs); removed the $150K-under-budget and $100M+ revenue slides. The cards also appear in llms.txt.
+- Removed the Case Studies and Writing preview sections from the Home page; the page now ends with the Services preview.
+- Services: removed the rotating third-party AI statistics; added a "How the diagnostic leads to the build" three-step flow between the two services; added selected past results beside the service descriptions (20% on-time delivery in the Operating Diagnostic; 25% lower operating costs and the 30x product rewrite in the Build Engagement), each linking to its case study.
+- Case Studies: added a summary panel (setting, role, challenge, outcomes) and one explanatory diagram to each case study; renamed sections to The problem / My contribution / The result. Narrative text unchanged.
+
+- Added a fourth case study, "Rebuilding a Legal Research and Drafting Platform for Faster Releases and Faster Customer Value," which supports the 30× and 50% homepage cards and the Services rewrite result; all link to it.
+- Wayfair case study: added the $40M+ shipping cost reduction and the three-year revenue total ($100M, including the first-year $48M).
+- Endurance case study: added the 25% operating cost reduction and its causes; the Services 25% box now links to it.
+- Legal-tech case study: softened the claim that every correction improved the model to say expert corrections informed each round of retraining.
+
+- Added decorative background art behind the Home hero at 20% opacity (wide version on desktop, tall version on phones), sized to the art's proportions so the full image shows without stretching; Selected results is now its own section below the hero.
+
+- Added the Google Ads tag (AW-18529566855) immediately after <head> on every page, alongside the existing Google Analytics tag.
+- Page views are now recorded by the Google tags' own automatic tracking instead of the site's PageViewTracker, which fixes Analytics (and Ads) counting every page after the first twice.
+
 ### Notes
 - All four sections currently render their empty states except Articles, until content is published for the new types in Studio.
