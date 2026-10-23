@@ -27,7 +27,7 @@
 - Endurance case study: added the 25% operating cost reduction and its causes; the Services 25% box now links to it.
 - Legal-tech case study: softened the claim that every correction improved the model to say expert corrections informed each round of retraining.
 
-- Added decorative background art behind the Home hero at 20% opacity (wide version on desktop, tall version on phones), sized to the art's proportions so the full image shows without stretching; Selected results is now its own section below the hero.
+- Added decorative background art behind the Home hero at 20% opacity (wide version on desktop, tall version on phones); the hero fits its text with 80px (desktop) / 48px (phones) above the headline, and the art covers it edge to edge, cropping on wider screens. Selected results is now its own section below the hero.
 
 - Added the Google Ads tag (AW-18529566855) immediately after <head> on every page, alongside the existing Google Analytics tag.
 - Page views are now recorded by the Google tags' own automatic tracking instead of the site's PageViewTracker, which fixes Analytics (and Ads) counting every page after the first twice.

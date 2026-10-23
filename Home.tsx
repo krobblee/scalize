@@ -39,21 +39,20 @@ export default function Home() {
 
       {/* Hero: no label above headline. Top padding clears the fixed navbar so none of the background art hides behind it */}
       <section className="pt-16 md:pt-[4.5rem]" style={{ background: 'white' }}>
-        {/* Sized to the art's proportions (tall on phones, wide from 768px up) so the full image shows edge to edge without stretching.
-            Text sits at the bottom so spare height goes above the headline, not under the buttons.
-            If the text needs more room, the box grows and the art stays anchored at the top at its natural shape. */}
-        <div className="relative flex items-end aspect-[1086/1448] md:aspect-[2000/750]">
+        {/* Hero height follows the text: 48px (phones) / 80px (768px up) above the headline.
+            The art covers the box edge to edge at its natural shape, cropping top and bottom on wider screens. */}
+        <div className="relative">
           <div
             aria-hidden="true"
             className="md:hidden absolute inset-0 pointer-events-none"
-            style={{ backgroundImage: 'url(/assets/images/hero-bg-mobile.webp)', backgroundSize: '100% auto', backgroundRepeat: 'no-repeat', backgroundPosition: 'center top', opacity: 0.2 }}
+            style={{ backgroundImage: 'url(/assets/images/hero-bg-mobile.webp)', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', opacity: 0.2 }}
           />
           <div
             aria-hidden="true"
             className="hidden md:block absolute inset-0 pointer-events-none"
-            style={{ backgroundImage: 'url(/assets/images/hero-bg-desktop.webp)', backgroundSize: '100% auto', backgroundRepeat: 'no-repeat', backgroundPosition: 'center top', opacity: 0.2 }}
+            style={{ backgroundImage: 'url(/assets/images/hero-bg-desktop.webp)', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', opacity: 0.2 }}
           />
-          <div className="container max-w-4xl relative pt-10 pb-6 md:pt-12 md:pb-8">
+          <div className="container max-w-4xl relative pt-12 pb-6 md:pt-20 md:pb-8">
             <FadeSection>
               {/* Two lines from 768px up: breaks before "weren’t", sized so each half fits the text column.
                   From 1280px the headline may run 6rem past the column's right edge so it can stay at 44px.
