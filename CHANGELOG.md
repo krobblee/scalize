@@ -32,5 +32,7 @@
 - Added the Google Ads tag (AW-18529566855) immediately after <head> on every page, alongside the existing Google Analytics tag.
 - Page views are now recorded by the Google tags' own automatic tracking instead of the site's PageViewTracker, which fixes Analytics (and Ads) counting every page after the first twice.
 
+- Replaced the Home "Problems Scalize Systems helps solve" table with the "Agents work differently than humans" comparison section (people vs. agents, side by side on desktop, paired on phones); llms.txt picks up the same copy from siteCopy.ts.
+
 ### Notes
 - All four sections currently render their empty states except Articles, until content is published for the new types in Studio.

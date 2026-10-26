@@ -27,7 +27,7 @@ const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf-8');
 const decodeEntities = (text) =>
   text.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const SITE_DESCRIPTION = decodeEntities(template.match(/<meta name="description" content="([^"]*)"/)[1]);
-const { HERO, INTRO_CALL, PROOF, PROBLEMS, SERVICES } = server;
+const { HERO, HUMANS_AGENTS, INTRO_CALL, PROOF, SERVICES } = server;
 
 // Unknown URLs (and articles published after this build) fall back to the plain app shell.
 fs.writeFileSync(path.join(dist, 'app-shell.html'), template);
@@ -187,9 +187,18 @@ Contact: katie@scalizesystems.com, or ${INTRO_CALL.label.toLowerCase()} at ${INT
 
 ${PROOF.cards.map((card) => `- ${card.metric} ${card.unit}: ${card.description}`).join('\n')}
 
-## ${PROBLEMS.heading}
+## ${HUMANS_AGENTS.headline} ${HUMANS_AGENTS.question}
 
-${PROBLEMS.rows.map((row) => `- ${PROBLEMS.problemLabel}: ${row.problem}\n  ${PROBLEMS.helpLabel}: ${row.help}`).join('\n')}
+${HUMANS_AGENTS.intro}
+
+${HUMANS_AGENTS.rows
+  .map(
+    ({ people, agents }) =>
+      `- ${HUMANS_AGENTS.peopleLabel}: ${people.title} ${people.body}\n  ${HUMANS_AGENTS.agentsLabel}: ${agents.title} ${agents.body}`,
+  )
+  .join('\n')}
+
+${HUMANS_AGENTS.closing} ${HUMANS_AGENTS.closingEmphasis} [${HUMANS_AGENTS.linkLabel}](${SITE}/how-i-work)
 
 ## Services
 

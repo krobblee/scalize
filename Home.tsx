@@ -1,7 +1,7 @@
 /*
  * SCALIZE SYSTEMS: Home Page
  * Design: Refined Editorial | White bg | Inter font
- * Sections: Hero (no label), Proof cards, Problems table, Services Preview
+ * Sections: Hero (no label), Proof cards, Humans and Agents comparison, Services Preview
  * Max content width: max-w-4xl for readability
  * Calendly: intro call button in the hero; the embedded calendar is on the Contact page
  */
@@ -11,7 +11,7 @@ import { Link } from 'wouter';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { HERO, INTRO_CALL, PROOF, PROBLEMS, SERVICES } from './siteCopy';
+import { HERO, HUMANS_AGENTS, INTRO_CALL, PROOF, SERVICES } from './siteCopy';
 
 function FadeSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useFadeIn<HTMLDivElement>(delay);
@@ -164,75 +164,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Problems Scalize Systems helps solve: a real table so agents and screen readers get the pairing without the visual layout */}
-      <section className="py-10 md:py-12" style={{ background: '#EEF2F8' }}>
-        <div className="container max-w-4xl">
+      {/* Humans and Agents: what people bring vs. what a process must supply for agents.
+          Each row pairs one human example with its agent requirement, so the pair stays together when stacked on phones.
+          Column headings are visual only; each cell carries its own People/Agents label (shown on phones, read aloud everywhere). */}
+      <section aria-labelledby="humans-agents-heading" className="py-10 md:py-14" style={{ background: '#EEF2F8' }}>
+        <div className="container max-w-4xl" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
           <FadeSection>
+            <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: '#066B63' }}>
+              {HUMANS_AGENTS.eyebrow}
+            </p>
             <h2
-              id="problems-heading"
-              className="text-[21px] md:text-2xl font-semibold leading-snug mb-6"
-              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+              id="humans-agents-heading"
+              className="text-2xl md:text-[32px] font-semibold mb-4"
+              style={{ color: '#073C81', lineHeight: '1.2', letterSpacing: '-0.01em' }}
             >
-              {PROBLEMS.heading}
+              {HUMANS_AGENTS.headline}{' '}
+              <br className="hidden md:inline" />
+              <span style={{ color: '#066B63' }}>{HUMANS_AGENTS.question}</span>
             </h2>
-            <div className="rounded-sm border px-5 md:px-8 py-2 md:py-3" style={{ background: 'white', borderColor: '#e5e9f0' }}>
-              <table
-                aria-labelledby="problems-heading"
-                className="block md:table w-full border-collapse text-left"
-                style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
-              >
-                <thead className="hidden md:table-header-group">
-                  <tr>
-                    {[PROBLEMS.problemLabel, PROBLEMS.helpLabel].map((label) => (
-                      <th
-                        key={label}
-                        scope="col"
-                        className="w-1/2 pt-4 pb-3 pr-8 last:pr-0 text-xs font-semibold uppercase tracking-wider"
-                        style={{ color: '#078279', borderBottom: '1px solid #D5DEEA' }}
-                      >
-                        {label}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="block md:table-row-group">
-                  {PROBLEMS.rows.map((row, i) => (
-                    <tr
-                      key={row.problem}
-                      className="block md:table-row py-5 md:py-0"
-                      style={{ borderTop: i === 0 ? 'none' : '1px solid #E5E9F0' }}
-                    >
-                      <th
-                        scope="row"
-                        className="block md:table-cell align-top md:py-5 md:pr-8 text-base font-medium"
-                        style={{ color: '#073C81', lineHeight: '1.6' }}
-                      >
-                        <span className="md:hidden block mb-1 text-xs font-semibold uppercase tracking-wider" style={{ color: '#078279' }}>
-                          {PROBLEMS.problemLabel}
-                        </span>
-                        {row.problem}
-                      </th>
-                      <td
-                        className="block md:table-cell align-top pt-4 md:py-5 text-base"
-                        style={{ color: '#3D4A5C', lineHeight: '1.6' }}
-                      >
-                        <span className="md:hidden block mb-1 text-xs font-semibold uppercase tracking-wider" style={{ color: '#078279' }}>
-                          {PROBLEMS.helpLabel}
-                        </span>
-                        {row.help}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <p className="text-base mb-8 max-w-2xl" style={{ color: '#3D4A5C', lineHeight: '1.7' }}>
+              {HUMANS_AGENTS.intro}
+            </p>
+
+            <div className="rounded-sm border overflow-hidden" style={{ background: 'white', borderColor: '#D5DEEA' }}>
+              <div aria-hidden="true" className="hidden md:grid grid-cols-2 text-xs font-semibold uppercase tracking-wider">
+                <p className="m-0 px-6 py-3" style={{ color: '#073C81' }}>{HUMANS_AGENTS.peopleHeading}</p>
+                <p className="m-0 px-6 py-3" style={{ color: '#066B63', background: '#E6F3F2' }}>{HUMANS_AGENTS.agentsHeading}</p>
+              </div>
+              <ol className="list-none p-0 m-0">
+                {HUMANS_AGENTS.rows.map(({ people, agents }, i) => (
+                  <li
+                    key={people.title}
+                    className="grid md:grid-cols-2"
+                    style={{ borderTop: i === 0 ? undefined : '1px solid #D5DEEA' }}
+                  >
+                    <div className="px-5 md:px-6 pt-5 pb-4 md:py-5" style={{ borderTop: i === 0 ? '1px solid #D5DEEA' : undefined }}>
+                      <p className="md:sr-only m-0 mb-1.5 text-xs font-semibold uppercase tracking-wider" style={{ color: '#3D4A5C' }}>
+                        {HUMANS_AGENTS.peopleLabel}
+                      </p>
+                      <h3 className="text-base font-semibold mb-1.5" style={{ color: '#073C81', lineHeight: '1.4' }}>{people.title}</h3>
+                      <p className="m-0 text-sm" style={{ color: '#3D4A5C', lineHeight: '1.6' }}>{people.body}</p>
+                    </div>
+                    <div className="px-5 md:px-6 pt-4 pb-5 md:py-5" style={{ background: '#E6F3F2', borderTop: i === 0 ? '1px solid #D5DEEA' : undefined }}>
+                      <p className="md:sr-only m-0 mb-1.5 text-xs font-semibold uppercase tracking-wider" style={{ color: '#066B63' }}>
+                        {HUMANS_AGENTS.agentsLabel}
+                      </p>
+                      <h3 className="text-base font-semibold mb-1.5" style={{ color: '#066B63', lineHeight: '1.4' }}>{agents.title}</h3>
+                      <p className="m-0 text-sm" style={{ color: '#3D4A5C', lineHeight: '1.6' }}>{agents.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
-            <Link
-              href="/how-i-work"
-              className="inline-block mt-6 text-base font-medium no-underline transition-colors duration-150"
-              style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#046CC5' }}
-            >
-              See how I work →
-            </Link>
+
+            <div className="mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-8">
+              <p className="m-0 text-base" style={{ color: '#3D4A5C', lineHeight: '1.6' }}>
+                {HUMANS_AGENTS.closing}
+                <br />
+                <strong className="font-semibold" style={{ color: '#073C81' }}>{HUMANS_AGENTS.closingEmphasis}</strong>
+              </p>
+              <Link
+                href="/how-i-work"
+                className="flex-shrink-0 text-base font-medium no-underline transition-colors duration-150"
+                style={{ color: '#046CC5' }}
+              >
+                {HUMANS_AGENTS.linkLabel} <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </FadeSection>
         </div>
       </section>

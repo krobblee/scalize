@@ -46,24 +46,57 @@ export const PROOF = {
   ],
 };
 
-export const PROBLEMS = {
-  heading: 'Problems Scalize Systems helps solve',
-  problemLabel: 'What you may be seeing',
-  helpLabel: 'How Scalize helps',
+// Comparison of what people bring to their work versus what a process must supply for agents.
+export const HUMANS_AGENTS = {
+  eyebrow: 'Rethink how work happens',
+  headline: 'Agents work differently than humans.',
+  question: 'Have you changed your processes to work with them?',
+  intro:
+    'People bring experience, relationships, and accumulated context to their work. For agents, you have to design how that context is supplied—and how their work connects to yours.',
+  peopleHeading: 'What people bring',
+  agentsHeading: 'What to build for agents',
+  peopleLabel: 'People',
+  agentsLabel: 'Agents',
   rows: [
     {
-      problem: 'It’s hard to tell how much product and engineering effort supports your stated priorities.',
-      help: 'A heat-map-style view compares actual work with those priorities, so leaders can see where to adjust course.',
+      people: { title: '“I remember why we decided that.”', body: 'History from meetings, past projects, and experience stays with the person.' },
+      agents: { title: 'Put the relevant context within reach.', body: 'Supply current decisions, constraints, and supporting evidence at the point of work.' },
     },
     {
-      problem: 'Work slows when teams don’t know who can decide, which reviews matter, or when to escalate.',
-      help: 'A decision audit identifies bottlenecks and informs clearer ownership and review rules, so decisions can move faster.',
+      people: { title: '“I know who to ask.”', body: 'Relationships help people find answers and navigate conflicting information.' },
+      agents: {
+        title: 'Define where answers come from.',
+        body: 'Specify authoritative sources, decision owners, and a route to a human when information conflicts.',
+      },
     },
     {
-      problem: 'Context gets lost as work moves between people and AI agents.',
-      help: 'Handoff standards define the inputs, checks, and owners at each stage, so work moves forward with clear accountability.',
+      people: { title: '“I’ll pick up where I left off.”', body: 'People carry an understanding of progress, open questions, and recent changes.' },
+      agents: {
+        title: 'Preserve state between runs.',
+        body: 'Record what is complete, what changed, and what remains unresolved so work can resume reliably.',
+      },
+    },
+    {
+      people: { title: '“This needs a conversation.”', body: 'A person can recognize an exception and negotiate the next step with colleagues.' },
+      agents: {
+        title: 'Design the pause and the handoff.',
+        body: 'Set decision boundaries, escalation triggers, and the information a human needs to take over.',
+      },
+    },
+    {
+      people: {
+        title: '“I can work through these one at a time.”',
+        body: 'Processes are often paced around individual capacity and sequential handoffs.',
+      },
+      agents: {
+        title: 'Rethink how the work is divided.',
+        body: 'Identify tasks agents can run in parallel, checks to automate, and points that need human judgment.',
+      },
     },
   ],
+  closing: 'Adding an agent changes who does the work.',
+  closingEmphasis: 'Redesigning the process changes how well it works.',
+  linkLabel: 'Explore how I work',
 };
 
 export const SERVICES = [
