@@ -11,6 +11,7 @@ import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { INTRO_CALL } from './siteCopy';
+import { trackCalendlyBookings } from './calendlyConversion';
 
 const EMAILJS_SERVICE_ID = 'service_s365yrl';
 const EMAILJS_TEMPLATE_NOTIFY = 'template_4t4sq5d';  // notification to Katie
@@ -28,6 +29,11 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Counts a Google Ads conversion only when the Calendly calendar reports a finished booking.
+  useEffect(() => {
+    trackCalendlyBookings();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
