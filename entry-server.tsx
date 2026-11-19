@@ -8,9 +8,9 @@ import { renderToString } from 'react-dom/server';
 import App from './App';
 import type { PrefetchData } from './prefetch';
 
-export { getAllPosts, getPostBySlug, getTemplatesAndTools, getPodcastEpisode, getLinkedInPosts } from './posts';
+export { getAllPosts, getPostBySlug, getTemplatesAndTools, getPodcastEpisode } from './posts';
 export { urlForImage } from './sanity';
-export { HERO, HUMANS_AGENTS, INTRO_CALL, PROOF, SERVICES } from './siteCopy';
+export { AI_RACI, CASE_STUDY_PAGES, HERO, HUMANS_AGENTS, INTRO_CALL, PROOF, SERVICES } from './siteCopy';
 
 export function render(url: string, data: PrefetchData) {
   return renderToString(

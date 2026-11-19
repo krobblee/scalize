@@ -13,8 +13,8 @@ The `/writing` (Library) and `/writing/:slug` pages are powered by **Sanity CMS*
 ### How it works
 
 - [`sanity.ts`](sanity.ts) configures the Sanity client and image URL builder.
-- [`posts.ts`](posts.ts) fetches content from Sanity via GROQ: `getAllPosts`/`getPostBySlug` (articles), `getTemplatesAndTools`, `getPodcastEpisode`, `getLinkedInPosts`.
-- [`Writing.tsx`](Writing.tsx) renders the Library page's four sections — Articles, Templates & Tools, Podcast, LinkedIn — each capped at 5 items with a "Show more" expansion.
+- [`posts.ts`](posts.ts) fetches content from Sanity via GROQ: `getAllPosts`/`getPostBySlug` (articles), `getTemplatesAndTools`, `getPodcastEpisode`.
+- [`Writing.tsx`](Writing.tsx) renders Templates & Tools, Articles, and Podcast. Templates and articles show up to five items initially, with a “Show more” control.
 - [`Post.tsx`](Post.tsx) renders an individual article's `body` (Portable Text) via `@portabletext/react`.
 
 Content only appears once **published** in Studio (drafts are not shown). The site reads through Sanity's CDN, so changes typically appear within ~1 minute.

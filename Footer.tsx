@@ -37,7 +37,7 @@ export default function Footer() {
               { label: 'Services', href: '/services' },
               { label: 'How I Work', href: '/how-i-work' },
               { label: 'Case Studies', href: '/case-studies' },
-              { label: 'Writing', href: '/writing' },
+              { label: 'Resources & Templates', href: '/writing' },
               { label: 'About', href: '/about' },
               { label: 'Contact', href: '/contact' },
             ].map((link) => (

@@ -12,6 +12,7 @@ export const INTRO_CALL = {
 };
 
 export const HERO = {
+  category: 'Product Operations consulting for growth-stage software companies',
   headline: 'Traditional product development processes weren’t designed for AI agents.',
   subtext:
     'I help growth-stage product and engineering teams redesign decisions, workflows, and handoffs so people and agents can work together with clear accountability.',
@@ -24,23 +25,23 @@ export const PROOF = {
   cards: [
     {
       metric: '30×',
-      unit: 'faster releases',
+      unit: 'release frequency',
       description:
         'Diagnosed an outdated architecture and redesigned product workflows for a full product rewrite at a B2B SaaS startup, reaching full CI/CD and a 30x improvement in release frequency.',
-      href: '/case-studies#product-rewrite',
+      href: '/case-studies/product-operations-saas-rewrite',
     },
     {
-      metric: '50%',
-      unit: 'faster time to first value',
+      metric: 'UK expansion',
+      unit: 'for a legal AI product',
       description:
-        'Improved design and onboarding in the rewritten product, so customers reached first value 50% faster than with the previous product.',
-      href: '/case-studies#product-rewrite',
+        'Built an expert review workflow that helped a legal AI product expand to the UK and open a new revenue stream.',
+      href: '/case-studies/human-in-the-loop-ai-evaluation',
     },
     {
       metric: '25%',
       unit: 'lower operating costs',
       description:
-        'Led product strategy and delivery for a shared customer acquisition platform that replaced seven legacy systems across more than 100 brands.',
+        'Led product strategy and delivery for a shared customer acquisition platform that replaced four legacy systems across more than 100 brands.',
       href: '/case-studies#greenfield-platform',
     },
   ],
@@ -104,7 +105,7 @@ export const SERVICES = [
     name: 'Operating Diagnostic',
     href: '/services#operating-diagnostic',
     description:
-      'A two to three week engagement that maps how your organization operates across the PDLC and SDLC, where effort is going, which work belongs to humans, agents, or both, and where the friction is.',
+      'In two to three weeks, see where product and engineering work gets stuck, who owns key decisions, and what to change first.',
   },
   {
     name: 'Build Engagement',
@@ -113,3 +114,22 @@ export const SERVICES = [
       'A three to six month engagement scoped directly from the diagnostic findings, producing human and agent ready processes, decision frameworks, and an executable plan to scale and measure reimagined processes across the organization.',
   },
 ];
+
+export const CASE_STUDY_PAGES = {
+  'legal-tech': {
+    path: '/case-studies/human-in-the-loop-ai-evaluation',
+    title: 'Human-in-the-Loop AI Evaluation for a UK Expansion',
+    description: 'How Katie Robblee designed expert review and feedback for a legal AI product expanding into the UK.',
+  },
+  'product-rewrite': {
+    path: '/case-studies/product-operations-saas-rewrite',
+    title: 'Product Operations Case Study: Rebuilding a B2B SaaS Product',
+    description: 'How Katie Robblee reworked product discovery, delivery, and success criteria during a B2B SaaS product rewrite.',
+  },
+} as const;
+
+export const AI_RACI = {
+  title: 'AI RACI for Product and Engineering Teams',
+  path: '/resources/ai-raci-product-engineering',
+  download: 'https://cdn.sanity.io/files/z13orr0o/production/e3700eaa228aefc594f0765fbe83d9c2d4116d54.xlsx',
+} as const;

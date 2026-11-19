@@ -1,7 +1,7 @@
 /*
  * SCALIZE SYSTEMS: Library Page
  * Design: Refined Editorial | White bg | Playfair Display headlines | DM Sans body
- * Four sections (Articles, Templates & Tools, Podcast, LinkedIn), alternating
+ * Three sections (Templates & Tools, Articles, Podcast), alternating
  * white / light-blue bands, content loaded from the Sanity "Scalize Writing CMS" project
  */
 
@@ -12,17 +12,16 @@ import {
   getAllPosts,
   getTemplatesAndTools,
   getPodcastEpisode,
-  getLinkedInPosts,
   type PostMeta,
   type TemplateOrTool,
   type PodcastEpisode,
-  type LinkedInPost,
 } from './posts';
 import { urlForImage } from './sanity';
 import { usePrefetched } from './prefetch';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { AI_RACI } from './siteCopy';
 
 const MAX_ITEMS = 5;
 
@@ -50,8 +49,8 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 const JUMP_LINKS = [
   { label: 'Templates & Tools', href: '#templates-tools' },
+  { label: 'Articles', href: '#articles' },
   { label: 'Podcast', href: '#podcast' },
-  { label: 'LinkedIn', href: '#linkedin' },
 ];
 
 function ShowMoreButton({ onClick }: { onClick: () => void }) {
@@ -117,25 +116,21 @@ export default function Writing() {
     posts: PostMeta[];
     templates: TemplateOrTool[];
     podcast: PodcastEpisode | null;
-    linkedInPosts: LinkedInPost[];
   }>('writing');
   const [posts, setPosts] = useState<PostMeta[]>(prefetched?.posts ?? []);
   const [templates, setTemplates] = useState<TemplateOrTool[]>(prefetched?.templates ?? []);
   const [podcast, setPodcast] = useState<PodcastEpisode | null>(prefetched?.podcast ?? null);
-  const [linkedInPosts, setLinkedInPosts] = useState<LinkedInPost[]>(prefetched?.linkedInPosts ?? []);
   const [loading, setLoading] = useState(!prefetched);
 
   const [showAllArticles, setShowAllArticles] = useState(false);
   const [showAllTemplates, setShowAllTemplates] = useState(false);
-  const [showAllLinkedIn, setShowAllLinkedIn] = useState(false);
 
   useEffect(() => {
-    Promise.all([getAllPosts(), getTemplatesAndTools(), getPodcastEpisode(), getLinkedInPosts()]).then(
-      ([p, t, pod, li]) => {
+    Promise.all([getAllPosts(), getTemplatesAndTools(), getPodcastEpisode()]).then(
+      ([p, t, pod]) => {
         setPosts(p);
         setTemplates(t);
         setPodcast(pod);
-        setLinkedInPosts(li);
         setLoading(false);
       }
     );
@@ -143,15 +138,14 @@ export default function Writing() {
 
   const visiblePosts = showAllArticles ? posts : posts.slice(0, MAX_ITEMS);
   const visibleTemplates = showAllTemplates ? templates : templates.slice(0, MAX_ITEMS);
-  const visibleLinkedIn = showAllLinkedIn ? linkedInPosts : linkedInPosts.slice(0, MAX_ITEMS);
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
       <Helmet>
-        <title>Resources & Writing | Scalize Systems</title>
-        <meta property="og:title" content="Resources & Writing | Scalize Systems" />
+        <title>Resources & Templates | Scalize Systems</title>
+        <meta property="og:title" content="Resources & Templates | Scalize Systems" />
         <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
-        <meta property="og:url" content="https://scalizesystems.com/writing" />
+        <meta property="og:url" content="https://www.scalizesystems.com/writing" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
@@ -160,7 +154,7 @@ export default function Writing() {
       <section className="pt-24 pb-6 md:pt-28" style={{ background: 'white' }}>
         <div className="container max-w-3xl">
           <FadeSection>
-            <h1 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>Library</h1>
+            <h1 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>Resources &amp; Templates</h1>
             <div className="flex flex-wrap gap-2" style={{ marginTop: '16px' }}>
               {JUMP_LINKS.map((link) => (
                 <a
@@ -177,8 +171,66 @@ export default function Writing() {
         </div>
       </section>
 
+      {/* Templates & Tools */}
+      <section id="templates-tools" className="py-6 scroll-mt-24" style={{ background: '#EEF2F8' }}>
+        <div className="container max-w-3xl">
+          <FadeSection>
+            <SectionTitle>Templates &amp; Tools</SectionTitle>
+          </FadeSection>
+
+          {loading ? (
+            <div className="text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C' }}>
+              Loading...
+            </div>
+          ) : templates.length === 0 ? (
+            <EmptyState
+              title="Templates & tools coming soon."
+              body="Practical resources for operators will be available here after launch."
+            />
+          ) : (
+            <>
+              <div className="flex flex-col gap-0">
+                {visibleTemplates.map((item, i) => (
+                  <FadeSection key={item._id} delay={i * 50}>
+                    <div className="py-4 border-b flex items-start gap-4" style={{ borderColor: '#e5e9f0' }}>
+                      <Thumbnail image={item.thumbnail} size={72} />
+                      <div className="flex-1">
+                        <h3 className="text-base font-semibold mb-1" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>
+                          {item.title}
+                        </h3>
+                        <p className="text-xs mb-2" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#6B8AB5' }}>
+                          {item.date ? formatDate(item.date) : 'Coming soon'}
+                        </p>
+                        {item.title === AI_RACI.title ? (
+                          <Link href={AI_RACI.path} className="text-xs font-medium text-[#046CC5] no-underline">
+                            View example and download
+                          </Link>
+                        ) : (item.downloadUrl || item.fileUrl) && (
+                          <a
+                            href={item.downloadUrl || item.fileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-medium no-underline"
+                            style={{ color: '#046CC5', fontFamily: 'Inter, system-ui, sans-serif' }}
+                          >
+                            Download →
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </FadeSection>
+                ))}
+              </div>
+              {!showAllTemplates && templates.length > MAX_ITEMS && (
+                <ShowMoreButton onClick={() => setShowAllTemplates(true)} />
+              )}
+            </>
+          )}
+        </div>
+      </section>
+
       {/* Articles */}
-      <section className="py-6" style={{ background: '#EEF2F8' }}>
+      <section id="articles" className="py-6 scroll-mt-24" style={{ background: 'white' }}>
         <div className="container max-w-3xl">
           <FadeSection>
             <SectionTitle>Articles</SectionTitle>
@@ -246,62 +298,8 @@ export default function Writing() {
         </div>
       </section>
 
-      {/* Templates & Tools */}
-      <section id="templates-tools" className="py-6" style={{ background: 'white' }}>
-        <div className="container max-w-3xl">
-          <FadeSection>
-            <SectionTitle>Templates &amp; Tools</SectionTitle>
-          </FadeSection>
-
-          {loading ? (
-            <div className="text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C' }}>
-              Loading...
-            </div>
-          ) : templates.length === 0 ? (
-            <EmptyState
-              title="Templates & tools coming soon."
-              body="Practical resources for operators will be available here after launch."
-            />
-          ) : (
-            <>
-              <div className="flex flex-col gap-0">
-                {visibleTemplates.map((item, i) => (
-                  <FadeSection key={item._id} delay={i * 50}>
-                    <div className="py-4 border-b flex items-start gap-4" style={{ borderColor: '#e5e9f0' }}>
-                      <Thumbnail image={item.thumbnail} size={72} />
-                      <div className="flex-1">
-                        <h3 className="text-base font-semibold mb-1" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>
-                          {item.title}
-                        </h3>
-                        <p className="text-xs mb-2" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#6B8AB5' }}>
-                          {item.date ? formatDate(item.date) : 'Coming soon'}
-                        </p>
-                        {(item.downloadUrl || item.fileUrl) && (
-                          <a
-                            href={item.downloadUrl || item.fileUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs font-medium no-underline"
-                            style={{ color: '#046CC5', fontFamily: 'Inter, system-ui, sans-serif' }}
-                          >
-                            Download →
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </FadeSection>
-                ))}
-              </div>
-              {!showAllTemplates && templates.length > MAX_ITEMS && (
-                <ShowMoreButton onClick={() => setShowAllTemplates(true)} />
-              )}
-            </>
-          )}
-        </div>
-      </section>
-
       {/* Podcast */}
-      <section id="podcast" className="py-6" style={{ background: '#EEF2F8' }}>
+      <section id="podcast" className="py-6 scroll-mt-24" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-3xl">
           <FadeSection>
             <SectionTitle>Podcast</SectionTitle>
@@ -344,58 +342,6 @@ export default function Writing() {
                 </div>
               </div>
             </FadeSection>
-          )}
-        </div>
-      </section>
-
-      {/* LinkedIn */}
-      <section id="linkedin" className="py-6" style={{ background: 'white' }}>
-        <div className="container max-w-3xl">
-          <FadeSection>
-            <SectionTitle>LinkedIn</SectionTitle>
-          </FadeSection>
-
-          {loading ? (
-            <div className="text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C' }}>
-              Loading...
-            </div>
-          ) : linkedInPosts.length === 0 ? (
-            <EmptyState
-              title="LinkedIn posts coming soon."
-              body="Recent posts will be linked here after launch."
-            />
-          ) : (
-            <>
-              <div className="flex flex-col gap-0">
-                {visibleLinkedIn.map((item, i) => (
-                  <FadeSection key={item._id} delay={i * 50}>
-                    <div className="py-4 border-b flex items-start gap-4" style={{ borderColor: '#e5e9f0' }}>
-                      <Thumbnail image={item.thumbnail} size={72} />
-                      <div className="flex-1">
-                        <h3 className="text-base font-semibold mb-1" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>
-                          {item.title}
-                        </h3>
-                        <p className="text-xs mb-2" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#6B8AB5' }}>
-                          {formatDate(item.date)}
-                        </p>
-                        <a
-                          href={item.externalUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-medium no-underline"
-                          style={{ color: '#046CC5', fontFamily: 'Inter, system-ui, sans-serif' }}
-                        >
-                          View on LinkedIn →
-                        </a>
-                      </div>
-                    </div>
-                  </FadeSection>
-                ))}
-              </div>
-              {!showAllLinkedIn && linkedInPosts.length > MAX_ITEMS && (
-                <ShowMoreButton onClick={() => setShowAllLinkedIn(true)} />
-              )}
-            </>
           )}
         </div>
       </section>

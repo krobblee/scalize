@@ -77,7 +77,7 @@ const CARTONS = ['Headboard', 'Footboard', 'Rails'];
 
 export function MultiboxDiagram() {
   return (
-    <DiagramFigure caption="How the multibox data structure worked, using the bed frame example from this case study. Linking every carton to its product made it possible to confirm that all boxes were present before a shipment left the fulfillment center.">
+    <DiagramFigure caption="How the multibox data structure worked, using the bed frame example from this case study. Linking every carton to its product made it possible to confirm that all boxes were present before a shipment left the fulfillment center and to track them throughout Wayfair’s delivery network.">
       <div className="grid md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-2 items-stretch">
         <div>
           <PanelLabel>Before: one record per carton</PanelLabel>
@@ -150,10 +150,10 @@ export function SharedPlatformDiagram() {
     <DiagramFigure caption="How the shared customer acquisition platform changed the operating model. Brand names are placeholders. A shared platform and CMS let marketing make routine acquisition-flow changes without routing each one through engineering.">
       <div className="grid md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-2 items-stretch">
         <div>
-          <PanelLabel>Before: brands spread across seven legacy systems</PanelLabel>
+          <PanelLabel>Before: brands spread across four legacy systems</PanelLabel>
           <div className="grid grid-cols-2 gap-2">
             {BRANDS.map((brand) => (
-              <Node key={brand} tone="muted" title={brand} detail="On one of 7 legacy systems" />
+              <Node key={brand} tone="muted" title={brand} detail="On one of 4 legacy systems" />
             ))}
           </div>
           <Route label="Routine change (new promotion or landing page)" steps={['Marketing', 'Engineering queue', 'Live']} />

@@ -1,7 +1,7 @@
 /*
  * SCALIZE SYSTEMS: Home Page
  * Design: Refined Editorial | White bg | Inter font
- * Sections: Hero (no label), Proof cards, Humans and Agents comparison, Services Preview
+ * Sections: Hero, Proof cards, Services Preview, Humans and Agents comparison
  * Max content width: max-w-4xl for readability
  * Calendly: intro call button in the hero; the embedded calendar is on the Contact page
  */
@@ -29,17 +29,17 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
       <Helmet>
-        <title>Scalize Systems | Reimagining Processes for Human and Agent Teams</title>
-        <meta property="og:title" content="Scalize Systems | Reimagining Processes for Human and Agent Teams" />
+        <title>Scalize Systems | Product Operations & AI Strategy Consulting</title>
+        <meta property="og:title" content="Scalize Systems | Product Operations & AI Strategy Consulting" />
         <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
-        <meta property="og:url" content="https://scalizesystems.com/" />
+        <meta property="og:url" content="https://www.scalizesystems.com/" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
 
-      {/* Hero: no label above headline. Top padding clears the fixed navbar so none of the background art hides behind it */}
+      {/* Hero: Top padding clears the fixed navbar so none of the background art hides behind it */}
       <section className="pt-16 md:pt-[4.5rem]" style={{ background: 'white' }}>
-        {/* Hero height follows the text: 48px (phones) / 80px (768px up) above the headline.
+        {/* Hero height follows the text: 48px (phones) / 80px (768px up) above the text.
             The art covers the box edge to edge at its natural shape, cropping top and bottom on wider screens. */}
         <div className="relative">
           <div
@@ -54,6 +54,7 @@ export default function Home() {
           />
           <div className="container max-w-4xl relative pt-12 pb-6 md:pt-20 md:pb-8">
             <FadeSection>
+              <p className="text-sm md:text-base font-semibold mb-3 text-[#066B63]">{HERO.category}</p>
               {/* Two lines from 768px up: breaks before "weren’t", sized so each half fits the text column.
                   From 1280px the headline may run 6rem past the column's right edge so it can stay at 44px.
                   Phones wrap naturally; two lines would need an unreadably small size there. */}
@@ -114,7 +115,7 @@ export default function Home() {
                   onMouseEnter={(e) => (e.currentTarget.style.background = '#EEF2F8')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = 'white')}
                 >
-                  Explore services
+                  Explore Product Operations services
                 </Link>
               </div>
             </FadeSection>
@@ -160,6 +161,73 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Preview */}
+      <section className="section-band" style={{ background: 'white' }}>
+        <div className="container max-w-4xl">
+          <FadeSection>
+            <div className="flex items-baseline justify-between mb-10">
+              <h2
+                className="text-xl md:text-2xl font-semibold"
+                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+              >
+                Services
+              </h2>
+              <Link
+                href="/services"
+                className="text-sm font-medium no-underline transition-colors duration-150"
+                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#046CC5' }}
+              >
+                View all →
+              </Link>
+            </div>
+          </FadeSection>
+          <div className="grid md:grid-cols-2 gap-6">
+            <FadeSection delay={0}>
+              <Link href={SERVICES[0].href} className="block no-underline group h-full">
+                <div
+                  className="h-full p-7 rounded-sm border transition-shadow duration-200 group-hover:shadow-md"
+                  style={{ borderColor: '#e5e9f0', background: 'white', borderLeft: '3px solid #078279' }}
+                >
+                  <h3
+                    className="text-lg font-semibold mb-3 transition-colors duration-150"
+                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+                  >
+                    {SERVICES[0].name}
+                  </h3>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
+                  >
+                    {SERVICES[0].description}
+                  </p>
+                </div>
+              </Link>
+            </FadeSection>
+            <FadeSection delay={60}>
+              <Link href={SERVICES[1].href} className="block no-underline group h-full">
+                <div
+                  className="h-full p-7 rounded-sm border transition-shadow duration-200 group-hover:shadow-md"
+                  style={{ borderColor: '#e5e9f0', background: 'white', borderLeft: '3px solid #078279' }}
+                >
+                  <h3
+                    className="text-lg font-semibold mb-3 transition-colors duration-150"
+                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
+                  >
+                    {SERVICES[1].name}
+                  </h3>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
+                  >
+                    {SERVICES[1].description}
+                  </p>
+                </div>
+              </Link>
+            </FadeSection>
           </div>
         </div>
       </section>
@@ -232,73 +300,6 @@ export default function Home() {
               </Link>
             </div>
           </FadeSection>
-        </div>
-      </section>
-
-      {/* Services Preview */}
-      <section className="section-band" style={{ background: 'white' }}>
-        <div className="container max-w-4xl">
-          <FadeSection>
-            <div className="flex items-baseline justify-between mb-10">
-              <h2
-                className="text-xl md:text-2xl font-semibold"
-                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-              >
-                Services
-              </h2>
-              <Link
-                href="/services"
-                className="text-sm font-medium no-underline transition-colors duration-150"
-                style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#046CC5' }}
-              >
-                View all →
-              </Link>
-            </div>
-          </FadeSection>
-          <div className="grid md:grid-cols-2 gap-6">
-            <FadeSection delay={0}>
-              <Link href="/services#operating-diagnostic" className="block no-underline group h-full">
-                <div
-                  className="h-full p-7 rounded-sm border transition-shadow duration-200 group-hover:shadow-md"
-                  style={{ borderColor: '#e5e9f0', background: 'white', borderLeft: '3px solid #078279' }}
-                >
-                  <h3
-                    className="text-lg font-semibold mb-3 transition-colors duration-150"
-                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-                  >
-                    {SERVICES[0].name}
-                  </h3>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
-                  >
-                    {SERVICES[0].description}
-                  </p>
-                </div>
-              </Link>
-            </FadeSection>
-            <FadeSection delay={60}>
-              <Link href="/services#build-engagement" className="block no-underline group h-full">
-                <div
-                  className="h-full p-7 rounded-sm border transition-shadow duration-200 group-hover:shadow-md"
-                  style={{ borderColor: '#e5e9f0', background: 'white', borderLeft: '3px solid #078279' }}
-                >
-                  <h3
-                    className="text-lg font-semibold mb-3 transition-colors duration-150"
-                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}
-                  >
-                    {SERVICES[1].name}
-                  </h3>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.7' }}
-                  >
-                    {SERVICES[1].description}
-                  </p>
-                </div>
-              </Link>
-            </FadeSection>
-          </div>
         </div>
       </section>
 

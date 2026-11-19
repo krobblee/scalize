@@ -17,6 +17,9 @@ import About from "./About";
 import Contact from "./Contact";
 import GraduatedHitlEvalOwnershipModel from "./GraduatedHitlEvalOwnershipModel";
 
+import AiRaci from "./AiRaci";
+import { AI_RACI, CASE_STUDY_PAGES } from "./siteCopy";
+
 function Router() {
   return (
     <>
@@ -25,12 +28,18 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/services" component={Services} />
       <Route path="/how-i-work" component={HowIWork} />
-      <Route path="/case-studies" component={CaseStudies} />
+      <Route path="/case-studies"><CaseStudies /></Route>
+      {Object.values(CASE_STUDY_PAGES).map(({ path }) => (
+        <Route key={path} path={path}>
+          <CaseStudies casePath={path} />
+        </Route>
+      ))}
       <Route path="/writing" component={Writing} />
       <Route path="/writing/:slug" component={Post} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/resources/graduated-hitl-eval-ownership-model" component={GraduatedHitlEvalOwnershipModel} />
+      <Route path={AI_RACI.path} component={AiRaci} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

@@ -79,14 +79,6 @@ export interface PodcastEpisode {
   date: string;
 }
 
-export interface LinkedInPost {
-  _id: string;
-  title: string;
-  thumbnail?: any;
-  externalUrl: string;
-  date: string;
-}
-
 const TEMPLATES_QUERY = `*[_type == "templateOrTool"] | order(date desc){
   _id,
   title,
@@ -108,22 +100,10 @@ const PODCAST_QUERY = `*[_type == "podcastEpisode"] | order(date desc)[0]{
   date
 }`;
 
-const LINKEDIN_QUERY = `*[_type == "linkedinPost"] | order(date desc){
-  _id,
-  title,
-  thumbnail,
-  externalUrl,
-  date
-}`;
-
 export async function getTemplatesAndTools(): Promise<TemplateOrTool[]> {
   return sanityClient.fetch(TEMPLATES_QUERY);
 }
 
 export async function getPodcastEpisode(): Promise<PodcastEpisode | null> {
   return sanityClient.fetch(PODCAST_QUERY);
-}
-
-export async function getLinkedInPosts(): Promise<LinkedInPost[]> {
-  return sanityClient.fetch(LINKEDIN_QUERY);
 }

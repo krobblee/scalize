@@ -1,7 +1,7 @@
 /*
  * SCALIZE SYSTEMS: Services Page
  * Design: Refined Editorial | White bg | Inter font
- * Sections: Page header, Operating Diagnostic, Diagnostic-to-build flow, Build Engagement, FAQ, Bottom CTA
+ * Sections: Page header, Operating Diagnostic, Build Engagement, FAQ, Bottom CTA
  * Max content width: max-w-4xl
  */
 
@@ -11,7 +11,10 @@ import { Link } from 'wouter';
 import { useFadeIn } from './useFadeIn';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import DiagnosticToBuild from './ServiceDiagrams';
+import { INTRO_CALL } from './siteCopy';
+
+const TITLE = 'Product Operations Consulting for Growth-Stage Software Companies';
+const DESCRIPTION = 'Product Operations consulting for growth-stage software companies. Find where decisions stall, improve product and engineering handoffs, and measure how AI changes delivery.';
 
 function FadeSection({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useFadeIn<HTMLDivElement>(delay);
@@ -159,10 +162,11 @@ export default function Services() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F4F7FA' }}>
       <Helmet>
-        <title>Services | Scalize Systems</title>
-        <meta property="og:title" content="Services | Scalize Systems" />
-        <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
-        <meta property="og:url" content="https://scalizesystems.com/services" />
+        <title>{`${TITLE} | Scalize Systems`}</title>
+        <meta name="description" content={DESCRIPTION} />
+        <meta property="og:title" content={`${TITLE} | Scalize Systems`} />
+        <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:url" content="https://www.scalizesystems.com/services" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
@@ -171,13 +175,20 @@ export default function Services() {
       <section className="pt-16 pb-6 md:pt-20 md:pb-8" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <FadeSection>
-            <h1 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>Services</h1>
+            <h1 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#073C81' }}>{TITLE}</h1>
+            <p className="mt-4 max-w-3xl text-base md:text-lg leading-relaxed text-[#3D4A5C]">
+              I help growth-stage software companies fix how work moves between product and engineering.
+              If decisions keep getting reopened, work stalls at handoffs, or you’ve rolled out AI tools
+              and can’t tell whether delivery has improved, we start with a two-to-three-week Operating Diagnostic.
+              You’ll see where work is getting stuck, who owns the decisions, and what to change first.
+              If you want help putting those changes in place, we scope that work together.
+            </p>
           </FadeSection>
         </div>
       </section>
 
       {/* Operating Diagnostic */}
-      <section id="operating-diagnostic" className="section-band" style={{ background: '#EEF2F8' }}>
+      <section id="operating-diagnostic" className="section-band scroll-mt-24" style={{ background: '#EEF2F8' }}>
         <div className="container max-w-4xl">
           <FadeSection>
             {/* Centered heading */}
@@ -197,6 +208,14 @@ export default function Services() {
                 <p className="text-sm" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', fontStyle: 'italic' }}>
                   Duration: Two to three weeks
                 </p>
+                <a
+                  href={INTRO_CALL.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-5 px-6 py-3 rounded text-sm font-semibold no-underline bg-[#073C81] hover:bg-[#046CC5] text-white"
+                >
+                  Book a 30-minute intro call
+                </a>
               </div>
               {/* Right column: deliverables */}
               <div className="md:w-1/2">
@@ -228,11 +247,8 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Diagnostic-to-build flow: replaces the former third-party AI statistics carousel */}
-      <DiagnosticToBuild />
-
       {/* Build Engagement */}
-      <section id="build-engagement" className="section-band" style={{ background: 'white' }}>
+      <section id="build-engagement" className="section-band scroll-mt-24" style={{ background: 'white' }}>
         <div className="container max-w-4xl">
           <FadeSection>
             {/* Centered heading */}
@@ -244,10 +260,8 @@ export default function Services() {
               {/* Left column: body copy + italic duration */}
               <div className="md:w-1/2">
                 <p className="text-base leading-relaxed mb-5" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}>
-                  Every build engagement begins where the Operating Diagnostic ends. If we haven't completed the diagnostic together, that's where we start.
-                </p>
-                <p className="text-base leading-relaxed mb-5" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}>
-                  I scope the build engagement directly from the diagnostic findings, tying what to build, and in what order, directly to a specific finding from the diagnostic. Clients never pay for work that hasn't been specifically tied to a gap identified together.
+                  If you want help putting the diagnostic recommendations into practice, we use the findings
+                  to decide what to change first and how we’ll measure whether it worked.
                 </p>
                 <p className="text-base leading-relaxed mb-5" style={{ fontFamily: 'Inter, system-ui, sans-serif', color: '#3D4A5C', lineHeight: '1.8' }}>
                   Build engagements typically run from three to six months dependent upon the diagnostic findings. Before I start on the build, I define the exact scope, timeline, and investment together with clients, identifying what improvements will add direct value, along with a clear plan to scale those improvements as the organization grows.
@@ -284,7 +298,7 @@ export default function Services() {
                 metric="30x"
                 unit="improvement in release frequency"
                 description="Oversaw a full product rewrite, delivered on time and $150K under budget, that brought full CI/CD, 50% faster time to first value, and expansion into a new market."
-                href="/case-studies#product-rewrite"
+                href="/case-studies/product-operations-saas-rewrite"
               />
             </PastResultsRow>
           </FadeSection>

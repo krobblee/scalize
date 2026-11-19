@@ -68,7 +68,7 @@ export default function Contact() {
         <title>Contact | Scalize Systems</title>
         <meta property="og:title" content="Contact | Scalize Systems" />
         <meta property="og:description" content="Scalize Systems partners with growth-stage companies to redesign the PDLC and SDLC for human and agent collaboration, build operating infrastructure, and remove friction from processes so organizations can scale with confidence." />
-        <meta property="og:url" content="https://scalizesystems.com/contact" />
+        <meta property="og:url" content="https://www.scalizesystems.com/contact" />
         <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />

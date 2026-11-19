@@ -12,14 +12,18 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.join(root, 'dist');
 const server = await import(path.join(root, 'dist-ssr', 'entry-server.js'));
 
+const { AI_RACI, CASE_STUDY_PAGES, HERO, HUMANS_AGENTS, INTRO_CALL, PROOF, SERVICES } = server;
+
 const STATIC_ROUTES = [
   '/',
   '/services',
   '/how-i-work',
   '/case-studies',
+  ...Object.values(CASE_STUDY_PAGES).map(({ path }) => path),
   '/about',
   '/contact',
   '/resources/graduated-hitl-eval-ownership-model',
+  AI_RACI.path,
 ];
 
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf-8');
@@ -27,20 +31,18 @@ const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf-8');
 const decodeEntities = (text) =>
   text.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const SITE_DESCRIPTION = decodeEntities(template.match(/<meta name="description" content="([^"]*)"/)[1]);
-const { HERO, HUMANS_AGENTS, INTRO_CALL, PROOF, SERVICES } = server;
 
 // Unknown URLs (and articles published after this build) fall back to the plain app shell.
 fs.writeFileSync(path.join(dist, 'app-shell.html'), template);
 
-const [posts, templates, podcast, linkedInPosts] = await Promise.all([
+const [posts, templates, podcast] = await Promise.all([
   server.getAllPosts(),
   server.getTemplatesAndTools(),
   server.getPodcastEpisode(),
-  server.getLinkedInPosts(),
 ]);
 
 const pages = STATIC_ROUTES.map((url) => ({ url, data: {} }));
-pages.push({ url: '/writing', data: { writing: { posts, templates, podcast, linkedInPosts } } });
+pages.push({ url: '/writing', data: { writing: { posts, templates, podcast } } });
 for (const { slug } of posts) {
   const post = await server.getPostBySlug(slug);
   if (post) pages.push({ url: `/writing/${slug}`, data: { [`post:${slug}`]: post } });
@@ -129,8 +131,11 @@ for (const { url, data } of pages) {
 
   let page = template
     .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
-    .replace('</head>', `${headTags}${structuredData(url, data)}<script>window.__PRERENDER_DATA__=${json}</script></head>`);
-  if (headTags.includes('<title>')) page = page.replace('<title>Scalize Systems</title>', '');
+    .replace('</head>', `${headTags}<link rel="canonical" href="${SITE}${url}">${structuredData(url, data)}<script>window.__PRERENDER_DATA__=${json}</script></head>`);
+  if (/<meta name="description"/.test(headTags)) {
+    page = page.replace(/^[ \t]*<meta name="description" content="[^"]*"\s*\/?>\r?\n/m, '');
+  }
+  if (headTags.includes('<title>')) page = page.replace(/^[ \t]*<title>Scalize Systems<\/title>\r?\n/m, '');
 
   const file = url === '/' ? 'index.html' : `${url.slice(1)}.html`;
   fs.mkdirSync(path.dirname(path.join(dist, file)), { recursive: true });
@@ -139,16 +144,17 @@ for (const { url, data } of pages) {
 }
 
 // sitemap.xml: every page on this site, including each article, rebuilt from Sanity on every build.
-const SITEMAP_HOST = 'https://scalizesystems.com';
 const sitemapEntries = [
   { url: '/', priority: '1.0', changefreq: 'monthly' },
   { url: '/services', priority: '0.8', changefreq: 'monthly' },
   { url: '/how-i-work', priority: '0.8', changefreq: 'monthly' },
   { url: '/case-studies', priority: '0.8', changefreq: 'monthly' },
+  ...Object.values(CASE_STUDY_PAGES).map(({ path }) => ({ url: path, priority: '0.7', changefreq: 'monthly' })),
   { url: '/writing', priority: '0.7', changefreq: 'weekly' },
   { url: '/about', priority: '0.7', changefreq: 'monthly' },
   { url: '/contact', priority: '0.7', changefreq: 'monthly' },
   { url: '/resources/graduated-hitl-eval-ownership-model', priority: '0.6', changefreq: 'monthly' },
+  { url: AI_RACI.path, priority: '0.7', changefreq: 'monthly' },
   ...posts.map((p) => ({ url: `/writing/${p.slug}`, priority: '0.6', changefreq: 'monthly', lastmod: p.date })),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -157,7 +163,7 @@ ${sitemapEntries
   .map(({ url, priority, changefreq, lastmod }) =>
     [
       '  <url>',
-      `    <loc>${SITEMAP_HOST}${url}</loc>`,
+      `    <loc>${SITE}${url}</loc>`,
       lastmod ? `    <lastmod>${lastmod.slice(0, 10)}</lastmod>` : null,
       `    <changefreq>${changefreq}</changefreq>`,
       `    <priority>${priority}</priority>`,
@@ -177,7 +183,7 @@ const llms = `# Scalize Systems
 
 > ${SITE_DESCRIPTION}
 
-${HERO.headline} ${HERO.subtext}
+${HERO.category}. ${HERO.headline} ${HERO.subtext}
 
 Founder: [Katie Robblee](${SITE}/about)
 
@@ -209,14 +215,12 @@ ${SERVICES.map((service) => `- [${service.name}](${SITE}${service.href}): ${serv
 - [Services](${SITE}/services)
 - [How I Work](${SITE}/how-i-work)
 - [Case Studies](${SITE}/case-studies)
-- [Resources & Writing](${SITE}/writing)
+${Object.values(CASE_STUDY_PAGES).map(({ title, path }) => `- [${title}](${SITE}${path})`).join('\n')}
+- [${AI_RACI.title}](${SITE}${AI_RACI.path})
+- [Resources & Templates](${SITE}/writing)
 - [About](${SITE}/about)
 - [Contact](${SITE}/contact)
 - [Graduated HITL Eval Ownership Model](${SITE}/resources/graduated-hitl-eval-ownership-model)
-
-## Articles
-
-${posts.map((p) => `- [${p.title}](${SITE}/writing/${p.slug})`).join('\n')}
 
 ## Templates and Tools
 
@@ -224,14 +228,15 @@ ${templates
   .filter((t) => t.downloadUrl || t.fileUrl)
   .map((t) => `- [${t.title}](${t.downloadUrl || t.fileUrl})${t.description ? `: ${oneLine(t.description)}` : ''}`)
   .join('\n')}
+
+## Articles
+
+${posts.map((p) => `- [${p.title}](${SITE}/writing/${p.slug})`).join('\n')}
+
 ${podcast ? `
 ## Podcast
 
 - [${podcast.episodeTitle}](${podcast.listenUrl}): ${podcast.showName}, hosted by ${podcast.host}${podcast.description ? `. ${oneLine(podcast.description)}` : ''}
-` : ''}${linkedInPosts.length ? `
-## LinkedIn Posts
-
-${linkedInPosts.map((l) => `- [${l.title}](${l.externalUrl.split('?')[0]})`).join('\n')}
 ` : ''}
 `;
 fs.writeFileSync(path.join(dist, 'llms.txt'), llms);
